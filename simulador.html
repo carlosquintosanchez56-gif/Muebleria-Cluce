@@ -135,6 +135,32 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
 .sim-bau{width:100%;margin-top:12px;min-height:60px}
 @media (max-width:600px){.sim-svg .bt{font-size:15px}}
 
+/* ===== DECORACIÓN EDITORIAL (solo estética) ===== */
+.spage::after{opacity:.05}
+.sim-svg .gl{stroke:rgba(201,169,110,.075)}
+.sim-svg .gl.m{stroke:rgba(201,169,110,.15)}
+.sim-svg .dt{stroke:#120d0a}
+.sim-svg .fst{fill:none;stroke:#e8cf98;stroke-width:.8;stroke-dasharray:2.5 2.5;opacity:.6}
+.sim-svg .fpl2{fill:rgba(232,207,152,.30);stroke:#e8cf98;stroke-width:.9}
+.sim-svg .bad .fst{stroke:#f0b4a3}
+.sim-main::before{content:"CLUCE ATELIER";position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-family:'Cinzel','Fraunces',Georgia,serif;font-weight:600;font-size:clamp(90px,17vw,260px);letter-spacing:.06em;line-height:1;white-space:nowrap;color:rgba(201,169,110,.03);-webkit-text-stroke:1px rgba(201,169,110,.075);pointer-events:none;z-index:-1}
+.simcard{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.02))}
+.simcard::before{content:"";position:absolute;inset:7px;border-radius:18px;border:1px dashed rgba(201,169,110,.34);pointer-events:none}
+.simcard::after{content:"";position:absolute;inset:-6px;pointer-events:none;opacity:.75;background:linear-gradient(#c9a96e,#c9a96e) 0 0/20px 1.5px no-repeat,linear-gradient(#c9a96e,#c9a96e) 0 0/1.5px 20px no-repeat,linear-gradient(#c9a96e,#c9a96e) 100% 0/20px 1.5px no-repeat,linear-gradient(#c9a96e,#c9a96e) 100% 0/1.5px 20px no-repeat,linear-gradient(#c9a96e,#c9a96e) 0 100%/20px 1.5px no-repeat,linear-gradient(#c9a96e,#c9a96e) 0 100%/1.5px 20px no-repeat,linear-gradient(#c9a96e,#c9a96e) 100% 100%/20px 1.5px no-repeat,linear-gradient(#c9a96e,#c9a96e) 100% 100%/1.5px 20px no-repeat}
+.sim-step::after{content:"✦";margin-left:auto;color:#c9a96e;font-size:15px;opacity:.85}
+.sim-plan{box-shadow:inset 0 0 0 1px rgba(201,169,110,.26),0 24px 50px -30px rgba(0,0,0,.8),0 0 90px -30px rgba(201,169,110,.16)}
+.sim-orn{display:flex;align-items:center;gap:12px;margin-top:28px;max-width:340px;color:#c9a96e;font-size:16px;line-height:1}
+.sim-orn i{flex:1;height:1px;display:block;background:linear-gradient(90deg,rgba(201,169,110,.75),transparent)}
+.sim-orn i:last-child{background:linear-gradient(270deg,rgba(201,169,110,.75),transparent)}
+.seals{margin-top:56px}
+.seals-in{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:28px 22px;border-top:1px solid rgba(201,169,110,.55);border-bottom:1px solid rgba(201,169,110,.55);background:linear-gradient(90deg,transparent,rgba(201,169,110,.07),transparent)}
+.seals-in::before,.seals-in::after{content:"";position:absolute;left:0;right:0;height:1px;background:rgba(201,169,110,.25)}
+.seals-in::before{top:4px}.seals-in::after{bottom:4px}
+.seal{display:flex;align-items:center;justify-content:center;gap:14px}
+.seal-m{flex:none;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e8cf98;font-size:19px;background:radial-gradient(circle at 35% 30%,rgba(232,207,152,.24),rgba(201,169,110,.05));box-shadow:inset 0 0 0 1px rgba(201,169,110,.85),inset 0 0 0 5px #171513,inset 0 0 0 6px rgba(201,169,110,.45),0 8px 18px -10px rgba(0,0,0,.8)}
+.seal-t{font-family:'Fraunces',Georgia,serif;font-size:16px;line-height:1.35;color:#e6d6bf;max-width:200px}
+@media (max-width:760px){.seals-in{grid-template-columns:1fr;gap:20px;padding:24px 18px}.seal{justify-content:flex-start}.sim-main::before{content:"CLUCE\A ATELIER";white-space:pre;text-align:center;font-size:clamp(64px,24vw,130px);top:50%;line-height:.95}}
+
 </style>
 </head>
 <body>
@@ -160,12 +186,13 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
 </g></g><text x="146" y="62" font-family="Cinzel,'Trajan Pro',Georgia,'Times New Roman',serif" font-size="34" textLength="370" lengthAdjust="spacingAndGlyphs" fill="url(#gtxt)"><tspan font-weight="600">MUEBLERÍA </tspan><tspan font-weight="400">CLUCE</tspan></text></svg></a>
 <a class="btn btn-thin back" href="index.html">← Volver a la tienda</a>
 </header>
-<div class="rule" aria-hidden="true" style="height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.45),transparent)"></div>
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
 <main class="wrap sim-main">
 <div class="sim-head">
 <p class="eyebrow" style="margin-bottom:20px;color:#C5A880"><span class="eh"><b aria-hidden="true">◆</b><i aria-hidden="true"></i></span>Simulador 2D</p>
 <h1 class="h2" style="font-size:clamp(32px,4.6vw,62px);margin-bottom:18px;color:#f1ebe0">Simulador de Espacio a Medida</h1>
 <p class="lead" style="max-width:560px;color:#cfc6b6">Mira cómo queda en tu sala o cuarto. Elige un mueble, pon la medida de tu espacio y ve si entra.</p>
+<div class="sim-orn" aria-hidden="true"><i></i><span>✦</span><i></i></div>
 </div>
 <div class="sim-grid" id="sim">
 <div class="sim-s1 simcard">
@@ -210,6 +237,13 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
 </div>
 </div>
 </main>
+<section class="wrap seals" aria-label="Garantías del taller">
+<div class="seals-in">
+<div class="seal"><span class="seal-m" aria-hidden="true">✦</span><span class="seal-t">Fabricación a medida en Lima</span></div>
+<div class="seal"><span class="seal-m" aria-hidden="true">✦</span><span class="seal-t">Madera tornillo y espuma Zebra</span></div>
+<div class="seal"><span class="seal-m" aria-hidden="true">✦</span><span class="seal-t">Entrega en 6 a 12 días</span></div>
+</div>
+</section>
 <footer class="wrap foot"><span>© Mueblería Cluce · Muebles a medida</span><a class="maplink" href="index.html">Volver a la tienda</a></footer>
 </div>
 <script>
@@ -273,12 +307,15 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
     flat = flat || 0;
     var back = Math.min(d * 0.26, 0.22 * sc) * (1 - flat), arm = Math.min(w * 0.12, 0.13 * sc);
     var s = '<g transform="' + tf + '"' + (extra ? ' class="' + extra + '"' : "") + ">";
+    s += '<rect x="-3" y="-2" width="' + (w + 6) + '" height="' + (d + 7) + '" rx="10" fill="rgba(0,0,0,.6)" filter="url(#clSh)"/>';
+    s += '<rect width="' + w + '" height="' + d + '" rx="7" fill="#4d3b2a"/>';
     s += '<rect class="fb" width="' + w + '" height="' + d + '" rx="7"/>';
     if (back > 0.8) s += '<rect class="fk" width="' + w + '" height="' + back + '" rx="6"/>';
     s += '<rect class="fa" y="' + back * 0.6 + '" width="' + arm + '" height="' + (d - back * 0.6) + '" rx="5"/>';
     s += '<rect class="fa" x="' + (w - arm) + '" y="' + back * 0.6 + '" width="' + arm + '" height="' + (d - back * 0.6) + '" rx="5"/>';
     var cw = (w - 2 * arm) / cush;
     for (var i = 0; i < cush; i++) s += '<rect class="fc" x="' + (arm + i * cw + 1.5) + '" y="' + (back + 1.5) + '" width="' + (cw - 3) + '" height="' + Math.max(2, d - back - 4) + '" rx="5"/>';
+    s += sofaDeco(w, d, cush, back, arm, cw, flat);
     return s + "</g>";
   }
   function dimV(x, y1, y2, label, side) {
@@ -290,21 +327,171 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
     return '<path class="dim" d="M' + x1 + " " + y + "H" + x2 + "M" + x1 + " " + (y - 4) + "v8M" + x2 + " " + (y - 4) + 'v8"/><text class="dt" text-anchor="middle" x="' + (x1 + x2) / 2 + '" y="' + (y - 8) + '">' + label + "</text>";
   }
 
+  /* ---------- decoración visual (solo estética: no toca medidas ni lógica) ---------- */
+  var WY1 = 0.30, WY2 = 0.72, WT = 11;
+  var rnd = function (i) { var x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+
+  function decorBase(rw, rl, sc, X, Y) {
+    var x0 = X(0), y0 = Y(0), W = rw * sc, H = rl * sc, i, k, o = {}, t = WT;
+    var pw = Math.max(9, 0.16 * sc), tw = 1.7 * sc;
+    var tn = ["#3b2b1f", "#35261b", "#402f21", "#30221a"], of = [0.08, 0.58, 0.31, 0.83];
+    var u = '<g fill="none" stroke="#c9a96e" stroke-width="1.2" opacity=".55"><path d="M12 36V12H36M484 12H508V36M12 504V528H36M508 504V528H484"/></g>'
+      + '<path d="M260 7l5 5-5 5-5-5z" fill="#c9a96e" opacity=".7"/><path d="M260 523l5 5-5 5-5-5z" fill="#c9a96e" opacity=".7"/>';
+    u += '<defs><clipPath id="clRoom"><rect x="' + x0 + '" y="' + y0 + '" width="' + W + '" height="' + H + '"/></clipPath>';
+    u += '<pattern id="clPlk" patternUnits="userSpaceOnUse" x="' + x0 + '" y="' + y0 + '" width="' + tw + '" height="' + (pw * 4) + '">';
+    for (k = 0; k < 4; k++) {
+      var yy = k * pw, jx = of[k] * tw;
+      u += '<rect x="0" y="' + yy + '" width="' + jx + '" height="' + pw + '" fill="' + tn[k] + '"/>';
+      u += '<rect x="' + jx + '" y="' + yy + '" width="' + (tw - jx) + '" height="' + pw + '" fill="' + tn[(k + 2) % 4] + '"/>';
+      u += '<path d="M0 ' + yy + 'H' + tw + 'M' + jx + ' ' + yy + 'v' + pw + 'M0 ' + yy + 'v' + pw + '" stroke="rgba(0,0,0,.42)" stroke-width=".9" fill="none"/>';
+      for (i = 0; i < 5; i++) u += '<path d="M' + (rnd(k * 9 + i) * tw * 0.9) + ' ' + (yy + pw * (0.2 + 0.6 * rnd(k * 9 + i + 40))) + 'h' + (tw * 0.12 * (0.4 + rnd(k * 9 + i + 80))) + '" stroke="rgba(255,226,180,.08)" stroke-width=".7"/>';
+    }
+    u += '</pattern>';
+    u += '<pattern id="clHatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><rect width="6" height="6" fill="#241f1a"/><path d="M0 0V6" stroke="rgba(201,169,110,.3)" stroke-width="1"/></pattern>';
+    u += '<radialGradient id="clVig" cx=".5" cy=".42" r=".78"><stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>';
+    u += '<linearGradient id="clCush" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3d2" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity=".26"/></linearGradient>';
+    u += '<linearGradient id="clBack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3d2" stop-opacity=".28"/><stop offset="1" stop-color="#fff3d2" stop-opacity="0"/></linearGradient>';
+    u += '<linearGradient id="clWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a6644"/><stop offset="1" stop-color="#5b4029"/></linearGradient>';
+    u += '<filter id="clSh" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="3.4"/></filter><filter id="clSh2" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="2"/></filter></defs>';
+    u += '<rect x="' + x0 + '" y="' + y0 + '" width="' + W + '" height="' + H + '" fill="url(#clPlk)"/><rect x="' + x0 + '" y="' + y0 + '" width="' + W + '" height="' + H + '" fill="url(#clVig)"/>';
+    o.under = u;
+
+    // muros con grosor real (rayado de muro)
+    o.band = '<path fill="url(#clHatch)" fill-rule="evenodd" stroke="#c9a96e" stroke-width="1.2" stroke-linejoin="round" d="M' + (x0 - t) + ' ' + (y0 - t) + 'h' + (W + 2 * t) + 'v' + (H + 2 * t) + 'h' + (-(W + 2 * t)) + 'z M' + x0 + ' ' + y0 + 'h' + W + 'v' + H + 'h' + (-W) + 'z"/>';
+
+    // ventanal (muro derecho) y puerta con su arco de apertura (muro inferior)
+    var wx = X(rw), wy1 = Y(WY1 * rl), wy2 = Y(WY2 * rl), ph = (wy2 - wy1) / 3, g = "";
+    g += '<rect x="' + (wx - 1) + '" y="' + wy1 + '" width="' + (t + 2) + '" height="' + (wy2 - wy1) + '" fill="#1a2328"/>';
+    g += '<rect x="' + (wx - 1) + '" y="' + wy1 + '" width="' + (t + 2) + '" height="' + (wy2 - wy1) + '" fill="rgba(190,222,240,.16)" stroke="#e8cf98" stroke-width="1"/>';
+    for (k = 1; k < 3; k++) g += '<path d="M' + (wx - 1) + ' ' + (wy1 + ph * k) + 'h' + (t + 2) + '" stroke="#e8cf98" stroke-width="1.4"/>';
+    g += '<path d="M' + (wx + t * 0.5) + ' ' + wy1 + 'v' + (wy2 - wy1) + '" stroke="rgba(232,207,152,.5)" stroke-width=".8"/>';
+    var dpx = Math.min(0.85, rw * 0.34) * sc, hx = X(0.64), by = Y(rl);
+    g += '<rect x="' + hx + '" y="' + (by - 1) + '" width="' + dpx + '" height="' + (t + 2) + '" fill="#2a2019" stroke="#e8cf98" stroke-width=".8" stroke-dasharray="2 2"/>';
+    g += '<path d="M' + hx + ' ' + by + 'L' + hx + ' ' + (by - dpx) + 'A' + dpx + ' ' + dpx + ' 0 0 1 ' + (hx + dpx) + ' ' + by + 'Z" fill="rgba(232,207,152,.05)"/>';
+    g += '<path d="M' + hx + ' ' + (by - dpx) + 'A' + dpx + ' ' + dpx + ' 0 0 1 ' + (hx + dpx) + ' ' + by + '" fill="none" stroke="rgba(232,207,152,.6)" stroke-width="1" stroke-dasharray="3 3"/>';
+    g += '<path d="M' + hx + ' ' + by + 'V' + (by - dpx) + '" stroke="#e8cf98" stroke-width="2.4" stroke-linecap="round"/>';
+    g += '<circle cx="' + hx + '" cy="' + by + '" r="2.4" fill="#e8cf98"/>';
+    o.openings = g;
+    return o;
+  }
+
+  function plantSVG(cx, cy, R, seed) {
+    var s = '<ellipse cx="' + (cx + R * 0.1) + '" cy="' + (cy + R * 0.16) + '" rx="' + R * 1.02 + '" ry="' + R * 0.96 + '" fill="rgba(0,0,0,.5)" filter="url(#clSh2)"/>';
+    var cols = ["#6b8568", "#7a9477", "#5f7a5c", "#86a083"], i, a, len, mx, my, rad = Math.PI / 180;
+    for (i = 0; i < 9; i++) {
+      a = i * 40 + rnd(seed + i) * 16; len = R * (0.86 + 0.16 * rnd(seed + i + 20));
+      mx = cx + Math.cos(a * rad) * len * 0.5; my = cy + Math.sin(a * rad) * len * 0.5;
+      s += '<g transform="rotate(' + a + ' ' + mx + ' ' + my + ')"><ellipse cx="' + mx + '" cy="' + my + '" rx="' + len * 0.5 + '" ry="' + R * 0.2 + '" fill="' + cols[i % 4] + '" stroke="rgba(28,44,30,.55)" stroke-width=".7"/><path d="M' + (mx - len * 0.46) + ' ' + my + 'H' + (mx + len * 0.46) + '" stroke="rgba(28,44,30,.35)" stroke-width=".6"/></g>';
+    }
+    for (i = 0; i < 6; i++) {
+      a = i * 60 + 20 + rnd(seed + i + 60) * 14; len = R * 0.62;
+      mx = cx + Math.cos(a * rad) * len * 0.5; my = cy + Math.sin(a * rad) * len * 0.5;
+      s += '<g transform="rotate(' + a + ' ' + mx + ' ' + my + ')"><ellipse cx="' + mx + '" cy="' + my + '" rx="' + len * 0.5 + '" ry="' + R * 0.15 + '" fill="#9bb097" stroke="rgba(28,44,30,.45)" stroke-width=".6"/></g>';
+    }
+    return s + '<circle cx="' + cx + '" cy="' + cy + '" r="' + R * 0.17 + '" fill="#8a6a4a" stroke="#c9a96e" stroke-width=".8"/>';
+  }
+  function lampSVG(lx, ly, r) {
+    return '<circle cx="' + (lx + 2) + '" cy="' + (ly + 3) + '" r="' + (r + 1) + '" fill="rgba(0,0,0,.5)" filter="url(#clSh2)"/>'
+      + '<circle cx="' + lx + '" cy="' + ly + '" r="' + r + '" fill="rgba(232,207,152,.5)" stroke="#e8cf98" stroke-width="1.3"/>'
+      + '<circle cx="' + lx + '" cy="' + ly + '" r="' + r * 0.5 + '" fill="#fff1cc" opacity=".9"/>'
+      + '<circle cx="' + lx + '" cy="' + ly + '" r="' + r * 0.16 + '" fill="#8a6a4a"/>';
+  }
+  function tableSVG(cx, cy, rx, ry, op) {
+    var s = '<g opacity="' + op + '">';
+    s += '<ellipse cx="' + (cx + 2) + '" cy="' + (cy + 5) + '" rx="' + (rx + 1) + '" ry="' + (ry + 1) + '" fill="rgba(0,0,0,.55)" filter="url(#clSh)"/>';
+    s += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="url(#clWood)" stroke="#e8cf98" stroke-width="1"/>';
+    s += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + (rx - 4) + '" ry="' + (ry - 4) + '" fill="none" stroke="rgba(255,232,190,.28)" stroke-width=".8"/>';
+    var tw = rx * 0.72, th = ry * 0.62, tx = cx + rx * 0.2;
+    s += '<rect x="' + (tx - tw / 2) + '" y="' + (cy - th / 2) + '" width="' + tw + '" height="' + th + '" rx="4" fill="rgba(23,21,19,.6)" stroke="#c9a96e" stroke-width=".9"/>';
+    var bw = rx * 0.5, bh = ry * 0.52, bx = cx - rx * 0.66, by2 = cy - bh / 2;
+    s += '<g transform="rotate(-14 ' + (bx + bw / 2) + ' ' + cy + ')"><rect x="' + bx + '" y="' + by2 + '" width="' + bw + '" height="' + bh + '" rx="1.5" fill="#6b2f2a" stroke="#e8cf98" stroke-width=".7"/><rect x="' + (bx + 2) + '" y="' + (by2 - 3) + '" width="' + (bw - 4) + '" height="' + (bh * 0.55) + '" rx="1.5" fill="#3f5545" stroke="#e8cf98" stroke-width=".6"/><path d="M' + (bx + bw * 0.14) + ' ' + by2 + 'v' + bh + '" stroke="#e8cf98" stroke-width=".6"/></g>';
+    s += '<circle cx="' + tx + '" cy="' + cy + '" r="' + ry * 0.27 + '" fill="#cfc3ad"/><circle cx="' + tx + '" cy="' + cy + '" r="' + ry * 0.19 + '" fill="#f1e9d8" stroke="#b79a78" stroke-width=".6"/><circle cx="' + tx + '" cy="' + cy + '" r="' + ry * 0.13 + '" fill="#4b2e1d"/>';
+    s += '<rect x="' + (tx + ry * 0.18) + '" y="' + (cy - 1.5) + '" width="3.4" height="3" rx="1.2" fill="#e0d6c2"/>';
+    return s + "</g>";
+  }
+
+  function decorMid(rw, rl, sc, X, Y, m, t, zx, zw, zy) {
+    var s = "", i, k, tzy = m.d, zh = rl - tzy;
+    var busyL = S.model === "juego" || (S.model === "L" && S.corner === "L");
+    var R = 0.25 * sc, lr = Math.max(8, 0.085 * sc), lx = busyL ? X(rw) - 15 : X(0) + 15, ly = Y(0) + 15, gR = 1.15 * sc;
+    var wx = X(rw), wy1 = Y(WY1 * rl), wy2 = Y(WY2 * rl), ph = (wy2 - wy1) / 3, dx = -2.7 * sc, dy = 1.6 * sc;
+    s += '<defs><pattern id="clRug" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#56473a"/><path d="M0 6H12M6 0V12" stroke="rgba(232,207,152,.13)" stroke-width=".8"/><circle cx="6" cy="6" r="1.1" fill="rgba(232,207,152,.2)"/></pattern>'
+      + '<linearGradient id="clBeam" gradientUnits="userSpaceOnUse" x1="' + wx + '" y1="' + wy1 + '" x2="' + (wx + dx) + '" y2="' + (wy1 + dy) + '"><stop offset="0" stop-color="#fff0cf" stop-opacity=".2"/><stop offset="1" stop-color="#fff0cf" stop-opacity="0"/></linearGradient>'
+      + '<radialGradient id="clGlow" gradientUnits="userSpaceOnUse" cx="' + lx + '" cy="' + ly + '" r="' + gR + '"><stop offset="0" stop-color="#c9a96e" stop-opacity=".12"/><stop offset=".6" stop-color="#c9a96e" stop-opacity=".09"/><stop offset="1" stop-color="#c9a96e" stop-opacity="0"/></radialGradient></defs>';
+    // alfombra con flecos y trama
+    var rgw = Math.min(zw - 0.2, zw * 0.86, 2.8);
+    if (rgw > 0.9 && zh > 1.0) {
+      var rgh = Math.min(zh - 0.3, 1.9) + 0.3, rx0 = X(zx + (zw - rgw) / 2), ry0 = Y(tzy - 0.3), rW = rgw * sc, rH = rgh * sc, yy, n = 0;
+      s += '<rect x="' + (rx0 + 1) + '" y="' + (ry0 + 2) + '" width="' + rW + '" height="' + rH + '" rx="3" fill="rgba(0,0,0,.4)" filter="url(#clSh2)"/>';
+      for (yy = ry0 + 3; yy < ry0 + rH - 2; yy += 4.5, n++) {
+        s += '<path d="M' + (rx0 - 5 - 3 * rnd(n)) + ' ' + yy + 'H' + rx0 + 'M' + (rx0 + rW) + ' ' + yy + 'H' + (rx0 + rW + 5 + 3 * rnd(n + 77)) + '" stroke="rgba(226,205,160,.8)" stroke-width=".9"/>';
+      }
+      s += '<rect x="' + rx0 + '" y="' + ry0 + '" width="' + rW + '" height="' + rH + '" rx="3" fill="url(#clRug)" stroke="rgba(0,0,0,.5)" stroke-width="1"/>';
+      s += '<rect x="' + (rx0 + 5) + '" y="' + (ry0 + 5) + '" width="' + (rW - 10) + '" height="' + (rH - 10) + '" rx="2" fill="none" stroke="rgba(232,207,152,.55)" stroke-width="1"/>';
+      s += '<rect x="' + (rx0 + 9) + '" y="' + (ry0 + 9) + '" width="' + (rW - 18) + '" height="' + (rH - 18) + '" rx="2" fill="none" stroke="rgba(232,207,152,.25)" stroke-width=".8" stroke-dasharray="3 3"/>';
+      var mx = rx0 + rW / 2, my = ry0 + rH / 2, mw = rW * 0.17, mh = Math.min(rH * 0.3, mw * 1.1);
+      s += '<path d="M' + mx + ' ' + (my - mh) + 'L' + (mx + mw) + ' ' + my + 'L' + mx + ' ' + (my + mh) + 'L' + (mx - mw) + ' ' + my + 'Z" fill="none" stroke="rgba(232,207,152,.4)" stroke-width=".9"/>';
+    }
+    // luz del ventanal + resplandor de la lámpara de pie
+    s += '<g clip-path="url(#clRoom)">';
+    for (k = 0; k < 3; k++) {
+      var ya = wy1 + ph * k + 3, yb = wy1 + ph * (k + 1) - 3;
+      s += '<path d="M' + wx + ' ' + ya + 'L' + wx + ' ' + yb + 'L' + (wx + dx) + ' ' + (yb + dy) + 'L' + (wx + dx) + ' ' + (ya + dy) + 'Z" fill="url(#clBeam)"/>';
+    }
+    s += '<circle cx="' + lx + '" cy="' + ly + '" r="' + gR + '" fill="url(#clGlow)"/></g>';
+    // mesa de centro (se oculta suavemente al abrir el sofá cama o si no hay espacio)
+    var op = (1 - Math.min(1, t * 2.2)) * clamp((zh - 1.55) / 0.4, 0, 1);
+    if (op > 0.02) {
+      var trx = Math.min(0.40 * sc, zw * sc * 0.3);
+      s += tableSVG(X(zx + zw / 2), Y(tzy + 0.64), trx, trx * 0.6, op);
+    }
+    // plantas en las esquinas y lámpara de pie
+    s += plantSVG(X(0) + R * 1.15, Y(rl) - R * 1.15, R, 3);
+    s += plantSVG(X(rw) - R * 1.15, Y(rl) - R * 1.15, R, 11);
+    s += lampSVG(lx, ly, lr);
+    return s;
+  }
+
+  function sofaDeco(w, d, cush, back, arm, cw, flat) {
+    var s = "", i, ch = Math.max(2, d - back - 4), ps = Math.min(0.30 * sc, cw * 0.46), cx, ay = back * 0.6, ah = Math.max(2, d - ay - 5), aw = Math.max(1, arm - 5);
+    if (back > 0.8) s += '<rect x="1" y="1" width="' + (w - 2) + '" height="' + (back - 1) + '" rx="6" fill="url(#clBack)"/>';
+    if (back > 5) s += '<rect class="fst" x="3" y="3" width="' + (w - 6) + '" height="' + (back - 5) + '" rx="3"/>';
+    for (i = 0; i < cush; i++) {
+      cx = arm + i * cw + 1.5;
+      s += '<rect x="' + cx + '" y="' + (back + 1.5) + '" width="' + (cw - 3) + '" height="' + ch + '" rx="5" fill="url(#clCush)"/>';
+      if (cw > 14 && ch > 12) s += '<rect class="fst" x="' + (cx + 3) + '" y="' + (back + 4.5) + '" width="' + (cw - 9) + '" height="' + (ch - 6) + '" rx="3"/>';
+    }
+    s += '<rect class="fst" x="2.5" y="' + (ay + 2.5) + '" width="' + aw + '" height="' + ah + '" rx="3"/>';
+    s += '<rect class="fst" x="' + (w - arm + 2.5) + '" y="' + (ay + 2.5) + '" width="' + aw + '" height="' + ah + '" rx="3"/>';
+    if (flat < 0.9 && ps > 9 && cw * cush >= 2.5 * ps) {
+      s += sofaPil(arm + 2, back + 3, ps, 10, 1 - flat) + sofaPil(w - arm - 2 - ps, back + 3, ps, -10, 1 - flat);
+    }
+    return s;
+  }
+  function sofaPil(x, y, ps, rot, op) {
+    var cx = x + ps / 2, cy = y + ps * 0.46, h = ps * 0.92;
+    return '<g opacity="' + op + '" transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')"><rect class="fpl2" x="' + x + '" y="' + y + '" width="' + ps + '" height="' + h + '" rx="' + ps * 0.22 + '"/><path class="fst" d="M' + (x + 3) + ' ' + (y + 3) + 'L' + (x + ps - 3) + ' ' + (y + h - 3) + 'M' + (x + ps - 3) + ' ' + (y + 3) + 'L' + (x + 3) + ' ' + (y + h - 3) + '"/><circle cx="' + cx + '" cy="' + cy + '" r="1.7" fill="#e8cf98"/></g>';
+  }
+
   function plan() {
     var m = M[S.model], rw = S.rw, rl = S.rl, len = S.len, t = T;
     sc = Math.min(428 / rw, 440 / rl);
     ox = 56 + (428 - rw * sc) / 2; oy = 58 + (440 - rl * sc) / 2;
     var X = function (v) { return ox + v * sc; }, Y = function (v) { return oy + v * sc; };
     var out = "", i;
+    var dcB = decorBase(rw, rl, sc, X, Y);
+    out += dcB.under;
     // cuadrícula
     out += '<g>';
     for (i = 0.5; i < rw; i += 0.5) out += '<line class="gl' + (Math.abs(i % 1) < 0.01 ? " m" : "") + '" x1="' + X(i) + '" y1="' + Y(0) + '" x2="' + X(i) + '" y2="' + Y(rl) + '"/>';
     for (i = 0.5; i < rl; i += 0.5) out += '<line class="gl' + (Math.abs(i % 1) < 0.01 ? " m" : "") + '" x1="' + X(0) + '" y1="' + Y(i) + '" x2="' + X(rw) + '" y2="' + Y(i) + '"/>';
     out += "</g>";
     // muros
+    out += dcB.band;
     out += '<rect class="wall2" x="' + (X(0) - 7) + '" y="' + (Y(0) - 7) + '" width="' + (rw * sc + 14) + '" height="' + (rl * sc + 14) + '"/>';
     out += '<rect class="wall" x="' + X(0) + '" y="' + Y(0) + '" width="' + rw * sc + '" height="' + rl * sc + '"/>';
     out += '<text class="dl" text-anchor="middle" x="' + (X(rw / 2)) + '" y="' + (Y(0) + 15) + '" opacity=".0"></text>';
+    out += dcB.openings;
 
     var free, fit = true, wOver = 0, front, zone = "", fur = "", labels = "", zx, zw, zy;
     if (S.model === "s2" || S.model === "s3" || m.bed) {
@@ -375,7 +562,7 @@ body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,s
       var lbl = free < 0 ? "faltan " + f2(-free) + " m" : "libre " + f2(free) + " m";
       zone += '<text class="dt" x="' + (cx + 10) + '" y="' + (cy + 5) + '" text-anchor="start" style="fill:' + col[1] + '">' + lbl + "</text>";
     }
-    out += zone + fur + labels;
+    out += decorMid(rw, rl, sc, X, Y, m, t, zx, zw, zy) + zone + fur + labels;
     // cotas del espacio
     out += dimH(X(0), X(rw), Y(0) - 24, f2(rw) + " m");
     out += dimV(X(0) - 24, Y(0), Y(rl), f2(rl) + " m", -9);
