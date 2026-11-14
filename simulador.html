@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Espacio a Medida | Mueblería Cluce</title>
+<meta name="google-site-verification" content="mXxmmPPCtJq2mRV0qp1JriuN93scWZZXlvpIcYmIN8w" />
+<meta name="description" content="Simula en un plano 2D cómo queda tu sofá, juego de sala, seccional o sofá cama en tu espacio. Prueba las medidas y cotiza por WhatsApp con Mueblería Cluce.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='translate(4.95,15.5) scale(.17) translate(-245,-305)'%3E%3Cdefs%3E%0A%3ClinearGradient id='gF' x1='245' y1='710' x2='775' y2='305' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23AA8020'/%3E%3Cstop offset='.42' stop-color='%23D4AF37'/%3E%3Cstop offset='.78' stop-color='%23F3E5AB'/%3E%3Cstop offset='1' stop-color='%23D4AF37'/%3E%3C/linearGradient%3E%0A%3Cmask id='mmF' maskUnits='userSpaceOnUse' x='200' y='280' width='620' height='460'%3E%3Crect x='200' y='280' width='620' height='460' fill='%23fff'/%3E%3Ccircle cx='454' cy='473' r='21' fill='%23000'/%3E%3C/mask%3E%0A%3Cmask id='mfF' maskUnits='userSpaceOnUse' x='200' y='280' width='620' height='460'%3E%3Crect x='200' y='280' width='620' height='460' fill='%23fff'/%3E%3Cg fill='none' stroke='%23000' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M498 521V592'/%3E%3Cpath d='M398 592H582'/%3E%3Cpath d='M398 566V612M582 566V612'/%3E%3Cpath d='M398 612H582'/%3E%3Cpath d='M275 566V590'/%3E%3Cpath d='M275 612H362'/%3E%3Cpath d='M617 560H690M617 598H690'/%3E%3Cpath d='M641 541H664M641 579H664M641 617H664'/%3E%3C/g%3E%3C/mask%3E%0A%3C/defs%3E%0A%3Cg fill='none' stroke='url(%23gF)'%3E%0A%3Cpath mask='url(%23mmF)' d='M346 594L361 327L475 505L602 340L636 524' stroke-width='23' stroke-linejoin='miter' stroke-miterlimit='12'/%3E%0A%3Cpath d='M758 364.6A180 198 0 1 0 770.9 634.3' stroke-width='16'/%3E%0A%3C/g%3E%0A%3Cg fill='url(%23gF)' mask='url(%23mfF)'%3E%0A%3Cpath d='M247 604V566a14 14 0 0 1 28 0V590H362V636a8 8 0 0 1-8 8H255a8 8 0 0 1-8-8z'/%3E%0A%3Crect x='380' y='515' width='220' height='90' rx='26'/%3E%0A%3Crect x='365' y='552' width='34' height='88' rx='16'/%3E%0A%3Crect x='581' y='552' width='34' height='88' rx='16'/%3E%0A%3Crect x='365' y='592' width='250' height='48' rx='14'/%3E%0A%3Crect x='617' y='520' width='73' height='120' rx='6'/%3E%0A%3Cpath d='M268 644L262 658H274L278 644zM338 644L344 658H356L350 644zM390 640L386 658H398L402 640zM586 640L602 658H614L610 640zM632 640L628 652H636L638 640zM668 640L672 652H680L676 640z'/%3E%0A%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600&display=swap">
+<style>
+.serif{font-family:'Fraunces',Georgia,serif}
+.wrap{max-width:1240px;margin:0 auto;padding-left:28px;padding-right:28px}
+.eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#8a5a2b;font-weight:600;margin:0}
+.h2{margin:0;font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.02;color:#33231a;font-size:clamp(38px,5.4vw,76px)}
+.lead{margin:0;color:#6b5240;font-size:18px;line-height:1.65;max-width:460px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;transition:transform .2s,background .2s,color .2s;text-align:center}
+.btn-wa{background:#17803f;color:#fff}
+.btn-wa:hover{background:#126a34;color:#fff;transform:translateY(-2px)}
+.btn-thin{min-height:48px;color:#5a3d26;border:1px solid #b79a78;background:transparent;font-weight:500}
+.btn-thin:hover{background:rgba(255,255,255,.6);color:#33231a}
+.maplink{color:inherit;text-decoration:underline;text-decoration-color:rgba(197,168,128,.55);text-underline-offset:5px;transition:color .2s}
+.maplink:hover{color:#C5A880}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.brand{display:inline-flex;align-items:center;max-width:100%;text-decoration:none;background:none}
+.logo-svg{display:block;height:76px;width:auto;max-width:100%;overflow:visible}
+@media (max-width:560px){.logo-svg{height:56px}}
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.45),transparent)}
+.btn-wa{position:relative;overflow:hidden;background:linear-gradient(135deg,#22a455 0%,#17803f 52%,#0f6a31 100%);box-shadow:0 10px 24px -10px rgba(23,128,63,.65),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn-wa:hover{background:linear-gradient(135deg,#27b25d 0%,#1a8a44 52%,#12733a 100%);box-shadow:0 14px 28px -10px rgba(23,128,63,.75),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-wa::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg);animation:shimmer 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes shimmer{0%,62%{left:-60%}100%{left:130%}}
+.eyebrow:has(.eh){display:flex;align-items:center;gap:12px}
+.eh{display:inline-flex;align-items:center;gap:10px;flex:none}
+.eh .num{font-weight:700}
+.eh b{font-weight:400;font-size:9px;color:#c9a96e;-webkit-text-fill-color:#c9a96e}
+.eh i{display:block;width:32px;height:1px;background:#c9a96e}
+.rule{height:0;position:relative;z-index:6;overflow:visible;background:none}
+.rule>div{position:absolute;left:0;right:0;top:-12px;height:24px;display:flex;align-items:center;justify-content:center;gap:12px}
+.rule>div i{flex:1;height:1px;display:block}
+.rule>div i:first-child{background:linear-gradient(90deg,transparent,rgba(201,169,110,.45))}
+.rule>div i:last-child{background:linear-gradient(270deg,transparent,rgba(201,169,110,.45))}
+.rule>div span{display:flex;align-items:center;gap:9px;color:#c9a96e;font-size:16px;line-height:1}
+.rule>div span u{display:block;width:3px;height:3px;border-radius:50%;background:#c9a96e;text-decoration:none}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0b0a09;color:#f1ebe0;font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.spage{position:relative;overflow-x:hidden;min-height:100vh}
+.spage::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 40% at 80% 6%,rgba(201,169,110,.09),transparent 70%),radial-gradient(50% 40% at 6% 60%,rgba(201,169,110,.06),transparent 70%)}
+.spage::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .96 0 0 0 0 .88 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.spage>*{position:relative;z-index:1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:26px;padding-bottom:22px;flex-wrap:wrap}
+.top+.rule{margin-bottom:0}
+.back{min-height:48px;padding:0 22px;border:1px solid #c9a96e;color:#f1ebe0;background:transparent;font-weight:600;font-size:15px}
+.back:hover{background:rgba(201,169,110,.16)}
+.sim-main{padding-top:64px;padding-bottom:40px}
+.foot{margin-top:70px;padding:34px 0 60px;border-top:1px solid rgba(241,235,224,.12);font-size:14px;color:#d8c4a8;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.btn-thin{color:#f1ebe0}
+@media (max-width:560px){.back{padding:0 16px;font-size:14px}.sim-main{padding-top:40px}}
+
+/* ===== SIMULADOR DE ESPACIO ===== */
+.sim-head{max-width:760px;margin-bottom:56px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);grid-template-areas:"s1 plan" "s2 plan" "sum plan";gap:28px 44px;align-items:start}
+.sim-s1{grid-area:s1}.sim-s2{grid-area:s2}.sim-sum{grid-area:sum}.sim-plan{grid-area:plan}
+.simcard{border-radius:24px;padding:28px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(201,169,110,.26),0 24px 50px -30px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.sim-step{display:flex;align-items:center;gap:14px;margin:0 0 20px}
+.sim-step b{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,169,110,.8);box-shadow:inset 0 0 14px rgba(201,169,110,.3);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:500;color:#e8cf98}
+.sim-step h3{margin:0;font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(20px,2.4vw,26px);line-height:1.2;color:#f1ebe0}
+.sim-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.sim-btn{font:inherit;cursor:pointer;min-height:56px;padding:10px 16px;border-radius:16px;border:1px solid rgba(201,169,110,.45);background:transparent;color:#e6d6bf;font-size:16px;font-weight:600;line-height:1.25;text-align:center;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.sim-btn:hover{background:rgba(201,169,110,.12)}
+.sim-btn[aria-pressed=true],.sim-btn[aria-selected=true]{background:linear-gradient(135deg,#d8bd8a,#c5a880 55%,#b08a4c);border-color:#e8cf98;color:#1a1816}
+.sim-btn:focus-visible,.sim-range:focus-visible,.sim-wa:focus-visible{outline:3px solid #e8cf98;outline-offset:3px}
+.sim-models{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-m{display:flex;flex-direction:column;align-items:center;gap:6px;min-height:112px;justify-content:center}
+.sim-m svg{width:64px;height:40px;display:block}
+.sim-m small{font-size:13px;font-weight:500;opacity:.8}
+.sim-m span{font-size:15px}
+.sim-sub{margin:20px 0 10px;font-size:14px;color:#cfc6b6;letter-spacing:.04em}
+.sim-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-bed{width:100%;margin-top:18px;min-height:64px;font-size:18px;border-radius:999px}
+.sim-bed small{display:block;font-size:13px;font-weight:500;opacity:.85;margin-top:2px}
+.sim-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.sim-presets .sim-btn{font-size:14px;padding:10px 8px}
+.sim-presets .sim-btn small{display:block;font-size:12px;font-weight:500;opacity:.85;margin-top:2px}
+.sim-row{margin-bottom:6px}
+.sim-lab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:16px;color:#e6d6bf;font-weight:600;margin-top:12px}
+.sim-lab output{font-family:'Fraunces',Georgia,serif;font-size:22px;color:#e8cf98;font-weight:500;white-space:nowrap}
+.sim-range{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0;cursor:pointer;--fill:50%}
+.sim-range::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,#c9a96e var(--fill),rgba(201,169,110,.22) var(--fill))}
+.sim-range::-moz-range-track{height:6px;border-radius:6px;background:linear-gradient(90deg,#c9a96e var(--fill),rgba(201,169,110,.22) var(--fill))}
+.sim-range::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;margin-top:-13px;border-radius:50%;background:#f1ebe0;border:3px solid #c9a96e;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.sim-range::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#f1ebe0;border:3px solid #c9a96e;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.sim-plan{padding:18px 18px 22px}
+.sim-svg{display:block;width:100%;height:auto;max-height:640px;background:radial-gradient(70% 60% at 50% 40%,rgba(201,169,110,.07),transparent 75%),#171513;border-radius:16px;border:1px solid rgba(201,169,110,.2)}
+.sim-svg text{font-family:'DM Sans',system-ui,sans-serif}
+.sim-svg .dt{font-size:14px;fill:#e6d6bf;font-weight:500;paint-order:stroke;stroke:#171513;stroke-width:4px;stroke-linejoin:round}
+.sim-svg .dl{font-size:13px;fill:#c9a96e;letter-spacing:.14em;font-weight:600}
+.sim-svg .fb{fill:rgba(201,169,110,.10);stroke:#c9a96e;stroke-width:1.6}
+.sim-svg .fk{fill:rgba(201,169,110,.30);stroke:#c9a96e;stroke-width:1.2}
+.sim-svg .fa{fill:rgba(201,169,110,.17);stroke:#c9a96e;stroke-width:1.2}
+.sim-svg .fc{fill:none;stroke:rgba(201,169,110,.65);stroke-width:1}
+.sim-svg .fbed{fill:rgba(232,207,152,.08);stroke:#e8cf98;stroke-width:1.4;stroke-dasharray:6 4}
+.sim-svg .fpil{fill:rgba(241,235,224,.22);stroke:#e8cf98;stroke-width:1}
+.sim-svg .bad .fb,.sim-svg .bad .fk,.sim-svg .bad .fa,.sim-svg .bad .fc{stroke:#e0866f}
+.sim-svg .dim{stroke:#c9a96e;stroke-width:1;fill:none}
+.sim-svg .wall{fill:rgba(201,169,110,.025);stroke:#c9a96e;stroke-width:2}
+.sim-svg .wall2{fill:none;stroke:rgba(201,169,110,.35);stroke-width:1}
+.sim-svg .gl{stroke:rgba(201,169,110,.10);stroke-width:1}
+.sim-svg .gl.m{stroke:rgba(201,169,110,.2)}
+.sim-status{margin:16px 0 0;padding:16px 18px;border-radius:16px;font-size:16px;line-height:1.5;font-weight:500;border:1px solid transparent}
+.sim-status.ok{background:rgba(143,191,137,.12);border-color:rgba(155,197,143,.55);color:#d8ecd0}
+.sim-status.warn{background:rgba(224,168,74,.13);border-color:rgba(224,168,74,.6);color:#f4dcae}
+.sim-status.bad{background:rgba(214,112,90,.14);border-color:rgba(224,134,111,.6);color:#f6cfc4}
+.sim-note{margin:12px 2px 0;font-size:13px;color:#a99f90}
+.sim-sum p{margin:0 0 20px;font-size:18px;line-height:1.55;color:#f1ebe0}
+.sim-sum p strong{color:#e8cf98;font-weight:600}
+.sim-wa{width:100%;min-height:60px;font-size:17px;text-align:center}
+.sim-save{margin:12px 0 0;font-size:13px;color:#a99f90;text-align:center}
+@media (max-width:980px){
+ .sim-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"s1" "plan" "s2" "sum";gap:24px}
+ .simcard{padding:20px 16px}
+ .sim-plan{padding:12px 10px 16px}
+ .sim-svg{max-height:420px}
+}
+@media (max-width:420px){.sim-m svg{width:54px;height:34px}.sim-presets .sim-btn{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.sim-btn{transition:none}}
+.sim-btn[aria-pressed=true] svg,.sim-btn[aria-selected=true] svg{stroke:#1a1816}
+@media (max-width:600px){.sim-svg .dt{font-size:20px;stroke-width:5px}.sim-svg .dl{font-size:16px}}
+.sim-svg .fold{stroke:#e8cf98;stroke-width:1;stroke-dasharray:4 4;opacity:.8}
+.sim-svg .bau{fill:rgba(201,169,110,.07);stroke:#c9a96e;stroke-width:1.6;stroke-dasharray:6 4}
+.sim-svg .bt{font-size:12px;letter-spacing:.08em}
+.sim-bau{width:100%;margin-top:12px;min-height:60px}
+@media (max-width:600px){.sim-svg .bt{font-size:15px}}
+
+</style>
+</head>
+<body>
+<div class="spage">
+<header class="wrap top">
+<a class="brand" href="index.html" aria-label="Mueblería Cluce, inicio"><svg class="logo-svg" viewBox="0 0 520 100" role="img" aria-label="Mueblería Cluce" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gtxt" x1="146" y1="0" x2="516" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#C79A2E"/><stop offset=".55" stop-color="#F3E5AB"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs><g transform="translate(0,2) scale(.237) translate(-245,-305)"><defs>
+<linearGradient id="gH" x1="245" y1="710" x2="775" y2="305" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#AA8020"/><stop offset=".42" stop-color="#D4AF37"/><stop offset=".78" stop-color="#F3E5AB"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+<mask id="mmH" maskUnits="userSpaceOnUse" x="200" y="280" width="620" height="460"><rect x="200" y="280" width="620" height="460" fill="#fff"/><circle cx="454" cy="473" r="21" fill="#000"/></mask>
+<mask id="mfH" maskUnits="userSpaceOnUse" x="200" y="280" width="620" height="460"><rect x="200" y="280" width="620" height="460" fill="#fff"/><g fill="none" stroke="#000" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M498 521V592"/><path d="M398 592H582"/><path d="M398 566V612M582 566V612"/><path d="M398 612H582"/><path d="M275 566V590"/><path d="M275 612H362"/><path d="M617 560H690M617 598H690"/><path d="M641 541H664M641 579H664M641 617H664"/></g></mask>
+</defs>
+<g fill="none" stroke="url(#gH)">
+<path mask="url(#mmH)" d="M346 594L361 327L475 505L602 340L636 524" stroke-width="23" stroke-linejoin="miter" stroke-miterlimit="12"/>
+<path d="M758 364.6A180 198 0 1 0 770.9 634.3" stroke-width="16"/>
+</g>
+<g fill="url(#gH)" mask="url(#mfH)">
+<path d="M247 604V566a14 14 0 0 1 28 0V590H362V636a8 8 0 0 1-8 8H255a8 8 0 0 1-8-8z"/>
+<rect x="380" y="515" width="220" height="90" rx="26"/>
+<rect x="365" y="552" width="34" height="88" rx="16"/>
+<rect x="581" y="552" width="34" height="88" rx="16"/>
+<rect x="365" y="592" width="250" height="48" rx="14"/>
+<rect x="617" y="520" width="73" height="120" rx="6"/>
+<path d="M268 644L262 658H274L278 644zM338 644L344 658H356L350 644zM390 640L386 658H398L402 640zM586 640L602 658H614L610 640zM632 640L628 652H636L638 640zM668 640L672 652H680L676 640z"/>
+</g></g><text x="146" y="62" font-family="Cinzel,'Trajan Pro',Georgia,'Times New Roman',serif" font-size="34" textLength="370" lengthAdjust="spacingAndGlyphs" fill="url(#gtxt)"><tspan font-weight="600">MUEBLERÍA </tspan><tspan font-weight="400">CLUCE</tspan></text></svg></a>
+<a class="btn btn-thin back" href="index.html">← Volver a la tienda</a>
+</header>
+<div class="rule" aria-hidden="true" style="height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.45),transparent)"></div>
+<main class="wrap sim-main">
+<div class="sim-head">
+<p class="eyebrow" style="margin-bottom:20px;color:#C5A880"><span class="eh"><b aria-hidden="true">◆</b><i aria-hidden="true"></i></span>Simulador 2D</p>
+<h1 class="h2" style="font-size:clamp(32px,4.6vw,62px);margin-bottom:18px;color:#f1ebe0">Simulador de Espacio a Medida</h1>
+<p class="lead" style="max-width:560px;color:#cfc6b6">Mira cómo queda en tu sala o cuarto. Elige un mueble, pon la medida de tu espacio y ve si entra.</p>
+</div>
+<div class="sim-grid" id="sim">
+<div class="sim-s1 simcard">
+<div class="sim-step"><b>1</b><h3>Elige qué mueble buscas</h3></div>
+<div class="sim-tabs" role="tablist" aria-label="Línea de muebles">
+<button type="button" class="sim-btn" role="tab" data-line="sala" id="simTabSala">Línea Sala</button>
+<button type="button" class="sim-btn" role="tab" data-line="cama" id="simTabCama">Línea Sofá Cama</button>
+</div>
+<div class="sim-models" id="simModels"></div>
+<div id="simCornerBox" hidden>
+<p class="sim-sub">¿De qué lado va la esquina?</p>
+<div class="sim-pair">
+<button type="button" class="sim-btn" data-corner="L">Esquina Izquierda</button>
+<button type="button" class="sim-btn" data-corner="R">Esquina Derecha</button>
+</div>
+<button type="button" class="sim-btn sim-bau" id="simBau" aria-pressed="false">+ Agregar Sistema Baúl (Almacenamiento oculto)</button>
+</div>
+<div id="simBedBox" hidden>
+<button type="button" class="sim-btn sim-bed" id="simBed" aria-pressed="false">Ver Cerrado / Abrir Cama<small id="simBedState">Ahora: cerrado</small></button>
+</div>
+</div>
+<div class="sim-plan simcard">
+<svg class="sim-svg" id="simSvg" viewBox="0 0 520 540" role="img" aria-label="Plano 2D de tu espacio con el mueble elegido"></svg>
+<div class="sim-status ok" id="simStatus" role="status" aria-live="polite"></div>
+<p class="sim-note">Plano de referencia a escala. Las medidas finales las confirmamos contigo.</p>
+</div>
+<div class="sim-s2 simcard">
+<div class="sim-step"><b>2</b><h3>Ajusta las medidas a tu gusto</h3></div>
+<div class="sim-presets" id="simPresets">
+<button type="button" class="sim-btn" data-w="2.5" data-l="3.0">Espacio Pequeño<small>2.5 × 3.0 m</small></button>
+<button type="button" class="sim-btn" data-w="3.2" data-l="3.8">Sala Mediana<small>3.2 × 3.8 m</small></button>
+<button type="button" class="sim-btn" data-w="4.0" data-l="4.5">Sala Amplia<small>4.0 × 4.5 m</small></button>
+</div>
+<div class="sim-row"><label class="sim-lab" for="simRW">Ancho de tu espacio <output id="simRWo" for="simRW"></output></label><input class="sim-range" type="range" id="simRW" min="2" max="6" step="0.1"></div>
+<div class="sim-row"><label class="sim-lab" for="simRL">Largo de tu espacio <output id="simRLo" for="simRL"></output></label><input class="sim-range" type="range" id="simRL" min="2" max="6" step="0.1"></div>
+<div class="sim-row"><label class="sim-lab" for="simLen" id="simLenLab">Largo del mueble <output id="simLeno" for="simLen"></output></label><input class="sim-range" type="range" id="simLen" min="1" max="3" step="0.05"></div>
+</div>
+<div class="sim-sum simcard">
+<p id="simSummary"></p>
+<a class="btn btn-wa sim-wa" id="simWA" href="https://wa.me/51933943191" target="_blank" rel="noopener noreferrer">Mostrar estas medidas a la asesora</a>
+<p class="sim-save">Guardamos tu última prueba en este dispositivo.</p>
+</div>
+</div>
+</main>
+<footer class="wrap foot"><span>© Mueblería Cluce · Muebles a medida</span><a class="maplink" href="index.html">Volver a la tienda</a></footer>
+</div>
+<script>
+(function () {
+  var root = document.getElementById("sim");
+  if (!root) return;
+  var WA = "51933943191", KEY = "cluce_sim_v2";
+  var M = {
+    s2:   { line: "sala", name: "Sofá 2 Cuerpos", w: 1.60, d: 0.85, min: 1.20, max: 2.00, cush: 2, base: "1.60 × 0.85 m" },
+    s3:   { line: "sala", name: "Sofá 3 Cuerpos", w: 2.10, d: 0.90, min: 1.70, max: 2.60, cush: 3, base: "2.10 × 0.90 m" },
+    juego:{ line: "sala", name: "Juego de Sala (3 + 2 cuerpos)", w: 2.10, d: 0.90, ratio: 1.60 / 2.10, d2: 0.85, min: 1.80, max: 2.60, base: "2.10 m + 1.60 m" },
+    L:    { line: "sala", name: "Seccional en L", w: 2.40, d: 1.65, bar: 0.85, min: 2.00, max: 3.20, base: "2.40 × 1.65 m" },
+    c1:   { line: "cama", name: "Sofá Cama 1 Cuerpo (1 Plaza)", w: 1.00, d: 0.85, D: 1.90, min: 0.90, max: 1.20, cush: 1, base: "1.00 × 0.85 m · extendido 1.90 m", bed: true },
+    c2:   { line: "cama", name: "Sofá Cama 2 Cuerpos (2 Plazas)", w: 1.60, d: 0.85, D: 1.90, min: 1.40, max: 1.80, cush: 2, base: "1.60 × 0.85 m · extendido 1.90 m", bed: true },
+    c3:   { line: "cama", name: "Sofá Cama 3 Cuerpos (Queen)", w: 1.90, d: 0.85, D: 1.90, min: 1.70, max: 2.10, cush: 3, base: "1.90 × 0.85 m · extendido 1.90 m", bed: true }
+  };
+  var S = { line: "sala", model: "s3", corner: "L", bau: false, open: false, rw: 3.2, rl: 3.8, len: 2.10 };
+  var T = 0, raf = 0;
+  var $ = function (id) { return document.getElementById(id); };
+  var f2 = function (n) { return n.toFixed(2); };
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+
+  try {
+    var j = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (j && M[j.model]) {
+      S.model = j.model; S.line = M[j.model].line;
+      S.corner = j.corner === "R" ? "R" : "L"; S.bau = !!j.bau && j.model === "L";
+      S.open = !!j.open && !!M[j.model].bed;
+      if (isFinite(j.rw)) S.rw = clamp(+j.rw, 2, 6);
+      if (isFinite(j.rl)) S.rl = clamp(+j.rl, 2, 6);
+      if (isFinite(j.len)) S.len = clamp(+j.len, M[j.model].min, M[j.model].max);
+    }
+  } catch (e) {}
+  T = S.open ? 1 : 0;
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  /* ---------- iconos mini ---------- */
+  function icon(k) {
+    var g = '<svg viewBox="0 0 64 40" fill="none" stroke="#c9a96e" stroke-width="1.5" aria-hidden="true">';
+    if (k === "s2") g += '<rect x="14" y="8" width="36" height="24" rx="4"/><path d="M14 14h36M32 14v18"/>';
+    else if (k === "s3") g += '<rect x="6" y="8" width="52" height="24" rx="4"/><path d="M6 14h52M23 14v18M41 14v18"/>';
+    else if (k === "juego") g += '<rect x="4" y="5" width="44" height="14" rx="3"/><rect x="4" y="19" width="14" height="18" rx="3"/><path d="M4 10h44"/>';
+    else if (k === "L") g += '<path d="M6 6h52v14H22v16H6z" stroke-linejoin="round"/><path d="M6 11h52"/>';
+    else if (k === "c1") g += '<rect x="22" y="4" width="20" height="12" rx="3"/><rect x="22" y="16" width="20" height="20" rx="3" stroke-dasharray="3 3"/>';
+    else if (k === "c2") g += '<rect x="14" y="4" width="36" height="12" rx="3"/><rect x="14" y="16" width="36" height="20" rx="3" stroke-dasharray="3 3"/>';
+    else g += '<rect x="8" y="4" width="48" height="12" rx="3"/><rect x="8" y="16" width="48" height="20" rx="3" stroke-dasharray="3 3"/>';
+    return g + "</svg>";
+  }
+  function buildModels() {
+    var h = "";
+    Object.keys(M).forEach(function (k) {
+      if (M[k].line !== S.line) return;
+      h += '<button type="button" class="sim-btn sim-m" data-model="' + k + '" aria-pressed="' + (S.model === k) + '">' + icon(k) + "<span>" + M[k].name + "</span><small>" + M[k].base + "</small></button>";
+    });
+    $("simModels").innerHTML = h;
+  }
+
+  /* ---------- plano ---------- */
+  var sc = 1, ox = 0, oy = 0;
+  function sofa(w, d, cush, tf, extra, flat) {
+    flat = flat || 0;
+    var back = Math.min(d * 0.26, 0.22 * sc) * (1 - flat), arm = Math.min(w * 0.12, 0.13 * sc);
+    var s = '<g transform="' + tf + '"' + (extra ? ' class="' + extra + '"' : "") + ">";
+    s += '<rect class="fb" width="' + w + '" height="' + d + '" rx="7"/>';
+    if (back > 0.8) s += '<rect class="fk" width="' + w + '" height="' + back + '" rx="6"/>';
+    s += '<rect class="fa" y="' + back * 0.6 + '" width="' + arm + '" height="' + (d - back * 0.6) + '" rx="5"/>';
+    s += '<rect class="fa" x="' + (w - arm) + '" y="' + back * 0.6 + '" width="' + arm + '" height="' + (d - back * 0.6) + '" rx="5"/>';
+    var cw = (w - 2 * arm) / cush;
+    for (var i = 0; i < cush; i++) s += '<rect class="fc" x="' + (arm + i * cw + 1.5) + '" y="' + (back + 1.5) + '" width="' + (cw - 3) + '" height="' + Math.max(2, d - back - 4) + '" rx="5"/>';
+    return s + "</g>";
+  }
+  function dimV(x, y1, y2, label, side) {
+    var s = '<path class="dim" d="M' + x + " " + y1 + "V" + y2 + "M" + (x - 4) + " " + y1 + "h8M" + (x - 4) + " " + y2 + 'h8"/>';
+    s += '<text class="dt" text-anchor="middle" transform="translate(' + (x + (side || -9)) + " " + (y1 + y2) / 2 + ') rotate(-90)">' + label + "</text>";
+    return s;
+  }
+  function dimH(x1, x2, y, label) {
+    return '<path class="dim" d="M' + x1 + " " + y + "H" + x2 + "M" + x1 + " " + (y - 4) + "v8M" + x2 + " " + (y - 4) + 'v8"/><text class="dt" text-anchor="middle" x="' + (x1 + x2) / 2 + '" y="' + (y - 8) + '">' + label + "</text>";
+  }
+
+  function plan() {
+    var m = M[S.model], rw = S.rw, rl = S.rl, len = S.len, t = T;
+    sc = Math.min(428 / rw, 440 / rl);
+    ox = 56 + (428 - rw * sc) / 2; oy = 58 + (440 - rl * sc) / 2;
+    var X = function (v) { return ox + v * sc; }, Y = function (v) { return oy + v * sc; };
+    var out = "", i;
+    // cuadrícula
+    out += '<g>';
+    for (i = 0.5; i < rw; i += 0.5) out += '<line class="gl' + (Math.abs(i % 1) < 0.01 ? " m" : "") + '" x1="' + X(i) + '" y1="' + Y(0) + '" x2="' + X(i) + '" y2="' + Y(rl) + '"/>';
+    for (i = 0.5; i < rl; i += 0.5) out += '<line class="gl' + (Math.abs(i % 1) < 0.01 ? " m" : "") + '" x1="' + X(0) + '" y1="' + Y(i) + '" x2="' + X(rw) + '" y2="' + Y(i) + '"/>';
+    out += "</g>";
+    // muros
+    out += '<rect class="wall2" x="' + (X(0) - 7) + '" y="' + (Y(0) - 7) + '" width="' + (rw * sc + 14) + '" height="' + (rl * sc + 14) + '"/>';
+    out += '<rect class="wall" x="' + X(0) + '" y="' + Y(0) + '" width="' + rw * sc + '" height="' + rl * sc + '"/>';
+    out += '<text class="dl" text-anchor="middle" x="' + (X(rw / 2)) + '" y="' + (Y(0) + 15) + '" opacity=".0"></text>';
+
+    var free, fit = true, wOver = 0, front, zone = "", fur = "", labels = "", zx, zw, zy;
+    if (S.model === "s2" || S.model === "s3" || m.bed) {
+      var d = m.d, D = m.bed ? d + (m.D - d) * t : d, w = len, x0 = (rw - w) / 2;
+      var cush = m.cush;
+      wOver = w - rw; front = D; free = rl - D;
+      var bad = wOver > 0.001;
+      fur += '<g class="' + (bad ? "bad" : "") + '">';
+      if (m.bed && t > 0.01) {
+        var ey = Y(d), eh = (D - d) * sc;
+        fur += '<rect class="fbed" x="' + X(x0) + '" y="' + ey + '" width="' + w * sc + '" height="' + eh + '" rx="7" opacity="' + Math.min(1, t * 2) + '"/>';
+        if (t > 0.6) {
+          fur += '<text class="dt" text-anchor="middle" x="' + X(rw / 2) + '" y="' + (ey + eh / 2 - 2) + '" opacity="' + ((t - 0.6) / 0.4) + '">Cama abierta</text>';
+          fur += '<text class="dt" text-anchor="middle" x="' + X(rw / 2) + '" y="' + (ey + eh / 2 + 18) + '" opacity="' + ((t - 0.6) / 0.4) + '">Respaldar a 180°</text>';
+        }
+      }
+      fur += sofa(w * sc, d * sc, cush, "translate(" + X(x0) + " " + Y(0) + ")", "", m.bed ? t : 0);
+      if (m.bed && t > 0.05) {
+        var b0 = Math.min(d * sc * 0.26, 0.22 * sc), ln = '<line class="fold" x1="' + X(x0) + '" x2="' + X(x0 + w) + '" y1="';
+        fur += '<g opacity="' + t + '">' + ln + (Y(0) + b0) + '" y2="' + (Y(0) + b0) + '"/>' + ln + Y(d) + '" y2="' + Y(d) + '"/></g>';
+      }
+      if (m.bed && t > 0.3) {
+        var pn = S.model === "c1" ? 1 : 2, pw = Math.min(0.62, (w / pn) * 0.72) * sc, gap = w * sc / pn;
+        for (i = 0; i < pn; i++) fur += '<rect class="fpil" x="' + (X(x0) + gap * i + (gap - pw) / 2) + '" y="' + (Y(0) + 0.08 * sc) + '" width="' + pw + '" height="' + 0.24 * sc + '" rx="8" opacity="' + Math.min(1, (t - 0.3) / 0.4) + '"/>';
+      }
+      fur += "</g>";
+      labels += '<text class="dt" text-anchor="middle" x="' + X(x0 + w / 2) + '" y="' + (Y(0) + Math.min(d * sc, 0.62 * sc) + 5) + '">' + f2(w) + " m</text>";
+      var dx = X(x0 + w) + 14 < X(rw) + 4 ? X(x0 + w) + 14 : X(x0) - 14;
+      labels += dimV(dx, Y(0), Y(D), f2(D) + " m", dx > X(x0) ? 16 : -9);
+      zx = 0; zw = rw; zy = D;
+      if (bad) free = -wOver;
+    } else if (S.model === "juego") {
+      var w3 = len, w2 = len * m.ratio, d3 = m.d, d2 = m.d2;
+      var overH = (d3 + w2) - rl, overW = w3 - rw;
+      free = Math.min(rl - d3, rw - d2);
+      var worst = Math.min(rl - (d3 + w2), rw - w3);
+      var bad2 = worst < 0; if (bad2) free = worst;
+      fur += '<g class="' + (bad2 ? "bad" : "") + '">' + sofa(w3 * sc, d3 * sc, 3, "translate(" + X(0) + " " + Y(0) + ")");
+      fur += sofa(w2 * sc, d2 * sc, 2, "matrix(0 1 1 0 " + X(0) + " " + Y(d3) + ")") + "</g>";
+      labels += '<text class="dt" text-anchor="middle" x="' + X(w3 / 2) + '" y="' + (Y(0) + 0.6 * sc + 5) + '">' + f2(w3) + " m</text>";
+      labels += '<text class="dt" text-anchor="middle" x="' + X(d2 / 2) + '" y="' + (Y(d3 + w2 / 2) + 5) + '">' + f2(w2) + " m</text>";
+      zx = d2; zw = rw - d2; zy = d3; front = d3; wOver = Math.max(0, -worst);
+    } else { // L
+      var dd = m.d, wl = len, bar = m.bar, arm = dd - bar, left = S.corner === "L";
+      var xb = left ? 0 : rw - wl;
+      wOver = wl - rw; free = rl - dd; front = dd;
+      var bad3 = wOver > 0.001 || free < 0;
+      var armTf = left ? "matrix(0 1 1 0 " + X(xb) + " " + Y(bar) + ")" : "matrix(0 1 -1 0 " + X(xb + wl) + " " + Y(bar) + ")";
+      fur += '<g class="' + (bad3 ? "bad" : "") + '">' + sofa(wl * sc, bar * sc, 3, "translate(" + X(xb) + " " + Y(0) + ")");
+      fur += sofa(arm * sc, bar * sc, 1, armTf) + "</g>";
+      if (S.bau) {
+        var bx = left ? X(xb) + 7 : X(xb + wl) - bar * sc + 7, bw = bar * sc - 14, by = Y(bar) + 7, bh = arm * sc - 14;
+        if (bh > 10) fur += '<rect class="bau" x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" rx="4"/><text class="dt bt" text-anchor="middle" transform="translate(' + (bx + bw / 2 + 5) + " " + (by + bh / 2) + ') rotate(-90)">Baúl</text>';
+      }
+      labels += '<text class="dt" text-anchor="middle" x="' + X(xb + wl / 2) + '" y="' + (Y(0) + 0.6 * sc + 5) + '">' + f2(wl) + " m</text>";
+      labels += '<text class="dt" text-anchor="middle" x="' + (left ? X(xb + bar / 2) : X(xb + wl - bar / 2)) + '" y="' + (Y(dd) + 20) + '">' + f2(dd) + " m</text>";
+      zx = 0; zw = rw; zy = dd;
+      if (wOver > 0.001) free = -wOver;
+    }
+    // zona libre
+    var cls = free < 0 ? "bad" : (free < 0.9 ? "warn" : "ok");
+    var col = cls === "ok" ? ["rgba(143,191,137,.10)", "#9bc58f"] : cls === "warn" ? ["rgba(224,168,74,.12)", "#e0a84a"] : ["rgba(214,112,90,.14)", "#e0866f"];
+    var zh = rl - zy;
+    if (zh > 0.02 && zw > 0.02) {
+      zone += '<rect x="' + X(zx) + '" y="' + Y(zy) + '" width="' + zw * sc + '" height="' + zh * sc + '" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="1" stroke-dasharray="5 5" rx="6"/>';
+      var cx = X(zx + zw / 2), cy = Y(zy + zh / 2);
+      if (zh * sc > 46) zone += '<path d="M' + cx + " " + (Y(zy) + 6) + "V" + (Y(rl) - 6) + "M" + (cx - 4) + " " + (Y(zy) + 6) + "h8M" + (cx - 4) + " " + (Y(rl) - 6) + 'h8" stroke="' + col[1] + '" stroke-width="1" fill="none"/>';
+      var lbl = free < 0 ? "faltan " + f2(-free) + " m" : "libre " + f2(free) + " m";
+      zone += '<text class="dt" x="' + (cx + 10) + '" y="' + (cy + 5) + '" text-anchor="start" style="fill:' + col[1] + '">' + lbl + "</text>";
+    }
+    out += zone + fur + labels;
+    // cotas del espacio
+    out += dimH(X(0), X(rw), Y(0) - 24, f2(rw) + " m");
+    out += dimV(X(0) - 24, Y(0), Y(rl), f2(rl) + " m", -9);
+    $("simSvg").innerHTML = out;
+    return { free: free, wOver: wOver, cls: cls, front: front };
+  }
+
+  /* ---------- textos y estado ---------- */
+  function summaryText() {
+    var m = M[S.model], r = f2(S.rw) + "m × " + f2(S.rl) + "m", med, sel, corner = S.corner === "L" ? "izquierda" : "derecha";
+    if (S.model === "juego") { med = f2(S.len) + "m × " + f2(m.d) + "m + " + f2(S.len * m.ratio) + "m × " + f2(m.d2) + "m"; sel = med; }
+    else if (S.model === "L") { med = f2(S.len) + "m × " + f2(m.d) + "m (esquina " + corner + ")" + (S.bau ? " con Sistema Baúl" : ""); sel = f2(S.len) + "m × " + f2(m.d) + "m · Esquina " + corner + (S.bau ? " · con Sistema Baúl" : ""); }
+    else if (m.bed) { med = f2(S.len) + "m × " + f2(m.d) + "m (" + f2(m.D) + "m extendido a 180°)"; sel = f2(S.len) + "m × " + f2(m.d) + "m cerrado · " + f2(m.D) + "m extendido a 180°" + (S.open ? " · Cama abierta" : ""); }
+    else { med = f2(S.len) + "m × " + f2(m.d) + "m"; sel = med; }
+    return { med: med, sel: sel, r: r, m: m };
+  }
+  function update(skipSave) {
+    var m = M[S.model], p = plan(), sm = summaryText();
+    var st = $("simStatus");
+    st.className = "sim-status " + p.cls;
+    if (p.wOver > 0.001) st.textContent = "⚠ No entra: el mueble queda " + f2(p.wOver) + " m más ancho que tu espacio — Lo fabricamos a la medida exacta de tu pared";
+    else if (p.free < 0) st.textContent = "⚠ No entra con esta medida (te faltan " + f2(-p.free) + " m) — Cuéntale a la asesora: lo fabricamos a tu medida";
+    else if (p.free < 0.9) st.textContent = "⚠ Queda justo (te quedan " + f2(p.free) + " m libres) — Podemos fabricarlo unos centímetros más compacto a tu medida";
+    else st.textContent = "✓ Entra cómodo (te quedan " + f2(p.free) + " m libres para caminar)";
+    $("simSummary").innerHTML = "Tu selección: <strong>" + m.name + "</strong> · " + sm.sel + " · Para un espacio de " + sm.r;
+    $("simWA").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hola Mueblería Cluce, probé el simulador: mi espacio mide " + sm.r + " y quiero cotizar un " + m.name + " de " + sm.med);
+    if (!skipSave) save();
+  }
+  function paintControls() {
+    var m = M[S.model];
+    $("simTabSala").setAttribute("aria-selected", S.line === "sala");
+    $("simTabCama").setAttribute("aria-selected", S.line === "cama");
+    buildModels();
+    $("simCornerBox").hidden = S.model !== "L";
+    $("simBau").setAttribute("aria-pressed", S.bau);
+    $("simBau").textContent = S.bau ? "✓ Sistema Baúl agregado (toca para quitarlo)" : "+ Agregar Sistema Baúl (Almacenamiento oculto)";
+    root.querySelectorAll("[data-corner]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.corner === S.corner); });
+    $("simBedBox").hidden = !m.bed;
+    $("simBed").setAttribute("aria-pressed", S.open);
+    $("simBedState").textContent = S.open ? "Ahora: cama abierta" : "Ahora: cerrado";
+    var len = $("simLen"); len.min = m.min; len.max = m.max; len.value = S.len;
+    $("simLenLab").firstChild.nodeValue = m.bed ? "Ancho brazo a brazo " : S.model === "juego" ? "Largo del sofá de 3 cuerpos " : "Largo del mueble ";
+    sliders();
+  }
+  function sliders() {
+    [["simRW", S.rw], ["simRL", S.rl], ["simLen", S.len]].forEach(function (a) {
+      var el = $(a[0]); el.value = a[1];
+      el.style.setProperty("--fill", ((a[1] - el.min) / (el.max - el.min) * 100) + "%");
+    });
+    $("simRWo").textContent = f2(S.rw) + " m"; $("simRLo").textContent = f2(S.rl) + " m"; $("simLeno").textContent = f2(S.len) + " m";
+  }
+
+  /* ---------- eventos ---------- */
+  root.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || !root.contains(b)) return;
+    if (b.dataset.line) {
+      S.line = b.dataset.line;
+      if (M[S.model].line !== S.line) { S.model = S.line === "sala" ? "s3" : "c2"; S.len = M[S.model].w; S.open = false; T = 0; }
+      paintControls(); update();
+    } else if (b.dataset.model) {
+      S.model = b.dataset.model; S.len = M[S.model].w; S.open = false; T = 0; if (S.model !== "L") S.bau = false;
+      paintControls(); update();
+    } else if (b.dataset.corner) {
+      S.corner = b.dataset.corner; paintControls(); update();
+    } else if (b.id === "simBau") {
+      S.bau = !S.bau; paintControls(); update();
+    } else if (b.id === "simBed") {
+      S.open = !S.open; paintControls(); animate(); save();
+    } else if (b.dataset.w) {
+      S.rw = +b.dataset.w; S.rl = +b.dataset.l; sliders(); update();
+    }
+  });
+  ["simRW", "simRL", "simLen"].forEach(function (id) {
+    $(id).addEventListener("input", function () {
+      var v = parseFloat(this.value);
+      if (id === "simRW") S.rw = v; else if (id === "simRL") S.rl = v; else S.len = v;
+      sliders(); update();
+    });
+  });
+  function animate() {
+    cancelAnimationFrame(raf);
+    var target = S.open ? 1 : 0, from = T, t0 = null, dur = 520;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) { T = target; update(true); return; }
+    (function step(ts) {
+      if (t0 === null) t0 = ts;
+      var k = Math.min(1, (ts - t0) / dur), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      T = from + (target - from) * e; update(true);
+      if (k < 1) raf = requestAnimationFrame(step);
+    })(performance.now());
+  }
+  paintControls(); update(true);
+})();
+</script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
