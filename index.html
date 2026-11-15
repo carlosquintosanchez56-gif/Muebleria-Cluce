@@ -316,6 +316,140 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 @media (max-width:560px){.simpill{border-radius:22px;padding:14px 18px;font-size:14.5px;width:100%}.hero-cta{width:100%}}
 @media (max-width:560px){header nav{gap:2px 18px !important;row-gap:4px !important}.navsim{padding:0 16px;font-size:14px}}
 @media (prefers-reduced-motion:reduce){.simpill::after{animation:none;display:none}}
+
+/* ===== CARRUSEL ENTREGAS REALES ===== */
+.crs{position:relative}
+.crs-view{overflow:hidden;border-radius:28px;touch-action:pan-y;background:rgba(255,255,255,.025);box-shadow:inset 0 0 0 1px rgba(201,169,110,.3),0 30px 60px -34px rgba(0,0,0,.9);outline-offset:4px}
+.crs-view:focus-visible{outline:3px solid #e8cf98}
+.crs-track{display:flex;transition:transform .65s cubic-bezier(.22,.8,.2,1);will-change:transform}
+.crs-slide{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+.crs-media{position:relative;background:#141210;aspect-ratio:4/5;max-height:660px;overflow:hidden;width:100%}
+.crs-media video,.crs-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.crs-media[data-has-both] img,.crs-media[data-has-both] video{opacity:0;pointer-events:none;transition:opacity .35s}
+.crs-media[data-has-both] .on{opacity:1;pointer-events:auto}
+.crs-media[data-has-both] .crs-vid.on{z-index:2}
+.crs-media[data-has-both] .crs-img{z-index:1}
+.crs-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#c9a96e;background:radial-gradient(60% 50% at 50% 40%,rgba(201,169,110,.14),transparent 70%),repeating-linear-gradient(90deg,#1d1713 0 14px,#181310 14px 28px)}
+.crs-ph span{font-size:34px;margin-bottom:10px}
+.crs-ph p{margin:0;font-size:16px;line-height:1.5;color:#e6d6bf}
+.crs-ph small{font-size:13px;letter-spacing:.1em;color:#c9a96e}
+.crs-tabs{position:absolute;left:16px;bottom:16px;z-index:3;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(11,10,9,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(201,169,110,.5)}
+.crs-tabs button{font:inherit;cursor:pointer;border:0;background:transparent;color:#e6d6bf;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;min-height:40px}
+.crs-tabs button.on{background:linear-gradient(135deg,#d8bd8a,#c5a880 55%,#b08a4c);color:#1a1816}
+.crs-info{padding:clamp(28px,4vw,56px);padding-right:clamp(28px,7vw,96px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:0;min-width:0}
+.crs-cat{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.2em;background:linear-gradient(135deg,#b48f50,#f0dba6 50%,#c4a063);-webkit-background-clip:text;background-clip:text;color:transparent}
+.crs-title{margin:0 0 16px;font-size:clamp(26px,3vw,40px);font-weight:500;line-height:1.15;color:#f1ebe0;text-wrap:balance}
+.crs-desc{margin:0 0 24px;font-size:16px;line-height:1.7;color:#cfc6b6;max-width:52ch}
+.crs-spec{list-style:none;margin:0 0 30px;padding:0;width:100%;border-top:1px solid rgba(201,169,110,.28)}
+.crs-spec li{display:flex;gap:16px;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(201,169,110,.18);font-size:14px;line-height:1.45}
+.crs-spec b{flex:none;font-weight:600;color:#c9a96e;letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px}
+.crs-spec span{color:#e6d6bf;text-align:right}
+.crs-cta{max-width:100%;text-align:center}
+.crs-arrow{font:inherit;cursor:pointer;width:52px;height:52px;border-radius:50%;border:1px solid #c9a96e;background:rgba(11,10,9,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#e8cf98;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 22px -6px rgba(201,169,110,.5);transition:background .2s,transform .2s}
+.crs-arrow:hover{background:rgba(201,169,110,.25);transform:scale(1.06)}
+.crs-arrow:focus-visible,.crs-dots button:focus-visible,.crs-tabs button:focus-visible,.crs-next-t:focus-visible{outline:3px solid #e8cf98;outline-offset:3px}
+.crs-ov{position:absolute;top:calc(50% - 26px);z-index:5}
+.crs-ov.crs-prev{left:16px}.crs-ov.crs-next{right:16px}
+.crs-fa{display:none}
+.crs-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:26px}
+.crs-mid{display:flex;align-items:center;gap:22px}
+.crs-count{font-family:'Fraunces',Georgia,serif;font-size:22px;letter-spacing:.06em;background:linear-gradient(135deg,#b48f50,#f0dba6 50%,#c4a063);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:84px}
+.crs-dots{display:flex;gap:6px}
+.crs-dots button{width:28px;height:28px;border:0;background:transparent;cursor:pointer;position:relative;padding:0}
+.crs-dots button::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;border:1px solid #c9a96e;background:transparent;transition:all .3s}
+.crs-dots button[aria-current=true]::after{background:#c9a96e;width:22px;margin-left:-11px;border-radius:6px}
+.crs-next-t{font:inherit;cursor:pointer;background:none;border:0;color:#cfc6b6;font-size:14px;text-align:right;min-width:0;max-width:46%;padding:6px 0}
+.crs-next-t span{color:#e8cf98;font-weight:600}
+.crs-next-t:hover{color:#f6e3b4}
+@media (max-width:900px){
+ .crs-slide{grid-template-columns:minmax(0,1fr)}
+ .crs-media{aspect-ratio:4/5;max-height:70vh}
+ .crs-ov{display:none}
+ .crs-fa{display:flex;width:46px;height:46px;flex:none}
+ .crs-next-t{display:none}
+ .crs-foot{justify-content:space-between;margin-top:20px}
+ .crs-mid{flex-direction:column;gap:6px;align-items:center}
+ .crs-info{padding:26px 22px 30px !important}
+ .crs-view{border-radius:22px}
+}
+@media (prefers-reduced-motion:reduce){.crs-track{transition:none}}
+
+/* ===== CENTROS DE TV + FRANJA DE BENEFICIOS ===== */
+.tv-card img,.tv-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#1d1713}
+.tv-tags li{padding:8px 14px;border-radius:999px;border:1px solid rgba(138,100,48,.45);color:#6b4423;font-size:13px;font-weight:600;background:rgba(201,169,110,.12)}
+.strip-h{text-align:center;margin:0 0 26px}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.strip-i{display:flex;gap:14px;align-items:flex-start;padding:4px 24px;border-left:1px solid rgba(138,100,48,.3)}
+.strip-i:first-child{border-left:0;padding-left:0}
+.strip-ic{flex:none;color:#8a5a2b;margin-top:2px}
+.strip-i strong{display:block;font-size:19px;font-weight:500;line-height:1.2;color:#33231a}
+.strip-i p{margin:6px 0 0;font-size:14px;line-height:1.5;color:#6b5240}
+@media (max-width:980px){
+ .strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 0}
+ .strip-i:nth-child(odd){border-left:0;padding-left:0}
+}
+@media (max-width:560px){
+ .strip{grid-template-columns:minmax(0,1fr);gap:18px}
+ .strip-i{border-left:0 !important;padding:0 !important}
+}
+#showImg{max-width:100%}
+.tv-fallback a{color:#8a5a2b;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ===== CENTROS DE TV · COLLAGE EDITORIAL ===== */
+.band.tvx-band::before{background:radial-gradient(52% 62% at 27% 50%,rgba(201,169,110,.17),transparent 70%),radial-gradient(38% 40% at 92% 12%,rgba(201,169,110,.07),transparent 70%)}
+.tvx{display:grid}
+.tvx-collage{position:relative;width:100%;max-width:540px;aspect-ratio:540/790;justify-self:center}
+.tvx-vwrap{position:absolute;right:0;top:0;width:76%;height:90%}
+.tvx-frame{position:absolute;inset:0;transform:translate(14px,14px);border:1px solid rgba(201,169,110,.55);border-radius:32px;pointer-events:none}
+.tvx-video{position:relative;height:100%;width:100%;margin:0;border-radius:30px;overflow:hidden;background:#141210;box-shadow:0 0 0 1px rgba(201,169,110,.7),0 50px 90px -30px rgba(0,0,0,.95),0 0 90px -24px rgba(201,169,110,.3)}
+.tvx-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#141210}
+.tvx-photo{position:absolute;left:0;bottom:0;margin:0;width:54%;aspect-ratio:4/5;border-radius:24px;overflow:hidden;z-index:3;transform:rotate(-3deg);border:1px solid #c9a96e;background:#1d1713;box-shadow:0 0 0 5px rgba(11,10,9,.9),0 34px 60px -22px rgba(0,0,0,.95),0 0 40px -10px rgba(201,169,110,.45);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.tvx-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.tvx-photo:hover{transform:rotate(-1.5deg) translateY(-6px);box-shadow:0 0 0 5px rgba(11,10,9,.9),0 44px 70px -22px rgba(0,0,0,.95),0 0 56px -6px rgba(201,169,110,.6)}
+.tvx-photo:hover img{transform:scale(1.1)}
+.tvx-info{min-width:0}
+.tvx-sub{margin:0 0 30px;font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:#cfc6b6;max-width:56ch}
+.tvx-pts{list-style:none;margin:0 0 36px;padding:0;display:grid;gap:14px}
+.tvx-pts li{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:18px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(201,169,110,.26);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.tvx-pts li>span{flex:none;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e8cf98;border:1px solid rgba(201,169,110,.7);box-shadow:inset 0 0 16px rgba(201,169,110,.28)}
+.tvx-pts strong{font-weight:600;font-size:16px;line-height:1.35;color:#f1ebe0}
+.tvx-cta{max-width:100%;text-align:center;box-shadow:0 0 0 1px #c9a96e,0 14px 34px -10px rgba(23,128,63,.7),0 0 40px -8px rgba(201,169,110,.5),inset 0 1px 0 rgba(255,255,255,.25)}
+@media (max-width:900px){
+}
+@media (prefers-reduced-motion:reduce){.tvx-photo,.tvx-photo img{transition:none}}
+
+/* ===== CARRUSEL EDITORIAL · CARPINTERÍA A MEDIDA ===== */
+.tvc{position:relative}
+.tvc-view{overflow:hidden;touch-action:pan-y;outline-offset:6px;border-radius:8px}
+.tvc-view:focus-visible{outline:3px solid #e8cf98}
+.tvc-track{display:flex;transition:transform .7s cubic-bezier(.22,.8,.2,1);will-change:transform}
+.tvc-slide{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:center;padding:6px 14px;overflow:hidden}
+.tvc-slide.tvc-alt .tvx-collage{order:2}
+.tvc-slide.tvc-alt .tvx-vwrap{right:auto;left:0}
+.tvc-slide.tvc-alt .tvx-frame{transform:translate(-14px,14px)}
+.tvc-slide.tvc-alt .tvx-photo{left:auto;right:0;transform:rotate(3deg)}
+.tvc-slide.tvc-alt .tvx-photo:hover{transform:rotate(1.5deg) translateY(-6px)}
+.tvc-wide{width:80%}
+.tvc-solo{width:84%;right:auto;left:8%;height:94%}
+.tvc-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.tvc-ph:hover img{transform:scale(1.07)}
+.tvc-seal{position:absolute;right:0;bottom:4%;z-index:3;padding:11px 18px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.22em;color:#e8cf98;background:rgba(11,10,9,.82);border:1px solid #c9a96e;box-shadow:0 18px 34px -14px rgba(0,0,0,.9),0 0 30px -8px rgba(201,169,110,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.tvc-cat{margin:0 0 20px}
+.tvc-title{margin:0 0 20px;font-size:clamp(28px,3.6vw,48px);font-weight:500;line-height:1.08;color:#f1ebe0;text-wrap:balance}
+.tvc-foot{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:6px}
+.tvc-foot .crs-arrow{width:48px;height:48px;flex:none}
+@media (max-width:900px){
+ .tvc-slide{grid-template-columns:minmax(0,1fr);gap:34px}
+ .tvc-slide.tvc-alt .tvx-collage{order:0}
+ .tvx-collage{max-width:420px;aspect-ratio:420/600}
+ .tvx-vwrap{width:80%}.tvc-solo{width:86%;left:7%}.tvc-wide{width:82%}
+ .tvc-foot{justify-content:space-between;gap:14px}
+}
+@media (prefers-reduced-motion:reduce){.tvc-track{transition:none}.tvc-ph img{transition:none}}
+
+.crs-duo{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3px;background:linear-gradient(180deg,#c9a96e,#8f6f3a)}
+.crs-pane{position:relative;overflow:hidden;background:#141210}
+.crs-pane img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -499,29 +633,184 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 </div>
 
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band amb-soft" style="background:#EFECE6">
-<section class="wrap sec">
-<div style="margin-bottom:64px"><p class="eyebrow" style="margin-bottom:20px">Beneficios</p><h2 class="h2">Compra con tranquilidad</h2></div>
-<div class="bg">
-<div class="bc" style="grid-column:span 4;background:#33231a;color:#f6f0e6;min-height:300px"><div style="color:#e0b987"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div><div><div class="serif" style="font-size:clamp(44px,6vw,84px);line-height:1;font-weight:500">Garantía de 1 año</div><p style="margin:14px 0 0;color:#d8c4a8;font-size:17px">Respaldo total en estructura y acabados.</p></div></div>
-<div class="bc" style="grid-column:span 2;background:#e9dcc6"><div style="color:#8a5a2b"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></div><div><div class="serif" style="font-size:34px;font-weight:500">Reserva con 10%</div><p style="margin:10px 0 0;color:#6b5240">Cancela el saldo al recibir.</p></div></div>
-<div class="bc" style="grid-column:span 2;background:#fffaf1;border:1px solid #e3d3ba"><div style="color:#8a5a2b"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17L17 3l4 4L7 21H3v-4z"/><path d="M13 7l4 4"/></svg></div><div><div class="serif" style="font-size:34px;font-weight:500">Telas a elección</div><p style="margin:10px 0 0;color:#6b5240">Medidas a tu gusto y catálogo antifluido y pet friendly.</p></div></div>
-<div class="bc" style="grid-column:span 4;background:#d9bf9a"><div style="color:#5a3d26"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div><div><div class="serif" style="font-size:clamp(34px,4vw,52px);font-weight:500;line-height:1.05">Envío a Lima y montaje cuidadoso</div><p style="margin:12px 0 0;color:#4d3724">Tu mueble llega y queda armado en su lugar.</p></div></div>
-</div>
+<div class="band" style="background:#EFECE6;padding-bottom:0">
+<section class="wrap" style="padding-top:44px;padding-bottom:44px">
+<p class="eyebrow strip-h">Compra con tranquilidad</p>
+<div class="strip"><div class="strip-i"><span class="strip-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><strong class="serif">Garantía de 1 año</strong><p>Respaldo total en estructura y acabados.</p></div></div><div class="strip-i"><span class="strip-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></span><div><strong class="serif">Reserva con 10%</strong><p>Cancela el saldo al recibir.</p></div></div><div class="strip-i"><span class="strip-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17L17 3l4 4L7 21H3v-4z"/><path d="M13 7l4 4"/></svg></span><div><strong class="serif">Telas a elección</strong><p>Medidas a tu gusto y catálogo antifluido y pet friendly.</p></div></div><div class="strip-i"><span class="strip-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><div><strong class="serif">Envío a Lima y montaje cuidadoso</strong><p>Tu mueble llega y queda armado en su lugar.</p></div></div></div>
 </section>
 </div>
-
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band amb-soft" style="background:#F9F7F4">
+<div class="band on-dark amb amb-c" style="background:#0b0a09">
 <section class="wrap sec">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:80px">
-<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">05</span><i aria-hidden="true"></i></span>Tendencias</p><h2 class="h2">Galería de tendencias TikTok</h2></div>
-<p class="lead">Diseños reales de nuestros muebles, tal como los compartimos en redes.</p>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px">
+<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">05</span><i aria-hidden="true"></i></span>Entregas reales</p><h2 class="h2" style="color:#f1ebe0">Entregas Reales de Salas &amp; Sofás</h2></div>
+<p class="lead" style="color:#cfc6b6">Sofás cama, seccionales y salas fabricados y entregados por nuestro taller. Desliza o usa las flechas para ver más.</p>
 </div>
-<div class="feed"><article class="fi"><div class="vf rounded-3xl " style="aspect-ratio:4/5"><video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Nórdico en Microfibra Soft — Tono Marfil"></video></div><h3 class="serif" style="margin:20px 0 10px;font-size:22px;font-weight:500;line-height:1.2;color:#33231a">Sofá Cama Nórdico en Microfibra Soft — Tono Marfil</h3><p style="margin:0;color:#6b5240;font-size:15px;line-height:1.55">Apertura rápida, cojines mullidos y textura acolchada.</p><a class="btn btn-thin cot" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20N%C3%B3rdico%20en%20Microfibra%20Soft%20%E2%80%94%20Tono%20Marfil." target="_blank" rel="noopener noreferrer">Cotizar este modelo</a></article><article class="fi"><div class="vf rounded-3xl " style="aspect-ratio:9/16"><video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984823/IMG_2603.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984823/IMG_2603.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984823/IMG_2603.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984823/IMG_2603.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Contemporáneo en Cuero Prana — Tono Almendra"></video></div><h3 class="serif" style="margin:20px 0 10px;font-size:22px;font-weight:500;line-height:1.2;color:#33231a">Sofá Contemporáneo en Cuero Prana — Tono Almendra</h3><p style="margin:0;color:#6b5240;font-size:15px;line-height:1.55">Estructura fija de 3 cuerpos, patas de madera expuesta y tapizado lavable.</p><a class="btn btn-thin cot" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Contempor%C3%A1neo%20en%20Cuero%20Prana%20%E2%80%94%20Tono%20Almendra." target="_blank" rel="noopener noreferrer">Cotizar este modelo</a></article><article class="fi"><div class="vf rounded-3xl " style="aspect-ratio:3/4"><video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984816/IMG_2475.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984816/IMG_2475.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984816/IMG_2475.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984816/IMG_2475.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Dual en Cuero Prana — Cobre Terracota"></video></div><h3 class="serif" style="margin:20px 0 10px;font-size:22px;font-weight:500;line-height:1.2;color:#33231a">Sofá Cama Dual en Cuero Prana — Cobre Terracota</h3><p style="margin:0;color:#6b5240;font-size:15px;line-height:1.55">Carretilla inferior deslizable: se convierte en cama en 5 segundos.</p><a class="btn btn-thin cot" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Dual%20en%20Cuero%20Prana%20%E2%80%94%20Cobre%20Terracota." target="_blank" rel="noopener noreferrer">Cotizar este modelo</a></article><article class="fi"><div class="vf rounded-3xl " style="aspect-ratio:9/15"><video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984815/IMG_3649.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984815/IMG_3649.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984815/IMG_3649.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984815/IMG_3649.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Seccional en L con Capitoné — Tela Iker Topo"></video></div><h3 class="serif" style="margin:20px 0 10px;font-size:22px;font-weight:500;line-height:1.2;color:#33231a">Sofá Cama Seccional en L con Capitoné — Tela Iker Topo</h3><p style="margin:0;color:#6b5240;font-size:15px;line-height:1.55">Modular con capitoné tradicional y cama auxiliar oculta.</p><a class="btn btn-thin cot" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Seccional%20en%20L%20con%20Capiton%C3%A9%20%E2%80%94%20Tela%20Iker%20Topo." target="_blank" rel="noopener noreferrer">Cotizar este modelo</a></article></div>
+<div class="crs" id="entregas" role="region" aria-roledescription="carrusel" aria-label="Entregas reales de salas y sofás">
+<button type="button" class="crs-arrow crs-ov crs-prev" aria-label="Proyecto anterior">←</button>
+<button type="button" class="crs-arrow crs-ov crs-next" aria-label="Proyecto siguiente">→</button>
+<div class="crs-view" tabindex="0">
+<div class="crs-track">
+<article class="crs-slide" aria-roledescription="slide" aria-label="1 de 6">
+<div class="crs-media">
+<video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Nórdico en Microfibra Soft — Tono Marfil"></video>
+</div>
+<div class="crs-info">
+<p class="crs-cat">PROYECTO ENTREGADO · MICROFIBRA SOFT</p>
+<h3 class="serif crs-title">Sofá Cama Nórdico en Microfibra Soft — Tono Marfil</h3>
+<p class="crs-desc">Apertura rápida, cojines mullidos y textura acolchada.</p>
+<ul class="crs-spec"><li><b>Tela / material</b><span>Microfibra Soft · Tono Marfil</span></li><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20N%C3%B3rdico%20en%20Microfibra%20Soft%20%E2%80%94%20Tono%20Marfil." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
+</div>
+</article>
+<article class="crs-slide" aria-roledescription="slide" aria-label="2 de 6">
+<div class="crs-media">
+<video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984823/IMG_2603.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984823/IMG_2603.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984823/IMG_2603.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984823/IMG_2603.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Contemporáneo en Cuero Prana — Tono Almendra"></video>
+</div>
+<div class="crs-info">
+<p class="crs-cat">PROYECTO ENTREGADO · CUERO PRANA</p>
+<h3 class="serif crs-title">Sofá Contemporáneo en Cuero Prana — Tono Almendra</h3>
+<p class="crs-desc">Estructura fija de 3 cuerpos, patas de madera expuesta y tapizado lavable.</p>
+<ul class="crs-spec"><li><b>Tela / material</b><span>Cuero Prana · Tono Almendra</span></li><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Contempor%C3%A1neo%20en%20Cuero%20Prana%20%E2%80%94%20Tono%20Almendra." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
+</div>
+</article>
+<article class="crs-slide" aria-roledescription="slide" aria-label="3 de 6">
+<div class="crs-media">
+<video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984816/IMG_2475.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984816/IMG_2475.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984816/IMG_2475.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984816/IMG_2475.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Dual en Cuero Prana — Cobre Terracota"></video>
+</div>
+<div class="crs-info">
+<p class="crs-cat">PROYECTO ENTREGADO · CUERO PRANA</p>
+<h3 class="serif crs-title">Sofá Cama Dual en Cuero Prana — Cobre Terracota</h3>
+<p class="crs-desc">Carretilla inferior deslizable: se convierte en cama en 5 segundos.</p>
+<ul class="crs-spec"><li><b>Tela / material</b><span>Cuero Prana · Cobre Terracota</span></li><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Dual%20en%20Cuero%20Prana%20%E2%80%94%20Cobre%20Terracota." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
+</div>
+</article>
+<article class="crs-slide" aria-roledescription="slide" aria-label="4 de 6">
+<div class="crs-media">
+<video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984815/IMG_3649.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984815/IMG_3649.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984815/IMG_3649.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984815/IMG_3649.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Seccional en L con Capitoné — Tela Iker Topo"></video>
+</div>
+<div class="crs-info">
+<p class="crs-cat">PROYECTO ENTREGADO · CAPITONÉ</p>
+<h3 class="serif crs-title">Sofá Cama Seccional en L con Capitoné — Tela Iker Topo</h3>
+<p class="crs-desc">Modular con capitoné tradicional y cama auxiliar oculta.</p>
+<ul class="crs-spec"><li><b>Tela / material</b><span>Tela Iker Topo · Capitoné</span></li><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Seccional%20en%20L%20con%20Capiton%C3%A9%20%E2%80%94%20Tela%20Iker%20Topo." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
+</div>
+</article>
+<article class="crs-slide" aria-roledescription="slide" aria-label="5 de 6">
+<div class="crs-media">
+<div class="crs-duo">
+<div class="crs-pane"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_1277.jpg" alt="Sofá cama desplegable en tapiz crema con cojines terracota, vista 1" loading="lazy" decoding="async"></div>
+<!-- Privacidad: recorte de la Foto 2 para dejar fuera el borde izquierdo -->
+<div class="crs-pane" style="overflow:hidden"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_1279.jpg" alt="Sofá cama desplegable en tapiz crema con cojines terracota, vista 2" loading="lazy" decoding="async" style="object-fit:cover;object-position:82% center;transform:scale(1.22);transform-origin:right center"></div>
+</div>
+</div>
+<div class="crs-info">
+<p class="crs-cat">ENTREGA REAL • SOFÁ CAMA A MEDIDA</p>
+<h3 class="serif crs-title">Sofá Cama Desplegable en Tapiz Crema con Cojines Terracota</h3>
+<p class="crs-desc">Máximo aprovechamiento de espacio sin sacrificar elegancia. Fabricado con estructura reforzada, espuma de alta densidad, sistema cama deslizable con agarraderas ocultas y cojines decorativos en contraste.</p>
+<ul class="crs-spec"><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Desplegable%20en%20Tapiz%20Crema%20con%20Cojines%20Terracota." target="_blank" rel="noopener noreferrer">Cotizar este Sofá Cama por WhatsApp</a>
+</div>
+</article>
+<article class="crs-slide" aria-roledescription="slide" aria-label="6 de 6">
+<div class="crs-media">
+<video class="crs-auto" autoplay muted loop playsinline preload="metadata" aria-label="Sofá Cama en Tela Chenille Texturizada & Cojines Mostaza">
+<source src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4/IMG_2612.mp4" type="video/mp4">
+</video>
+</div>
+<div class="crs-info">
+<p class="crs-cat">ENTREGA REAL EN VIDEO • CONFORT & DISEÑO</p>
+<h3 class="serif crs-title">Sofá Cama en Tela Chenille Texturizada & Cojines Mostaza</h3>
+<p class="crs-desc">Acabado suave al tacto y de alta resistencia al uso diario. Combina un tono neutro cálido con cojines en mostaza y dorado que iluminan al instante cualquier sala moderna, convirtiéndose en cama en segundos.</p>
+<ul class="crs-spec"><li><b>Medidas</b><span>A la medida de tu espacio</span></li><li><b>Fabricación</b><span>6 a 12 días hábiles</span></li><li><b>Garantía</b><span>1 año estructural y de fabricación</span></li></ul>
+<a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20modelo%20similar%20al%20Sof%C3%A1%20Cama%20en%20Tela%20Chenille%20Texturizada%20%26%20Cojines%20Mostaza." target="_blank" rel="noopener noreferrer">Cotizar un modelo similar por WhatsApp</a>
+</div>
+</article>
+</div>
+</div>
+<div class="crs-foot">
+<button type="button" class="crs-arrow crs-fa crs-prev" aria-label="Proyecto anterior">←</button>
+<div class="crs-mid"><span class="crs-count" aria-live="polite">01 / 06</span><div class="crs-dots" role="group" aria-label="Elegir proyecto"><button type="button" aria-label="Ir al proyecto 1"></button><button type="button" aria-label="Ir al proyecto 2"></button><button type="button" aria-label="Ir al proyecto 3"></button><button type="button" aria-label="Ir al proyecto 4"></button><button type="button" aria-label="Ir al proyecto 5"></button><button type="button" aria-label="Ir al proyecto 6"></button></div></div>
+<button type="button" class="crs-next-t" data-titles='["Sofá Cama Nórdico en Microfibra Soft — Tono Marfil", "Sofá Contemporáneo en Cuero Prana — Tono Almendra", "Sofá Cama Dual en Cuero Prana — Cobre Terracota", "Sofá Cama Seccional en L con Capitoné — Tela Iker Topo", "Sofá Cama Desplegable en Tapiz Crema con Cojines Terracota", "Sofá Cama en Tela Chenille Texturizada & Cojines Mostaza"]'>Siguiente: <span></span> →</button>
+<button type="button" class="crs-arrow crs-fa crs-next" aria-label="Proyecto siguiente">→</button>
+</div>
+</div>
 </section>
 </div>
-
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
+<div class="band tvx-band on-dark amb" style="background:#0b0a09">
+<section id="centros-tv" class="wrap sec" style="padding-top:90px;padding-bottom:80px">
+<div class="tvc" id="tvcar" role="region" aria-roledescription="carrusel" aria-label="Carpintería y madera a medida">
+<div class="tvc-view" tabindex="0">
+<div class="tvc-track">
+<article class="tvc-slide" aria-roledescription="slide" aria-label="1 de 3">
+<div class="tvx-collage">
+<div class="tvx-vwrap">
+<span class="tvx-frame" aria-hidden="true"></span>
+<div class="tvx-video">
+<video id="tvcVid" autoplay muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_4821.jpg" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+<source src="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" type="video/mp4">
+<source src="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" type="video/quicktime">
+</video>
+</div>
+</div>
+<figure class="tvx-photo">
+<img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_4821.jpg" alt="Centro de TV con panel listonado en madera cálida e iluminación LED" loading="lazy">
+</figure>
+</div>
+<div class="tvx-info">
+<p class="crs-cat tvc-cat">01 / 03 • TALLER DE CARPINTERÍA A MEDIDA</p>
+<h2 class="serif tvc-title">También fabricamos Centros de TV y Paneles a tu medida</h2>
+<p class="tvx-sub">Convertimos esa pared vacía en el punto focal de tu sala. Diseñamos y fabricamos tu Centro de Entretenimiento exacto a las medidas de tu espacio, con listonado en madera cálida, iluminación LED indirecta y sistema 100 % ocultacables.</p>
+<ul class="tvx-pts"><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V3h18"/><path d="M3 9h3M3 15h3M9 3v3M15 3v3"/><path d="M8 21l13-13M16 21h5v-5"/></svg></span><div><strong>Fabricado al milímetro de tu pared</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 10h10" opacity=".5"/></svg></span><div><strong>Instalación limpia sin cables visibles</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span><div><strong>Luz LED cálida y melamina texturizada</strong></div></li></ul>
+<a class="btn btn-wa tvx-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20Centro%20de%20Entretenimiento%20%26%20Panel%20Listonado%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Centro de TV por WhatsApp</a>
+</div>
+</article>
+<article class="tvc-slide tvc-alt" aria-roledescription="slide" aria-label="2 de 3">
+<div class="tvx-collage">
+<div class="tvx-vwrap tvc-wide">
+<span class="tvx-frame" aria-hidden="true"></span>
+<figure class="tvx-video tvc-ph"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_2589.jpg" alt="Juego de comedor de madera con sillas curvas tapizadas en verde olivo" decoding="async"></figure>
+</div>
+<figure class="tvx-photo"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/SDMB0100.jpg" alt="Comedor de madera con sillas tapizadas en gris" decoding="async"></figure>
+</div>
+<div class="tvx-info">
+<p class="crs-cat tvc-cat">02 / 03 • COMEDORES DE AUTOR EN MADERA</p>
+<h3 class="serif tvc-title">Juegos de Comedor en Madera Sólida y Sillas Tapizadas a Medida</h3>
+<p class="tvx-sub">Reúne a tu familia alrededor de una pieza hecha para durar décadas. Fabricamos mesas de comedor en madera seleccionada con acabados naturales y sillas ergonómicas tapizadas en la tela y tono que combine con tu hogar.</p>
+<ul class="tvx-pts"><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c4 3 6 6 6 9a6 6 0 0 1-12 0c0-3 2-6 6-9z"/><path d="M12 9v9M9 13l3 2 3-3"/></svg></span><div><strong>Madera sólida seleccionada y lacado protector</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v8H7z"/><path d="M5 11h14v3H5zM7 14v7M17 14v7"/></svg></span><div><strong>Sillas ergonómicas con tapiz a elección</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div><strong>Medidas de 4, 6 u 8 puestos según tu espacio</strong></div></li></ul>
+<a class="btn btn-wa tvx-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20Juego%20de%20Comedor%20en%20madera%20s%C3%B3lida%20con%20sillas%20tapizadas%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Juego de Comedor por WhatsApp</a>
+</div>
+</article>
+<article class="tvc-slide" aria-roledescription="slide" aria-label="3 de 3">
+<div class="tvx-collage">
+<div class="tvx-vwrap tvc-solo">
+<span class="tvx-frame" aria-hidden="true"></span>
+<figure class="tvx-video tvc-ph"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_2596.jpg" alt="Aparador curvo con listonado vertical en madera" decoding="async"></figure>
+</div>
+<span class="tvc-seal" aria-hidden="true">✦ HECHO A MEDIDA ✦</span>
+</div>
+<div class="tvx-info">
+<p class="crs-cat tvc-cat">03 / 03 • MOBILIARIO COMPLEMENTARIO DE DISEÑO</p>
+<h3 class="serif tvc-title">Aparadores, Buffeteras y Credenzas Listonadas a Medida</h3>
+<p class="tvx-sub">El toque arquitectónico que eleva tu sala o comedor. Diseñamos aparadores curvos y rectos con acabado listonado en madera, ideales para organizar tu vajilla, bar o recibidor con elegancia y carácter.</p>
+<ul class="tvx-pts"><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c0-6 4-10 9-10s9 4 9 10"/><path d="M3 17h18v3H3zM8 17v-4M12 17v-6M16 17v-4"/></svg></span><div><strong>Diseño curvo o recto con listonado artesanal</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v9l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v9"/></svg></span><div><strong>Amplio almacenamiento interior oculto</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span><div><strong>Fabricación personalizada en tono y medidas</strong></div></li></ul>
+<a class="btn btn-wa tvx-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20Aparador%20%2F%20Buffetera%20listonada%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Aparador a Medida por WhatsApp</a>
+</div>
+</article>
+</div>
+</div>
+<div class="tvc-foot">
+<button type="button" class="crs-arrow tvc-prev" aria-label="Anterior">←</button>
+<div class="crs-mid"><span class="crs-count" aria-live="polite">01 / 03</span><div class="crs-dots" role="group" aria-label="Elegir diapositiva"><button type="button" aria-label="Ir a Centros de TV"></button><button type="button" aria-label="Ir a Juegos de Comedor"></button><button type="button" aria-label="Ir a Aparadores y Credenzas"></button></div></div>
+<button type="button" class="crs-arrow tvc-next" aria-label="Siguiente">→</button>
+</div>
+</div>
+</section>
+</div>
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
 <div class="band" style="background:#EFECE6">
 <section id="tiktok" class="wrap sec">
@@ -666,5 +955,96 @@ cluceInit();
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+/* Carrusel "Entregas reales" · JavaScript puro, sin librerías */
+(function () {
+  var root = document.getElementById("entregas"); if (!root) return;
+  var track = root.querySelector(".crs-track"), slides = [].slice.call(root.querySelectorAll(".crs-slide"));
+  var dots = [].slice.call(root.querySelectorAll(".crs-dots button")), count = root.querySelector(".crs-count");
+  var nextT = root.querySelector(".crs-next-t"), titles = JSON.parse(nextT.getAttribute("data-titles")), n = slides.length, cur = 0;
+  function pad(v) { return v < 10 ? "0" + v : "" + v; }
+  function show(box, which) {
+    var img = box.querySelector(".crs-img"), vid = box.querySelector(".crs-vid"), tabs = box.querySelectorAll(".crs-tabs button");
+    if (img) img.classList.toggle("on", which === "img");
+    if (vid) { vid.classList.toggle("on", which === "vid"); if (which === "vid") { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else { vid.pause(); } }
+    [].forEach.call(tabs, function (b) { b.classList.toggle("on", b.getAttribute("data-show") === which); });
+  }
+  function go(i) {
+    cur = (i + n) % n;
+    track.style.transform = "translate3d(" + (-100 * cur) + "%,0,0)";
+    slides.forEach(function (sl, k) {
+      var on = k === cur; sl.setAttribute("aria-hidden", on ? "false" : "true");
+      try { sl.inert = !on; } catch (e) {}
+      if (!on) { var v = sl.querySelector(".crs-vid.on[controls]"); if (v) show(sl.querySelector(".crs-media"), "img"); }
+    });
+    dots.forEach(function (d, k) { if (k === cur) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
+    count.textContent = pad(cur + 1) + " / " + pad(n);
+    [].forEach.call(root.querySelectorAll("video.crs-auto"),function(v){ if(slides[cur].contains(v)){var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause(); });
+    nextT.querySelector("span").textContent = titles[(cur + 1) % n];
+  }
+  root.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || !root.contains(b)) return;
+    if (b.classList.contains("crs-prev")) go(cur - 1);
+    else if (b.classList.contains("crs-next") || b.classList.contains("crs-next-t")) go(cur + 1);
+    else if (b.parentNode.classList.contains("crs-dots")) go(dots.indexOf(b));
+    else if (b.parentNode.classList.contains("crs-tabs")) show(b.closest(".crs-media"), b.getAttribute("data-show"));
+  });
+  var view = root.querySelector(".crs-view"), sx = 0, sy = 0, tracking = false;
+  view.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    var t = e.target;
+    if (t.tagName === "VIDEO" && t.hasAttribute("controls") && e.offsetY > t.clientHeight - 64) return;
+    tracking = true; sx = e.clientX; sy = e.clientY;
+  });
+  view.addEventListener("pointerup", function (e) {
+    if (!tracking) return; tracking = false;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2) go(cur + (dx < 0 ? 1 : -1));
+  });
+  view.addEventListener("pointercancel", function () { tracking = false; });
+  view.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
+    else if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
+  });
+  go(0);
+})();
+</script>
+<script>
+/* Carrusel "Carpintería a medida" · JavaScript puro */
+(function () {
+  var root = document.getElementById("tvcar"); if (!root) return;
+  var track = root.querySelector(".tvc-track"), slides = [].slice.call(root.querySelectorAll(".tvc-slide"));
+  var dots = [].slice.call(root.querySelectorAll(".crs-dots button")), count = root.querySelector(".crs-count");
+  var vid = document.getElementById("tvcVid"), n = slides.length, cur = 0;
+  function pad(v) { return "0" + v; }
+  function go(i) {
+    cur = (i + n) % n;
+    track.style.transform = "translate3d(" + (-100 * cur) + "%,0,0)";
+    slides.forEach(function (sl, k) { var on = k === cur; sl.setAttribute("aria-hidden", on ? "false" : "true"); try { sl.inert = !on; } catch (e) {} });
+    dots.forEach(function (d, k) { if (k === cur) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
+    count.textContent = pad(cur + 1) + " / " + pad(n);
+    if (vid) { if (cur === 0) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else { vid.pause(); } }
+  }
+  root.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || !root.contains(b)) return;
+    if (b.classList.contains("tvc-prev")) go(cur - 1);
+    else if (b.classList.contains("tvc-next")) go(cur + 1);
+    else if (b.parentNode.classList.contains("crs-dots")) go(dots.indexOf(b));
+  });
+  var view = root.querySelector(".tvc-view"), sx = 0, sy = 0, tracking = false;
+  view.addEventListener("pointerdown", function (e) { if (e.pointerType === "mouse" && e.button !== 0) return; tracking = true; sx = e.clientX; sy = e.clientY; });
+  view.addEventListener("pointerup", function (e) {
+    if (!tracking) return; tracking = false;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2) go(cur + (dx < 0 ? 1 : -1));
+  });
+  view.addEventListener("pointercancel", function () { tracking = false; });
+  view.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
+    else if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
+  });
+  go(0);
+})();
+</script>
 </body>
 </html>
