@@ -17,6 +17,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="dns-prefetch" href="https://res.cloudinary.com">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='translate(4.95,15.5) scale(.17) translate(-245,-305)'%3E%3Cdefs%3E%0A%3ClinearGradient id='gF' x1='245' y1='710' x2='775' y2='305' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23AA8020'/%3E%3Cstop offset='.42' stop-color='%23D4AF37'/%3E%3Cstop offset='.78' stop-color='%23F3E5AB'/%3E%3Cstop offset='1' stop-color='%23D4AF37'/%3E%3C/linearGradient%3E%0A%3Cmask id='mmF' maskUnits='userSpaceOnUse' x='200' y='280' width='620' height='460'%3E%3Crect x='200' y='280' width='620' height='460' fill='%23fff'/%3E%3Ccircle cx='454' cy='473' r='21' fill='%23000'/%3E%3C/mask%3E%0A%3Cmask id='mfF' maskUnits='userSpaceOnUse' x='200' y='280' width='620' height='460'%3E%3Crect x='200' y='280' width='620' height='460' fill='%23fff'/%3E%3Cg fill='none' stroke='%23000' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M498 521V592'/%3E%3Cpath d='M398 592H582'/%3E%3Cpath d='M398 566V612M582 566V612'/%3E%3Cpath d='M398 612H582'/%3E%3Cpath d='M275 566V590'/%3E%3Cpath d='M275 612H362'/%3E%3Cpath d='M617 560H690M617 598H690'/%3E%3Cpath d='M641 541H664M641 579H664M641 617H664'/%3E%3C/g%3E%3C/mask%3E%0A%3C/defs%3E%0A%3Cg fill='none' stroke='url(%23gF)'%3E%0A%3Cpath mask='url(%23mmF)' d='M346 594L361 327L475 505L602 340L636 524' stroke-width='23' stroke-linejoin='miter' stroke-miterlimit='12'/%3E%0A%3Cpath d='M758 364.6A180 198 0 1 0 770.9 634.3' stroke-width='16'/%3E%0A%3C/g%3E%0A%3Cg fill='url(%23gF)' mask='url(%23mfF)'%3E%0A%3Cpath d='M247 604V566a14 14 0 0 1 28 0V590H362V636a8 8 0 0 1-8 8H255a8 8 0 0 1-8-8z'/%3E%0A%3Crect x='380' y='515' width='220' height='90' rx='26'/%3E%0A%3Crect x='365' y='552' width='34' height='88' rx='16'/%3E%0A%3Crect x='581' y='552' width='34' height='88' rx='16'/%3E%0A%3Crect x='365' y='592' width='250' height='48' rx='14'/%3E%0A%3Crect x='617' y='520' width='73' height='120' rx='6'/%3E%0A%3Cpath d='M268 644L262 658H274L278 644zM338 644L344 658H356L350 644zM390 640L386 658H398L402 640zM586 640L602 658H614L610 640zM632 640L628 652H636L638 640zM668 640L672 652H680L676 640z'/%3E%0A%3C/g%3E%3C/g%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
@@ -450,6 +452,147 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 .crs-media .crs-main{object-fit:contain;background:#141210}
 .crs-float{position:absolute;right:14px;bottom:14px;z-index:2;width:38%;aspect-ratio:4/5;overflow:hidden;border-radius:16px;border:1.5px solid #c9a96e;background:#141210;box-shadow:0 22px 44px -16px rgba(0,0,0,.9),0 0 0 4px rgba(11,10,9,.75)}
 .crs-media video.crs-auto{object-fit:contain;background:#0b0a09;width:100%;height:100%}
+
+/* ===================================================================
+   SHOWROOM DE AUTOR · LUZ, PALETA, DINAMISMO
+   =================================================================== */
+/* 1. Luz de galería en secciones oscuras */
+.band.on-dark{background:linear-gradient(180deg,#1f1a15 0%,#17130f 100%) !important}
+.band.on-dark::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(212,168,83,.14),transparent 55%),radial-gradient(circle at 82% 72%,rgba(184,137,53,.11),transparent 52%),radial-gradient(60% 40% at 50% 0%,rgba(243,226,184,.06),transparent 70%)}
+.band.crs-band{background:radial-gradient(120% 80% at 50% -10%,#2a2016 0%,#120f0c 60%) !important}
+.band.crs-band::before{background:radial-gradient(circle at 20% 30%,rgba(212,168,83,.18),transparent 55%),radial-gradient(circle at 85% 80%,rgba(212,168,83,.1),transparent 50%)}
+.band.tvx-band{background:linear-gradient(180deg,#1b150f 0%,#16120e 40%,#120e0b 100%) !important;border-top:2px solid #d4a853;border-bottom:2px solid #d4a853;box-shadow:0 -1px 34px -4px rgba(212,168,83,.35),0 1px 34px -4px rgba(212,168,83,.35),inset 0 1px 0 rgba(243,226,184,.5)}
+.band.tvx-band::before{background:radial-gradient(circle at 20% 30%,rgba(212,168,83,.2),transparent 55%),radial-gradient(circle at 88% 78%,rgba(184,137,53,.16),transparent 52%),radial-gradient(40% 30% at 50% 100%,rgba(212,168,83,.1),transparent 70%)}
+/* tarjetas de cristal oscuro iluminado */
+.crs-view,.tvx-pts li,.on-dark .faq-i,.on-dark .bc,.on-dark .fi{background:rgba(26,22,18,.85) !important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(212,168,83,.35);box-shadow:0 24px 50px -28px rgba(0,0,0,.9),inset 0 1px 0 rgba(243,226,184,.12);transition:box-shadow .35s,border-color .35s,transform .35s}
+.crs-view:hover,.tvx-pts li:hover,.on-dark .faq-i:hover,.on-dark .bc:hover,.on-dark .fi:hover{border-color:rgba(243,226,184,.7);box-shadow:0 24px 50px -26px rgba(0,0,0,.9),0 0 34px -6px rgba(212,168,83,.45),inset 0 1px 0 rgba(243,226,184,.2)}
+.tvx-pts li:hover{transform:translateX(4px)}
+/* 3. Tipografía metálica y lectura */
+.gold{background:linear-gradient(135deg,#a8782a 0%,#d4a853 50%,#8f6420 100%);-webkit-background-clip:text;background-clip:text;color:transparent !important;-webkit-text-fill-color:transparent;font-style:inherit}
+.on-dark .gold,.band.tvx-band .gold,.mx-panel .gold{background-image:linear-gradient(135deg,#f3e2b8 0%,#d4a853 50%,#b88935 100%)}
+.crs-cat,.tvc-cat,.mx-kick{background:linear-gradient(135deg,#f3e2b8 0%,#d4a853 50%,#b88935 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.on-dark .lead,.on-dark p,.crs-desc,.tvx-sub{color:#e8e2d9}
+.on-dark .eyebrow:not([style*="color"]){background-image:linear-gradient(135deg,#f3e2b8 0%,#d4a853 50%,#b88935 100%)}
+/* realce fotográfico */
+.vf video,.feat-vid video,.crs-media img,.crs-media video,.crs-float img,.tvx-video video,.tvx-photo img,.tvc-ph img,.ba-img,.mx-card video{filter:contrast(1.06) saturate(1.12) brightness(1.03)}
+/* botones WhatsApp · verde */
+.btn-wa{background:linear-gradient(135deg,#25D366 0%,#169c49 100%) !important;color:#ffffff !important;font-weight:700;box-shadow:0 6px 20px rgba(37,211,102,.25) !important;transition:transform .25s,box-shadow .25s,filter .25s}
+.btn-wa::before{content:"";flex:none;width:22px;height:22px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm5.8 14c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.9-.12-.44-.14-1-.32-1.73-.63-3.04-1.3-5-4.37-5.15-4.57-.15-.2-1.23-1.63-1.23-3.1s.78-2.2 1.05-2.5c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.52.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.13 1 2.09 1.32 2.39 1.47.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm5.8 14c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.9-.12-.44-.14-1-.32-1.73-.63-3.04-1.3-5-4.37-5.15-4.57-.15-.2-1.23-1.63-1.23-3.1s.78-2.2 1.05-2.5c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.52.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.13 1 2.09 1.32 2.39 1.47.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42z'/%3E%3C/svg%3E") center/contain no-repeat}
+.btn-wa::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent)}
+.btn-wa:hover{background:linear-gradient(135deg,#2fe073 0%,#1aab51 100%) !important;color:#ffffff !important;transform:translateY(-3px);box-shadow:0 10px 26px rgba(37,211,102,.38) !important}
+.btn-wa.tvx-cta,.btn-wa.crs-cta{box-shadow:0 6px 20px rgba(37,211,102,.25) !important}
+.fab{background:linear-gradient(135deg,#25D366,#169c49) !important;color:#fff;box-shadow:0 6px 20px rgba(37,211,102,.35)}
+.fab svg{stroke:#fff}
+.on-dark .btn-dark:hover{background:#f3e2b8}
+/* 2. MECANISMO DUAL 3 EN 1 */
+.band.mx-band{background:radial-gradient(60% 50% at 10% 0%,rgba(212,168,83,.2),transparent 70%),radial-gradient(50% 45% at 95% 100%,rgba(184,137,53,.16),transparent 70%),repeating-linear-gradient(90deg,rgba(138,100,48,.035) 0 2px,transparent 2px 9px),#f6f1e9;overflow:hidden}
+.band.mx-band::before{content:attr(data-wm);position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;white-space:nowrap;font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(150px,30vw,460px);letter-spacing:.06em;line-height:1;color:#33231a;opacity:.03}
+.mx-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:64px}
+.mx{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(28px,4vw,64px);align-items:center}
+.mx-stage{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));padding-bottom:70px}
+.mx-card{position:relative;margin:0}
+.mx-c1{grid-column:1/8;grid-row:1;z-index:1}
+.mx-c2{grid-column:6/13;grid-row:1;margin-top:150px;z-index:2}
+.mx-card .vf{border-radius:26px;border:2px solid #d4a853;box-shadow:0 0 0 6px rgba(246,241,233,.9),0 0 0 7px rgba(184,137,53,.55),0 36px 70px -30px rgba(40,25,10,.65);background:#2a2016}
+.mx-card .vf video{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.mx-card:hover .vf video{transform:scale(1.07)}
+.mx-tag{position:absolute;left:-10px;top:22px;z-index:5;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.04em;color:#0b0a09;background:linear-gradient(135deg,#f3e2b8 0%,#d4a853 50%,#b88935 100%);box-shadow:0 12px 28px -8px rgba(60,38,10,.6),0 0 0 1px rgba(255,255,255,.4) inset;white-space:nowrap}
+.mx-tag i{font-style:normal;font-size:9px}
+.mx-c2 .mx-tag{left:auto;right:-8px;top:auto;bottom:24px}
+.mx-panel{position:relative;padding:clamp(28px,3.4vw,46px);border-radius:30px;color:#e8e2d9;background:radial-gradient(80% 50% at 90% 0%,rgba(212,168,83,.2),transparent 70%),linear-gradient(160deg,#241c14,#181410 60%);border:1px solid rgba(212,168,83,.5);box-shadow:0 40px 80px -34px rgba(24,20,16,.85),0 0 60px -20px rgba(212,168,83,.35),inset 0 1px 0 rgba(243,226,184,.2)}
+.mx-kick{margin:0 0 22px;font-size:12px;font-weight:700;letter-spacing:.22em}
+.mx-steps{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:14px}
+.mx-steps li{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(212,168,83,.3);transition:transform .3s,border-color .3s,box-shadow .3s}
+.mx-steps li:nth-child(2){margin-left:18px}.mx-steps li:nth-child(3){margin-left:36px}
+.mx-steps li:hover{transform:translateX(5px);border-color:rgba(243,226,184,.7);box-shadow:0 0 28px -8px rgba(212,168,83,.5)}
+.mx-n{font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1;font-weight:500;background:linear-gradient(135deg,#f3e2b8,#d4a853 50%,#b88935);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;min-width:44px}
+.mx-ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e8cf98;border:1px solid rgba(212,168,83,.7);box-shadow:inset 0 0 16px rgba(212,168,83,.28)}
+.mx-steps h3{margin:0 0 4px;font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:20px;color:#f6efe2;line-height:1.2}
+.mx-steps p{margin:0;font-size:14.5px;line-height:1.55;color:#e8e2d9}
+.mx-chips{list-style:none;margin:0 0 28px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.mx-chips li{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:13.5px;font-weight:600;color:#f3e2b8;border:1px solid rgba(212,168,83,.5);background:rgba(212,168,83,.08)}
+.mx-chips svg{width:20px;height:20px}
+@media (max-width:980px){
+ .mx{grid-template-columns:minmax(0,1fr)}
+ .mx-stage{padding-bottom:50px}
+ .mx-c2{margin-top:110px}
+ .mx-steps li:nth-child(2),.mx-steps li:nth-child(3){margin-left:0}
+ .mx-steps li{grid-template-columns:auto minmax(0,1fr)}
+ .mx-steps .mx-ico{display:none}
+}
+@media (prefers-reduced-motion:reduce){.mx-card .vf video,.mx-steps li{transition:none}}
+
+/* ===== CARRUSEL ENTREGAS · GALERÍA CON PEEK ===== */
+.crs .crs-view{overflow:hidden;background:none !important;border:0 !important;box-shadow:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;border-radius:0;padding:26px 0 44px}
+.crs .crs-track{gap:clamp(16px,2.4vw,32px);align-items:flex-start}
+.crs .crs-view{box-sizing:border-box;transition:height .5s ease}
+.crs .crs-slide{position:relative;flex:0 0 min(900px,92%);display:flex;flex-direction:column;border-radius:30px;overflow:hidden;background:rgba(26,22,18,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(212,168,83,.35);box-shadow:0 30px 60px -30px rgba(0,0,0,.9);transform:scale(.92);opacity:.5;transition:transform .7s cubic-bezier(.22,.8,.2,1),opacity .7s,box-shadow .5s,border-color .5s}
+.crs .crs-slide.is-active{transform:scale(1);opacity:1;border-color:rgba(243,226,184,.6);box-shadow:0 36px 70px -30px rgba(0,0,0,.95),0 0 56px -12px rgba(212,168,83,.42)}
+.crs .crs-media{aspect-ratio:16/10;max-height:none;border-radius:0}
+.crs .crs-media video,.crs .crs-media img{object-position:center 40%}
+.crs .crs-media::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(180deg,transparent,rgba(26,22,18,.75));pointer-events:none;z-index:3}
+.crs .crs-info{padding:24px 30px 30px !important;align-items:flex-start;justify-content:flex-start}
+.crs .crs-cat{position:absolute;top:18px;left:18px;z-index:6;max-width:calc(100% - 36px);margin:0;padding:9px 16px;border-radius:999px;font-size:11px;letter-spacing:.14em;line-height:1.3;background:rgba(11,10,9,.55);-webkit-background-clip:border-box;background-clip:border-box;color:#f3e2b8;-webkit-text-fill-color:#f3e2b8;border:1px solid rgba(212,168,83,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.crs .crs-title{font-size:clamp(24px,2.6vw,34px);margin:0 0 12px}
+.crs .crs-desc{margin:0 0 18px;max-width:none}
+.crs .crs-spec{display:flex;flex-wrap:wrap;gap:8px;border-top:0;margin:0 0 22px}
+.crs .crs-spec li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(212,168,83,.45);border-radius:999px;background:rgba(212,168,83,.1);font-size:13px;justify-content:flex-start}
+.crs .crs-spec b{font-size:10.5px;color:#d4a853;padding-top:0}
+.crs .crs-spec span{color:#f3e9d6;text-align:left}
+.crs .crs-ov{top:22%}
+@media (max-width:900px){
+ .crs .crs-slide{flex-basis:92%}
+ .crs .crs-media{aspect-ratio:16/10;max-height:none}
+ .crs .crs-info{padding:20px 20px 24px !important}
+ .crs .crs-view{padding:18px 0 30px}
+}
+@media (prefers-reduced-motion:reduce){.crs .crs-slide{transition:none}}
+
+.crs .crs-duo2{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;height:100%;background:#141210}
+.crs .crs-cell{position:relative;overflow:hidden;min-height:0}
+.crs .crs-media .crs-duo2 img{position:static;inset:auto;display:block}
+.crs .crs-media video.crs-auto{width:100%;height:100%;object-fit:cover;object-position:center 58%;background:#0b0a09}
+/* ===== RETAPIZADO ===== */
+.rt-cards{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:12px}
+.rt-cards li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;padding:14px 18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(212,168,83,.3);transition:border-color .3s,box-shadow .3s,transform .3s}
+.rt-cards li:hover{border-color:rgba(243,226,184,.65);box-shadow:0 0 28px -8px rgba(212,168,83,.45);transform:translateX(4px)}
+.rt-ico{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e8cf98;border:1px solid rgba(212,168,83,.7);box-shadow:inset 0 0 14px rgba(212,168,83,.28)}
+.rt-cards h3{margin:0 0 3px;font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:19px;line-height:1.2;color:#f6efe2}
+.rt-cards p{margin:0;font-size:14.5px;line-height:1.5;color:#e8e2d9}
+.ba-wrap{position:relative;isolation:isolate;max-width:640px;margin-left:auto;padding:12px;border-radius:34px;border:1px solid rgba(212,168,83,.4);background:rgba(26,22,18,.6);box-shadow:0 30px 70px -30px rgba(0,0,0,.9)}
+.ba-wrap::before{content:"";position:absolute;inset:-14% -12%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(212,168,83,.32),rgba(184,137,53,.12) 60%,transparent 78%)}
+.ba-wrap .ba{max-width:none;margin:0;border-radius:24px}
+.ba-wrap .ba-hint{position:static;transform:none;display:block;width:max-content;max-width:100%;margin:14px auto 2px;background:none;border:0;padding:0;-webkit-backdrop-filter:none;backdrop-filter:none;color:#e8e2d9;text-align:center}
+@media (max-width:900px){.ba-wrap{margin:0 auto}}
+
+.crs .crs-media.crs-contain{aspect-ratio:auto;height:400px;background:radial-gradient(circle at center,#231d17 0%,#120f0c 100%)}
+.crs .crs-media.crs-contain video,.crs .crs-media.crs-contain img{object-fit:contain;object-position:center;background:radial-gradient(circle at center,#231d17 0%,#120f0c 100%)}
+@media (max-width:900px){.crs .crs-media.crs-contain{aspect-ratio:auto;height:260px}}
+
+/* slides 01-04 · distribución lado a lado */
+.crs .crs-slide.crs-split{display:grid;grid-template-columns:46% 54%;min-height:480px}
+.crs .crs-slide.crs-split .crs-media.crs-contain{aspect-ratio:auto;height:100%;min-height:0;max-height:none;background:#141210}
+.crs .crs-slide.crs-split .crs-media.crs-contain video,.crs .crs-slide.crs-split .crs-media.crs-contain img{width:100%;height:100%;object-fit:cover;object-position:center;background:#141210}
+.crs .crs-slide.crs-split .crs-media::after{display:none}
+.crs .crs-slide.crs-split .crs-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:32px !important}
+@media (max-width:768px){
+ .crs .crs-slide.crs-split{grid-template-columns:1fr;min-height:0}
+ .crs .crs-slide.crs-split .crs-media.crs-contain{height:360px}
+ .crs .crs-slide.crs-split .crs-media::after{display:block}
+ .crs .crs-slide.crs-split .crs-info{padding:22px 20px 26px !important}
+}
+
+/* ===== RENDIMIENTO: sin backdrop-filter en carruseles/elementos en movimiento ===== */
+.crs .crs-slide,.crs .crs-cat,.crs-arrow,.crs-tabs,.tvx-pts li,.tvc-seal,.tvc-view *{-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+.crs .crs-slide{background:rgba(26,22,18,.94);box-shadow:0 10px 24px -16px rgba(0,0,0,.8)}
+.crs .crs-slide.is-active{box-shadow:0 30px 60px -30px rgba(0,0,0,.95),0 0 40px -14px rgba(212,168,83,.4)}
+.crs .crs-cat{background:rgba(11,10,9,.78)}
+.crs-arrow{background:rgba(11,10,9,.88)}
+.crs-tabs{background:rgba(11,10,9,.88)}
+.tvx-pts li{background:rgba(26,22,18,.94) !important}
+.tvc-seal{background:rgba(11,10,9,.92)}
+.crs-track,.tvc-track{will-change:transform}
+.crs .crs-slide{contain:layout paint}
 </style>
 </head>
 <body>
@@ -485,7 +628,7 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 
 <section class="wrap" style="padding-top:150px">
 <p class="eyebrow" style="margin-bottom:36px">Venta de muebles a medida</p>
-<h2 class="serif" style="margin:0;font-size:clamp(46px,8vw,124px);line-height:.98;font-weight:500;letter-spacing:-.03em;color:#f1ebe0;max-width:1080px">Muebles personalizados y a medida para <span style="font-style:italic;color:#C5A880">cualquier espacio</span></h2>
+<h2 class="serif" style="margin:0;font-size:clamp(46px,8vw,124px);line-height:.98;font-weight:500;letter-spacing:-.03em;color:#f1ebe0;max-width:1080px">Muebles personalizados y a medida para <span class="gold" style="font-style:italic">cualquier espacio</span></h2>
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-top:64px">
 <p class="lead">Eliges el modelo y la tela; lo fabricamos con las medidas de tu casa.</p>
 <div class="hero-cta">
@@ -507,7 +650,7 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="feat-txt">
 <span style="align-self:flex-start;display:inline-flex;min-height:36px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid #e0b987;color:#f1d9b8;font-size:12px;letter-spacing:.14em;font-weight:600">⭐ MODELO DE TEMPORADA | EDICIÓN EXCLUSIVA</span>
 <p class="eyebrow" style="color:#e0b987">Modelo destacado de temporada</p>
-<h2 class="serif" style="margin:0;font-weight:500;letter-spacing:-.025em;line-height:1.02;font-size:clamp(36px,4.6vw,66px)">Sofá Cama Seccional en L — <span style="font-style:italic;color:#e0b987">Modelo Nube Premium</span></h2>
+<h2 class="serif" style="margin:0;font-weight:500;letter-spacing:-.025em;line-height:1.02;font-size:clamp(36px,4.6vw,66px)">Sofá Cama Seccional en L — <span class="gold" style="font-style:italic">Modelo Nube Premium</span></h2>
 <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0">
 <li class="fl">Diseñado bajo el concepto de confort envolvente con acolchado de alta densidad efecto “Nube”.</li>
 <li class="fl">Estructura modular en L de amplio formato, ideal para salas principales que buscan lujo y máxima comodidad.</li>
@@ -522,17 +665,34 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 </div>
 
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band wm" data-wm="ATELIER" style="background:#EFECE6">
+<div class="band mx-band" data-wm="ATELIER">
 <section id="sistema" class="wrap sec">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:72px">
-<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">01</span><i aria-hidden="true"></i></span>Sistema</p><h2 class="h2">Mecanismo<br>Dual 3 en 1</h2></div>
+<div class="mx-head">
+<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">01</span><i aria-hidden="true"></i></span>Sistema</p><h2 class="h2">Mecanismo<br>Dual <span class="gold">3 en 1</span></h2></div>
 <p class="lead">Un solo mueble que se transforma: del respaldo reclinado a la cama, en dos movimientos.</p>
 </div>
-<div class="dual">
-<div><div class="brk"><div class="vf rounded-3xl " style="aspect-ratio:4/5"><video data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984834/IMG_2762.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984834/IMG_2762.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984834/IMG_2762.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984834/IMG_2762.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Reclinado del respaldar del sofá"></video></div></div><p class="cap"><b>Paso 1.</b> Reclinado de respaldar.</p></div>
-<div style="margin-top:90px"><div class="brk"><div class="vf rounded-3xl " style="aspect-ratio:4/5"><video data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984825/IMG_2760.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_2760.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_2760.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984825/IMG_2760.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Despliegue de la repisa y la cama"></video></div></div><p class="cap"><b>Paso 2.</b> Despliegue de la repisa y la cama.</p></div>
+<div class="mx">
+<div class="mx-stage">
+<figure class="mx-card mx-c1">
+<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984834/IMG_2762.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984834/IMG_2762.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984834/IMG_2762.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984834/IMG_2762.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Reclinado del respaldar del sofá"></video></div>
+<span class="mx-tag"><i aria-hidden="true">◆</i>Paso 1: Reclinado suave</span>
+</figure>
+<figure class="mx-card mx-c2">
+<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984825/IMG_2760.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_2760.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_2760.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984825/IMG_2760.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Despliegue de la repisa y la cama"></video></div>
+<span class="mx-tag"><i aria-hidden="true">◆</i>Paso 2: Despliegue total</span>
+</figure>
 </div>
-<div style="margin-top:56px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sistema%20Mecanismo%20Dual%203%20en%201%20a%20medida." target="_blank" rel="noopener">Cotizar este sistema a medida</a></div>
+<aside class="mx-panel" aria-label="Los 3 modos de uso">
+<p class="mx-kick">TRES MODOS EN UN SOLO MUEBLE</p>
+<ol class="mx-steps">
+<li><span class="mx-n">01</span><span class="mx-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11V8a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v3"/><path d="M3 15v-2a2 2 0 0 1 4 0v1h10v-1a2 2 0 0 1 4 0v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M6 19v2M18 19v2"/></svg></span><div><h3>Modo Sala</h3><p>Sofá firme y elegante para el día a día, con respaldo vertical y asiento de espuma de alta densidad.</p></div></li>
+<li><span class="mx-n">02</span><span class="mx-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20l3-14 5 1.2"/><path d="M8 6l9 5-3 9"/><path d="M15 4a6 6 0 0 1 5 4" opacity=".7"/></svg></span><div><h3>Respaldo Reclinable</h3><p>Inclina el respaldo con suavidad para ver una película o descansar, sin esfuerzo y sin ruidos.</p></div></li>
+<li><span class="mx-n">03</span><span class="mx-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V7M3 14h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></svg></span><div><h3>Cama Completa Desplegable</h3><p>Se transforma en cama en segundos: despliegas la repisa y la base, y queda listo para dormir.</p></div></li>
+</ol>
+<ul class="mx-chips"><li><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg><span>Estructura metálica reforzada</span></li><li><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="3"/><path d="M7 8v9M12 8v9M17 8v9" opacity=".5"/></svg><span>Espuma de alta densidad</span></li></ul>
+<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sistema%20Mecanismo%20Dual%203%20en%201%20a%20medida." target="_blank" rel="noopener">Cotizar este sistema a medida</a>
+</aside>
+</div>
 </section>
 </div>
 
@@ -575,18 +735,25 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="retap">
 <div>
 <p class="eyebrow" style="margin-bottom:22px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">03</span><i aria-hidden="true"></i></span>Retapizado y renovación</p>
-<h2 class="h2">Tu mueble de siempre,<br><span style="font-style:italic;color:#C5A880">como nuevo</span></h2>
+<h2 class="h2">Tu mueble de siempre,<br><span class="gold" style="font-style:italic">como nuevo</span></h2>
 <p class="lead" style="margin-top:32px">Renovamos el tapizado de tu sofá con la tela que elijas. Desliza la barra y mira el cambio entre el mueble antiguo y el retapizado.</p>
-<div style="margin-top:40px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quiero%20cotizar%20el%20retapizado%20de%20un%20mueble%20que%20tengo." target="_blank" rel="noopener">Cotizar retapizado por WhatsApp</a></div>
+<ul class="rt-cards">
+<li><span class="rt-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="3"/><path d="M7 8v9M12 8v9M17 8v9" opacity=".55"/></svg></span><div><h3>Cambio de Espuma &amp; Relleno</h3><p>Renovamos cojines y asientos con espuma de alta densidad para devolverle la firmeza original.</p></div></li>
+<li><span class="rt-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><h3>Refuerzo Estructural</h3><p>Revisamos y ajustamos toda la estructura interna de madera antes de tapizar.</p></div></li>
+<li><span class="rt-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c4 3 6 6 6 9a6 6 0 0 1-12 0c0-3 2-6 6-9z"/><path d="M12 9v9M9 13l3 2 3-3"/></svg></span><div><h3>Telas Antifluidos a Elección</h3><p>Elige entre terciopelo, chenille, lino o cuero sintético en el tono que prefieras.</p></div></li>
+</ul>
+<div style="margin-top:32px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quiero%20cotizar%20el%20retapizado%20de%20un%20mueble%20que%20tengo." target="_blank" rel="noopener">Cotizar retapizado por WhatsApp</a></div>
 </div>
 <div>
+<div class="ba-wrap">
 <div id="ba" class="ba rounded-3xl" style="--p:50">
-<img class="ba-img" id="baAfter" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto/v1794358144/SaveTik.co_7667714168971070741_2.jpg" alt="Mueble renovado después del retapizado" loading="lazy" decoding="async" draggable="false">
-<div class="ba-before"><img class="ba-img" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto/v1794358147/SaveTik.co_7667714168971070741_1.jpg" alt="Mueble viejo antes del retapizado" loading="lazy" decoding="async" draggable="false"></div>
+<img class="ba-img" id="baAfter" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/v1794358144/SaveTik.co_7667714168971070741_2.jpg" alt="Mueble renovado después del retapizado" loading="lazy" decoding="async" draggable="false">
+<div class="ba-before"><img class="ba-img" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/v1794358147/SaveTik.co_7667714168971070741_1.jpg" alt="Mueble viejo antes del retapizado" loading="lazy" decoding="async" draggable="false"></div>
 <span class="ba-tag" style="left:16px">ANTES</span><span class="ba-tag" style="right:16px">DESPUÉS</span>
 <div class="ba-handle"><span class="ba-knob"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1816" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
-<span id="baHint" class="ba-hint">Desliza para ver la transformación</span>
 <input id="baRange" class="ba-range" type="range" min="0" max="100" value="50" aria-label="Deslizar para comparar el mueble antes y después del retapizado">
+</div>
+<span id="baHint" class="ba-hint">Desliza para ver la transformación</span>
 </div>
 </div>
 </div>
@@ -627,7 +794,7 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div style="background:#fffaf1;border:1px solid #e3d3ba;border-radius:32px;padding:clamp(40px,7vw,100px) clamp(28px,6vw,90px);display:flex;flex-direction:column;gap:40px;align-items:flex-start">
 <p class="eyebrow">¿Lo viste en TikTok o IG?</p>
 <h2 class="h2" style="max-width:900px;font-size:clamp(34px,4.8vw,66px)">Si tienes la foto o video del mueble de tus sueños, lo fabricamos tal cual.</h2>
-<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20tengo%20la%20foto/video%20de%20un%20modelo%20que%20vi%20en%20redes%20y%20me%20gustar%C3%ADa%20cotizarlo." target="_blank" rel="noopener">📱 Enviar mi video/foto por WhatsApp</a>
+<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20tengo%20la%20foto/video%20de%20un%20modelo%20que%20vi%20en%20redes%20y%20me%20gustar%C3%ADa%20cotizarlo." target="_blank" rel="noopener">Enviar mi video/foto por WhatsApp</a>
 </div>
 </section>
 </div>
@@ -640,10 +807,10 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 </section>
 </div>
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band on-dark amb amb-c" style="background:#0b0a09">
+<div class="band on-dark amb amb-c crs-band" style="background:#0b0a09">
 <section class="wrap sec">
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px">
-<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">05</span><i aria-hidden="true"></i></span>Entregas reales</p><h2 class="h2" style="color:#f1ebe0">Entregas Reales de Salas &amp; Sofás</h2></div>
+<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">05</span><i aria-hidden="true"></i></span>Entregas reales</p><h2 class="h2" style="color:#f1ebe0">Entregas Reales de <span class="gold">Salas &amp; Sofás</span></h2></div>
 <p class="lead" style="color:#cfc6b6">Sofás cama, seccionales y salas fabricados y entregados por nuestro taller. Desliza o usa las flechas para ver más.</p>
 </div>
 <div class="crs" id="entregas" role="region" aria-roledescription="carrusel" aria-label="Entregas reales de salas y sofás">
@@ -651,8 +818,8 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <button type="button" class="crs-arrow crs-ov crs-next" aria-label="Proyecto siguiente">→</button>
 <div class="crs-view" tabindex="0">
 <div class="crs-track">
-<article class="crs-slide" aria-roledescription="slide" aria-label="1 de 6">
-<div class="crs-media">
+<article class="crs-slide crs-split" aria-roledescription="slide" aria-label="1 de 6">
+<div class="crs-media crs-contain">
 <video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Nórdico en Microfibra Soft — Tono Marfil"></video>
 </div>
 <div class="crs-info">
@@ -663,8 +830,8 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20N%C3%B3rdico%20en%20Microfibra%20Soft%20%E2%80%94%20Tono%20Marfil." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
 </div>
 </article>
-<article class="crs-slide" aria-roledescription="slide" aria-label="2 de 6">
-<div class="crs-media">
+<article class="crs-slide crs-split" aria-roledescription="slide" aria-label="2 de 6">
+<div class="crs-media crs-contain">
 <video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984823/IMG_2603.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984823/IMG_2603.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984823/IMG_2603.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984823/IMG_2603.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Contemporáneo en Cuero Prana — Tono Almendra"></video>
 </div>
 <div class="crs-info">
@@ -675,8 +842,8 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Contempor%C3%A1neo%20en%20Cuero%20Prana%20%E2%80%94%20Tono%20Almendra." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
 </div>
 </article>
-<article class="crs-slide" aria-roledescription="slide" aria-label="3 de 6">
-<div class="crs-media">
+<article class="crs-slide crs-split" aria-roledescription="slide" aria-label="3 de 6">
+<div class="crs-media crs-contain">
 <video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984816/IMG_2475.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984816/IMG_2475.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984816/IMG_2475.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984816/IMG_2475.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Dual en Cuero Prana — Cobre Terracota"></video>
 </div>
 <div class="crs-info">
@@ -687,8 +854,8 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <a class="btn btn-wa crs-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20Sof%C3%A1%20Cama%20Dual%20en%20Cuero%20Prana%20%E2%80%94%20Cobre%20Terracota." target="_blank" rel="noopener noreferrer">Cotizar este modelo por WhatsApp</a>
 </div>
 </article>
-<article class="crs-slide" aria-roledescription="slide" aria-label="4 de 6">
-<div class="crs-media">
+<article class="crs-slide crs-split" aria-roledescription="slide" aria-label="4 de 6">
+<div class="crs-media crs-contain">
 <video data-lazy="1" data-src="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto/v1792984815/IMG_3649.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984815/IMG_3649.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984815/IMG_3649.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,q_auto,f_auto/v1792984815/IMG_3649.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Seccional en L con Capitoné — Tela Iker Topo"></video>
 </div>
 <div class="crs-info">
@@ -701,9 +868,9 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 </article>
 <article class="crs-slide" aria-roledescription="slide" aria-label="5 de 6">
 <div class="crs-media">
-<img class="crs-main" src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_1277.jpg" alt="Sofá cama desplegable en tapiz crema con cojines terracota" loading="lazy" decoding="async">
-<div class="crs-float">
-<img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_1279.jpg" alt="Sofá cama desplegable en tapiz crema, segundo ángulo" loading="lazy" decoding="async" style="object-fit:cover;object-position:right center;transform:scale(1.15);transform-origin:right center">
+<div class="crs-duo2">
+<div class="crs-cell"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_1277.jpg" alt="Sofá cama desplegable en tapiz crema con cojines terracota" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
+<div class="crs-cell"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_1279.jpg" alt="Sofá cama desplegable en tapiz crema, segundo ángulo" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:85% center;transform:scale(1.18);transform-origin:right center"></div>
 </div>
 </div>
 <div class="crs-info">
@@ -716,9 +883,8 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 </article>
 <article class="crs-slide" aria-roledescription="slide" aria-label="6 de 6">
 <div class="crs-media">
-<video class="crs-auto" autoplay muted loop playsinline preload="auto" aria-label="Sofá Cama en Tela Chenille Texturizada & Cojines Mostaza">
-<source src="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984828/IMG_2612.mov" type="video/mp4">
-<source src="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984828/IMG_2612.mov" type="video/quicktime">
+<video class="crs-auto" autoplay muted loop playsinline preload="none" aria-label="Sofá Cama en Tela Chenille Texturizada & Cojines Mostaza">
+<source src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,q_auto:eco,w_900/v1792984828/IMG_2612.mov" type="video/mp4">
 </video>
 </div>
 <div class="crs-info">
@@ -751,19 +917,19 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="tvx-vwrap">
 <span class="tvx-frame" aria-hidden="true"></span>
 <div class="tvx-video">
-<video id="tvcVid" autoplay muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_4821.jpg" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+<video id="tvcVid" autoplay muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_4821.jpg" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
 <source src="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" type="video/mp4">
 <source src="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" type="video/quicktime">
 </video>
 </div>
 </div>
 <figure class="tvx-photo">
-<img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_4821.jpg" alt="Centro de TV con panel listonado en madera cálida e iluminación LED" loading="lazy">
+<img decoding="async" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_4821.jpg" alt="Centro de TV con panel listonado en madera cálida e iluminación LED" loading="lazy">
 </figure>
 </div>
 <div class="tvx-info">
 <p class="crs-cat tvc-cat">01 / 03 • TALLER DE CARPINTERÍA A MEDIDA</p>
-<h2 class="serif tvc-title">También fabricamos Centros de TV y Paneles a tu medida</h2>
+<h2 class="serif tvc-title">También fabricamos <span class="gold">Centros de TV</span> y Paneles a tu medida</h2>
 <p class="tvx-sub">Convertimos esa pared vacía en el punto focal de tu sala. Diseñamos y fabricamos tu Centro de Entretenimiento exacto a las medidas de tu espacio, con listonado en madera cálida, iluminación LED indirecta y sistema 100 % ocultacables.</p>
 <ul class="tvx-pts"><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V3h18"/><path d="M3 9h3M3 15h3M9 3v3M15 3v3"/><path d="M8 21l13-13M16 21h5v-5"/></svg></span><div><strong>Fabricado al milímetro de tu pared</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 10h10" opacity=".5"/></svg></span><div><strong>Instalación limpia sin cables visibles</strong></div></li><li><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span><div><strong>Luz LED cálida y melamina texturizada</strong></div></li></ul>
 <a class="btn btn-wa tvx-cta" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20Centro%20de%20Entretenimiento%20%26%20Panel%20Listonado%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Centro de TV por WhatsApp</a>
@@ -773,9 +939,9 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="tvx-collage">
 <div class="tvx-vwrap tvc-wide">
 <span class="tvx-frame" aria-hidden="true"></span>
-<figure class="tvx-video tvc-ph"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_2589.jpg" alt="Juego de comedor de madera con sillas curvas tapizadas en verde olivo" decoding="async"></figure>
+<figure class="tvx-video tvc-ph"><img loading="lazy" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_2589.jpg" alt="Juego de comedor de madera con sillas curvas tapizadas en verde olivo" decoding="async"></figure>
 </div>
-<figure class="tvx-photo"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/SDMB0100.jpg" alt="Comedor de madera con sillas tapizadas en gris" decoding="async"></figure>
+<figure class="tvx-photo"><img loading="lazy" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/SDMB0100.jpg" alt="Comedor de madera con sillas tapizadas en gris" decoding="async"></figure>
 </div>
 <div class="tvx-info">
 <p class="crs-cat tvc-cat">02 / 03 • COMEDORES DE AUTOR EN MADERA</p>
@@ -789,7 +955,7 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="tvx-collage">
 <div class="tvx-vwrap tvc-solo">
 <span class="tvx-frame" aria-hidden="true"></span>
-<figure class="tvx-video tvc-ph"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/IMG_2596.jpg" alt="Aparador curvo con listonado vertical en madera" decoding="async"></figure>
+<figure class="tvx-video tvc-ph"><img loading="lazy" src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1000/IMG_2596.jpg" alt="Aparador curvo con listonado vertical en madera" decoding="async"></figure>
 </div>
 <span class="tvc-seal" aria-hidden="true">✦ HECHO A MEDIDA ✦</span>
 </div>
@@ -830,7 +996,7 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 <div class="band on-dark amb amb-c" style="background:#141312;padding-bottom:0">
 <section id="showroom" class="wrap sec">
 <p class="eyebrow" style="margin-bottom:20px">Showroom</p>
-<h2 class="h2" style="margin-bottom:56px;max-width:900px">Visítanos en nuestro Showroom en Plaza Hogar</h2>
+<h2 class="h2" style="margin-bottom:56px;max-width:900px">Visítanos en nuestro <span class="gold">Showroom</span> en Plaza Hogar</h2>
 <div id="showImg" class="rounded-3xl" style="position:relative;aspect-ratio:21/9;min-height:220px;background:linear-gradient(135deg,#d9bf9a,#b8895a 60%,#8a5a2b);background-size:cover;background-position:center;overflow:hidden;box-shadow:0 30px 60px -28px rgba(70,45,25,.5)"><span id="showNote" style="position:absolute;left:24px;bottom:20px;color:#fff;font-size:14px;opacity:.85">Foto panorámica del showroom</span></div>
 <div class="show-info">
 <div><p class="eyebrow" style="margin-bottom:10px">Dirección</p><p style="margin:0;font-size:19px;line-height:1.5"><a class="maplink" href="https://maps.app.goo.gl/N8p5eek7GaHgVun78" target="_blank" rel="noopener noreferrer">Plaza Hogar, Bloque II, Piso 2, Stand COM09</a></p></div>
@@ -969,11 +1135,18 @@ cluceInit();
     if (vid) { vid.classList.toggle("on", which === "vid"); if (which === "vid") { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else { vid.pause(); } }
     [].forEach.call(tabs, function (b) { b.classList.toggle("on", b.getAttribute("data-show") === which); });
   }
+  function layout() {
+    var v = root.querySelector(".crs-view"), w = slides[0].offsetWidth, g = parseFloat(getComputedStyle(track).columnGap) || 0;
+    track.style.transform = "translate3d(" + ((v.clientWidth - w) / 2 - cur * (w + g)) + "px,0,0)";
+    var cs = getComputedStyle(v); v.style.height = (slides[cur].offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + "px";
+  }
+  window.addEventListener("resize", layout); window.addEventListener("load", layout);
   function go(i) {
     cur = (i + n) % n;
-    track.style.transform = "translate3d(" + (-100 * cur) + "%,0,0)";
+    layout();
+    [1, 2].forEach(function (d) { [].forEach.call(slides[(cur + d) % n].querySelectorAll("img[loading=lazy]"), function (im) { im.loading = "eager"; }); });
     slides.forEach(function (sl, k) {
-      var on = k === cur; sl.setAttribute("aria-hidden", on ? "false" : "true");
+      var on = k === cur; sl.classList.toggle("is-active", on); sl.setAttribute("aria-hidden", on ? "false" : "true");
       try { sl.inert = !on; } catch (e) {}
       if (!on) { var v = sl.querySelector(".crs-vid.on[controls]"); if (v) show(sl.querySelector(".crs-media"), "img"); }
     });
@@ -1020,6 +1193,7 @@ cluceInit();
   function go(i) {
     cur = (i + n) % n;
     track.style.transform = "translate3d(" + (-100 * cur) + "%,0,0)";
+    [1, 2].forEach(function (d) { [].forEach.call(slides[(cur + d) % n].querySelectorAll("img[loading=lazy]"), function (im) { im.loading = "eager"; }); });
     slides.forEach(function (sl, k) { var on = k === cur; sl.setAttribute("aria-hidden", on ? "false" : "true"); try { sl.inert = !on; } catch (e) {} });
     dots.forEach(function (d, k) { if (k === cur) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
     count.textContent = pad(cur + 1) + " / " + pad(n);
