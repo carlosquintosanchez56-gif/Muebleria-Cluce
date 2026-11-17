@@ -723,6 +723,17 @@ video.vv-live{background:transparent !important}
 .tvc-cat{margin-bottom:24px !important;letter-spacing:.2em}
 .tvc-title{margin-bottom:24px !important;line-height:1.06;letter-spacing:-.01em}
 .tvx-sub{margin-bottom:34px !important;line-height:1.75;max-width:54ch}
+
+/* ===== VIDEOS AMBIENTALES: cero controles nativos (TikTok / iOS WKWebView) ===== */
+video{pointer-events:none !important;-webkit-touch-callout:none !important;-webkit-user-select:none !important;user-select:none !important}
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none !important;opacity:0 !important}
+.vf,.tvx-video{touch-action:pan-y}
+.tvc-view .tvx-video{touch-action:pan-x pan-y}
+.vf::after,.tvx-video::after{content:"";position:absolute;inset:0;z-index:2;background:transparent;pointer-events:auto;touch-action:pan-y}
 </style>
 </head>
 <body>
@@ -789,7 +800,7 @@ video.vv-live{background:transparent !important}
 </ul>
 <div><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20me%20interesa%20cotizar%20el%20Sof%C3%A1%20Cama%20Seccional%20Nube%20de%20temporada." target="_blank" rel="noopener">Cotizar Modelo Nube a Medida por WhatsApp</a></div>
 </div>
-<div class="feat-vid"><div class="vf rounded-3xl " style="position:absolute;inset:0;border-radius:0;box-shadow:none"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_1080,q_auto:good/v1792984821/IMG_4230.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984821/IMG_4230.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984821/IMG_4230.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984821/IMG_4230.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Seccional en L, Modelo Nube Premium"></video></div></div>
+<div class="feat-vid"><div class="vf rounded-3xl " style="position:absolute;inset:0;border-radius:0;box-shadow:none"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_1080,q_auto:good/v1792984821/IMG_4230.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984821/IMG_4230.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984821/IMG_4230.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984821/IMG_4230.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá Cama Seccional en L, Modelo Nube Premium"></video></div></div>
 </div>
 </section>
 </div>
@@ -804,11 +815,11 @@ video.vv-live{background:transparent !important}
 <div class="mx">
 <div class="mx-stage">
 <figure class="mx-card mx-c1">
-<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984834/IMG_2762.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984834/IMG_2762.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984834/IMG_2762.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984834/IMG_2762.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Reclinado del respaldar del sofá"></video></div>
+<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984834/IMG_2762.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984834/IMG_2762.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984834/IMG_2762.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984834/IMG_2762.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Reclinado del respaldar del sofá"></video></div>
 <span class="mx-tag"><i aria-hidden="true">◆</i>Paso 1: Reclinado suave</span>
 </figure>
 <figure class="mx-card mx-c2">
-<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_2760.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_2760.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_2760.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_2760.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Despliegue de la repisa y la cama"></video></div>
+<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_2760.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_2760.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_2760.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_2760.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Despliegue de la repisa y la cama"></video></div>
 <span class="mx-tag"><i aria-hidden="true">◆</i>Paso 2: Despliegue total</span>
 </figure>
 </div>
@@ -851,9 +862,9 @@ video.vv-live{background:transparent !important}
 <div style="margin-top:40px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20medidas%20para%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Consultar disponibilidad de medidas</a></div>
 </div>
 <div style="position:relative;padding-bottom:70px">
-<div class="vf rounded-3xl " style="aspect-ratio:9/14;max-width:460px;margin-left:auto"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984832/IMG_3917.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984832/IMG_3917.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984832/IMG_3917.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984832/IMG_3917.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Mueble a medida en detalle"></video></div>
+<div class="vf rounded-3xl " style="aspect-ratio:9/14;max-width:460px;margin-left:auto"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984832/IMG_3917.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984832/IMG_3917.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984832/IMG_3917.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984832/IMG_3917.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Mueble a medida en detalle"></video></div>
 <div class="glass" style="left:auto;right:16px;bottom:auto;top:20px">Estructura en madera seleccionada</div>
-<div style="position:absolute;left:0;bottom:0;width:42%;max-width:200px"><div class="vf rounded-3xl " style="aspect-ratio:3/4;border:4px solid #f6f0e6"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984831/IMG_3237.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984831/IMG_3237.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984831/IMG_3237.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984831/IMG_3237.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Acabado y confección del mueble"></video></div></div>
+<div style="position:absolute;left:0;bottom:0;width:42%;max-width:200px"><div class="vf rounded-3xl " style="aspect-ratio:3/4;border:4px solid #f6f0e6"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984831/IMG_3237.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984831/IMG_3237.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984831/IMG_3237.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984831/IMG_3237.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Acabado y confección del mueble"></video></div></div>
 </div>
 </div>
 </section>
@@ -898,7 +909,7 @@ video.vv-live{background:transparent !important}
 </div>
 <div class="dp-duo">
 <article class="dp-card">
-<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984829/IMG_1390.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984829/IMG_1390.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984829/IMG_1390.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984829/IMG_1390.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sala seccional modular a medida en departamento iluminado"></video><span class="dp-cap">01 · PIEZA DE AUTOR</span></div>
+<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984829/IMG_1390.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984829/IMG_1390.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984829/IMG_1390.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984829/IMG_1390.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sala seccional modular a medida en departamento iluminado"></video><span class="dp-cap">01 · PIEZA DE AUTOR</span></div>
 <div class="dp-body">
 <h3 class="serif">Sala Seccional a Medida</h3>
 <p>Amplitud pensada para tu espacio: configuración en L o lineal a elección, con módulos que se ajustan a cada pared.</p>
@@ -907,7 +918,7 @@ video.vv-live{background:transparent !important}
 </div>
 </article>
 <article class="dp-card dp-b">
-<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="Sofá Cama Nórdico en Microfibra Soft, tono marfil"></video><span class="dp-cap">02 · MÁXIMA VERSATILIDAD</span></div>
+<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá Cama Nórdico en Microfibra Soft, tono marfil"></video><span class="dp-cap">02 · MÁXIMA VERSATILIDAD</span></div>
 <div class="dp-body">
 <h3 class="serif">Sofá Cama Nórdico</h3>
 <p>Microfibra Soft en tono marfil, con apertura rápida en segundos y una firmeza ortopédica que cuida tu descanso.</p>
@@ -1007,7 +1018,7 @@ video.vv-live{background:transparent !important}
 <div class="tvx-vwrap">
 <span class="tvx-frame" aria-hidden="true"></span>
 <div class="tvx-video">
-<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264,w_1080,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" data-fallback="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline preload="metadata" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
+<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264,w_1080,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" data-fallback="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline autoplay disableRemotePlayback preload="metadata" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
 </div>
 </div>
 <figure class="tvx-photo">
@@ -1219,6 +1230,31 @@ cluceInit();
     else if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
   });
   go(0);
+})();
+</script>
+<script>
+(function () {
+  var SOLO_VISIBLES = true; /* true = play solo en los videos visibles (recomendado en iPhone); false = play en TODOS */
+  function prep(v) {
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.controls = false; v.loop = true;
+    v.removeAttribute("controls");
+    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
+    v.setAttribute("disablePictureInPicture", ""); v.setAttribute("disableRemotePlayback", "");
+    v.setAttribute("controlsList", "nodownload nofullscreen noremoteplayback");
+    v.disablePictureInPicture = true; v.disableRemotePlayback = true;
+  }
+  function visible(v) {
+    var r = v.getBoundingClientRect();
+    return r.bottom > -300 && r.top < innerHeight + 300 && r.right > 0 && r.left < innerWidth;
+  }
+  function kick() {
+    [].forEach.call(document.querySelectorAll("video"), function (v) {
+      prep(v);
+      if (!SOLO_VISIBLES || visible(v)) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", kick); else kick();
+  document.addEventListener("touchstart", kick, { once: true, passive: true });
 })();
 </script>
 </body>
