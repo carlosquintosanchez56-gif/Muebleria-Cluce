@@ -4,29 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-/* TikTok in-app browser (WKWebView): detección inmediata + <video> -> imagen HD (nunca abre el reproductor nativo de iOS) */
+/* TikTok in-app browser (WKWebView): <video> -> <img> con WebP animado de Cloudinary (movimiento continuo, nunca abre el reproductor nativo de iOS) */
 (function () {
   if (!/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) return;
   document.documentElement.classList.add("is-tiktok");
-  var n = 0;
-  function still(v) {
-    var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source");
+  var n = 0, ANIM = "so_0,du_4,f_webp,fl_animated,fl_awebp,e_loop,w_600,q_auto:eco", JPG = "so_0,f_jpg,w_800,q_auto:good";
+  function sources(v) {
+    var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source"), L = [], m, f, p;
     if (!s && so) s = so.getAttribute("src") || "";
-    var m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
-    if (m) return m[1] + "so_0,f_auto,q_auto:best,w_900/" + m[2] + ".jpg";
-    var p = v.getAttribute("poster") || "";
-    return p ? p.replace("q_auto:good", "q_auto:best") : "";
+    m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
+    f = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/fetch\/)(?:[^\/]+\/)?(https?:\/\/.+)$/i);
+    if (m) L.push(m[1] + ANIM + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
+    else if (f) L.push(f[1] + ANIM + "/" + f[2], f[1] + JPG + "/" + f[2]);
+    p = v.getAttribute("poster"); if (p) L.push(p);
+    return L;
   }
   function swap(v) {
     if (!v || v.__tk || !v.parentNode) return; v.__tk = 1;
-    var par = v.parentNode, u = still(v), poster = v.getAttribute("poster") || "", alt = v.getAttribute("aria-label") || "";
+    var par = v.parentNode, L = sources(v), alt = v.getAttribute("aria-label") || "", k = 0;
     try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {}
-    if (!u) { par.removeChild(v); return; }
+    if (!L.length) { par.removeChild(v); return; }
     var im = document.createElement("img");
-    im.className = "tk-img vv"; im.alt = alt; im.decoding = "async"; im.draggable = false;
+    im.className = "tk-img vv"; im.alt = alt; im.decoding = "async"; im.loading = "lazy"; im.draggable = false;
     im.setAttribute("style", "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;animation-delay:-" + ((n++ * 2.7) % 12).toFixed(1) + "s");
-    im.onerror = function () { im.onerror = null; if (poster && im.src !== poster) im.src = poster; };
-    im.src = u;
+    /* respaldo: WebP animado -> fotograma JPG -> poster (con zoom suave si cae a imagen fija) */
+    im.onerror = function () { k++; if (k < L.length) { im.classList.add("kb"); im.src = L[k]; } else im.onerror = null; };
+    im.src = L[0];
     par.replaceChild(im, v);
     if (par.classList) par.classList.add("ready");
   }
@@ -771,10 +774,11 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 .vf,.tvx-video{touch-action:pan-y}
 .tvc-view .tvx-video{touch-action:pan-x pan-y}
 .vf::after,.tvx-video::after{content:"";position:absolute;inset:0;z-index:2;background:transparent;pointer-events:auto;touch-action:pan-y}
-/* ===== TikTok in-app: imagen HD con movimiento suave (sustituye al <video>) ===== */
+/* ===== TikTok in-app: WebP animado (sustituye al <video>); zoom suave solo si cae a imagen fija ===== */
 @keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
-html.is-tiktok img.tk-img{animation:kenBurns 12s ease-in-out infinite alternate;transform-origin:50% 50%;pointer-events:none}
-@media (prefers-reduced-motion:reduce){html.is-tiktok img.tk-img{animation:none}}
+html.is-tiktok img.tk-img{pointer-events:none}
+html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alternate;transform-origin:50% 50%}
+@media (prefers-reduced-motion:reduce){html.is-tiktok img.tk-img.kb{animation:none}}
 </style>
 </head>
 <body>
