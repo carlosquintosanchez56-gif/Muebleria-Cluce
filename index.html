@@ -3,6 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* TikTok in-app browser (WKWebView): detección inmediata + <video> -> imagen HD (nunca abre el reproductor nativo de iOS) */
+(function () {
+  if (!/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) return;
+  document.documentElement.classList.add("is-tiktok");
+  var n = 0;
+  function still(v) {
+    var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source");
+    if (!s && so) s = so.getAttribute("src") || "";
+    var m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
+    if (m) return m[1] + "so_0,f_auto,q_auto:best,w_900/" + m[2] + ".jpg";
+    var p = v.getAttribute("poster") || "";
+    return p ? p.replace("q_auto:good", "q_auto:best") : "";
+  }
+  function swap(v) {
+    if (!v || v.__tk || !v.parentNode) return; v.__tk = 1;
+    var par = v.parentNode, u = still(v), poster = v.getAttribute("poster") || "", alt = v.getAttribute("aria-label") || "";
+    try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {}
+    if (!u) { par.removeChild(v); return; }
+    var im = document.createElement("img");
+    im.className = "tk-img vv"; im.alt = alt; im.decoding = "async"; im.draggable = false;
+    im.setAttribute("style", "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;animation-delay:-" + ((n++ * 2.7) % 12).toFixed(1) + "s");
+    im.onerror = function () { im.onerror = null; if (poster && im.src !== poster) im.src = poster; };
+    im.src = u;
+    par.replaceChild(im, v);
+    if (par.classList) par.classList.add("ready");
+  }
+  function sweep(node) {
+    if (node.nodeType !== 1) return;
+    if (node.tagName === "VIDEO") swap(node);
+    else if (node.getElementsByTagName) [].slice.call(node.getElementsByTagName("video")).forEach(swap);
+  }
+  new MutationObserver(function (ms) { ms.forEach(function (m) { [].forEach.call(m.addedNodes, sweep); }); }).observe(document.documentElement, { childList: true, subtree: true });
+  window.__tkSwap = function () { sweep(document.documentElement); };
+  document.addEventListener("DOMContentLoaded", window.__tkSwap);
+})();
+</script>
 <title>Mueblería Cluce | Muebles a medida</title>
 <meta name="google-site-verification" content="mXxmmPPCtJq2mRV0qp1JriuN93scWZZXlvpIcYmIN8w" />
 <meta name="description" content="Muebles personalizados y a medida para cualquier espacio. Cotiza por WhatsApp.">
@@ -734,6 +771,10 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 .vf,.tvx-video{touch-action:pan-y}
 .tvc-view .tvx-video{touch-action:pan-x pan-y}
 .vf::after,.tvx-video::after{content:"";position:absolute;inset:0;z-index:2;background:transparent;pointer-events:auto;touch-action:pan-y}
+/* ===== TikTok in-app: imagen HD con movimiento suave (sustituye al <video>) ===== */
+@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+html.is-tiktok img.tk-img{animation:kenBurns 12s ease-in-out infinite alternate;transform-origin:50% 50%;pointer-events:none}
+@media (prefers-reduced-motion:reduce){html.is-tiktok img.tk-img{animation:none}}
 </style>
 </head>
 <body>
@@ -1127,6 +1168,7 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 
 <a class="fab" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20recibir%20asesor%C3%ADa%20para%20un%20sof%C3%A1%20cama%20a%20medida." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10c.5 2.5 2.5 4.5 5 5l1.2-1.3-2-1-.9.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.9-1-2L9 10z"/></svg></a>
 </div>
+<script>window.__tkSwap && window.__tkSwap();</script>
 <script>
 function cluceInit() {
   var SHOWROOM_IMG = ""; // URL de la foto panorámica del showroom (opcional)
