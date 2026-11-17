@@ -8,14 +8,18 @@
 (function () {
   if (!/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) return;
   document.documentElement.classList.add("is-tiktok");
-  var n = 0, ANIM = "so_0,du_4,f_webp,fl_animated,fl_awebp,e_loop,w_600,q_auto:eco", JPG = "so_0,f_jpg,w_800,q_auto:good";
+  var n = 0,
+      ANIM = "so_0,du_3,fps_20,f_webp,fl_animated,fl_awebp,e_loop,w_680,q_auto:good",
+      ANIM_HERO = "so_0,du_3,fps_20,f_webp,fl_animated,fl_awebp,e_loop,w_780,q_auto:good",
+      JPG = "so_0,f_jpg,w_800,q_auto:good";
   function sources(v) {
     var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source"), L = [], m, f, p;
     if (!s && so) s = so.getAttribute("src") || "";
     m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
     f = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/fetch\/)(?:[^\/]+\/)?(https?:\/\/.+)$/i);
-    if (m) L.push(m[1] + ANIM + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
-    else if (f) L.push(f[1] + ANIM + "/" + f[2], f[1] + JPG + "/" + f[2]);
+    var A = /IMG_1390/.test(s) ? ANIM_HERO : ANIM; /* tarjeta 01 · Sala Seccional a Medida */
+    if (m) L.push(m[1] + A + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
+    else if (f) L.push(f[1] + A + "/" + f[2], f[1] + JPG + "/" + f[2]);
     p = v.getAttribute("poster"); if (p) L.push(p);
     return L;
   }
