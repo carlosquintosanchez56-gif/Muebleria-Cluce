@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-/* TikTok in-app (WKWebView): marca <html class="is-tiktok">. En ese modo cada <video> se oculta (1px, opacity 0, nunca display:none) y se dibuja en <canvas>. */
+/* TikTok in-app (WKWebView): marca <html class="is-tiktok"> solo para apagar brillos animados; los <video> se reproducen de forma nativa. */
 (function () { if (/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) document.documentElement.classList.add("is-tiktok"); })();
-</script>
 </script>
 <title>Mueblería Cluce | Muebles a medida</title>
 <meta name="google-site-verification" content="mXxmmPPCtJq2mRV0qp1JriuN93scWZZXlvpIcYmIN8w" />
@@ -724,12 +723,8 @@ video{background-color:#161412 !important}
 .tvx-sub{margin-bottom:34px !important;line-height:1.75;max-width:54ch}
 
 /* ===== VIDEOS AMBIENTALES: cero controles nativos (TikTok / iOS WKWebView) ===== */
-video{pointer-events:none !important;-webkit-touch-callout:none !important;-webkit-user-select:none !important;user-select:none !important}
-video::-webkit-media-controls,
-video::-webkit-media-controls-enclosure,
-video::-webkit-media-controls-panel,
-video::-webkit-media-controls-overlay-play-button,
-video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none !important;opacity:0 !important}
+video{pointer-events:none !important;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;object-fit:cover;width:100%;height:100%;display:block}
+video::-webkit-media-controls,video::-webkit-media-controls-enclosure,video::-webkit-media-controls-panel,video::-webkit-media-controls-overlay-play-button,video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none !important;opacity:0 !important}
 .vf,.tvx-video{touch-action:pan-y}
 .tvc-view .tvx-video{touch-action:pan-x pan-y}
 .vf::after,.tvx-video::after{content:"";position:absolute;inset:0;z-index:2;background:transparent;pointer-events:auto;touch-action:pan-y}
@@ -788,9 +783,6 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 .dp-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:44px}
 @media (max-width:980px){.dp-specs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.dp-specs{grid-template-columns:minmax(0,1fr)}}
-/* ===== TikTok in-app: <video> invisible (1px, nunca display:none) + <canvas> a 60 fps ===== */
-html.is-tiktok video{position:absolute !important;left:0 !important;top:0 !important;right:auto !important;bottom:auto !important;width:1px !important;height:1px !important;opacity:0 !important;pointer-events:none !important;transform:none !important}
-html.is-tiktok canvas.tk-cv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;z-index:1;background-size:cover;background-position:center}
 /* ===== Renovación visual · Navidad, salas, moodboard ===== */
 .btn-xl{min-height:64px;padding:0 38px;font-size:18px;box-shadow:0 18px 40px -16px rgba(23,128,63,.7) !important}
 .fx-band{position:relative;overflow:hidden}
@@ -998,7 +990,6 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
  .tvc-slide .tvx-collage{display:block;position:relative;width:100%;min-height:420px}
  .tvx-vwrap{min-height:360px}
  .tvx-video{display:block;position:relative;overflow:hidden;width:100%;min-height:360px}
- .vf canvas.tk-cv,.tvx-video canvas.tk-cv{min-height:inherit}
 }
 </style>
 </head>
@@ -1064,7 +1055,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <dl class="ed-fi"><div><dt>Tapiz</dt><dd>Verde oliva de textura suave, con tratamiento antifluidos.</dd></div><div><dt>Asiento</dt><dd>Profundo, capitonado y acolchado con espuma de alta densidad.</dd></div><div><dt>Estructura</dt><dd>Madera Tornillo maciza.</dd></div><div><dt>Disponibilidad</dt><dd>En tienda para entrega, o a pedido y a medida.</dd></div></dl>
 <div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20me%20interesa%20el%20Sof%C3%A1%20Seccional%2FCama%20Verde%20Oliva%20que%20tienen%20en%20exhibici%C3%B3n." target="_blank" rel="noopener noreferrer">Cotizar el Verde Oliva por WhatsApp <span aria-hidden="true">→</span></a></div>
 </div>
-<div class="ed-media"><div class="fx-frame"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1795237491/IMG_4983.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795237491/IMG_4983.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795237491/IMG_4983.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá seccional cama verde oliva en exhibición en tienda"></video></div><span class="fx-chip c1">Tapiz Verde Oliva · Antifluidos</span><span class="fx-chip c2">Madera Tornillo</span><span class="fx-spark" aria-hidden="true">✦</span></div></div>
+<div class="ed-media"><div class="fx-frame"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1795237491/IMG_4983.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1795237491/IMG_4983.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Sofá seccional cama verde oliva en exhibición en tienda"></video></div><span class="fx-chip c1">Tapiz Verde Oliva · Antifluidos</span><span class="fx-chip c2">Madera Tornillo</span><span class="fx-spark" aria-hidden="true">✦</span></div></div>
 </div>
 </section>
 </div>
@@ -1096,9 +1087,9 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 </div>
 <div class="mx">
 <div class="mx-stage mx-duo">
-<figure class="mx-card mx-c1"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1795239433/IMG_4975.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795239433/IMG_4975.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795239433/IMG_4975.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Paso 1: repisa y cama inferior extensible del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 01</span><figcaption class="mx-cap"><strong class="serif">Repisa y cama inferior extensible</strong><span>Mira cómo se desliza y se arma la base inferior: firme, fluida y sin complicaciones.</span></figcaption></figure>
+<figure class="mx-card mx-c1"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1795239433/IMG_4975.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1795239433/IMG_4975.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Paso 1: repisa y cama inferior extensible del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 01</span><figcaption class="mx-cap"><strong class="serif">Repisa y cama inferior extensible</strong><span>Mira cómo se desliza y se arma la base inferior: firme, fluida y sin complicaciones.</span></figcaption></figure>
 <span class="mx-arrow" aria-hidden="true">→</span>
-<figure class="mx-card mx-c2"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1795237614/IMG_4977.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795237614/IMG_4977.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795237614/IMG_4977.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Paso 2: respaldar reclinable y acabado final del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 02</span><figcaption class="mx-cap"><strong class="serif">Respaldar reclinable y acabado final</strong><span>El respaldar se reclina con suavidad y el mueble queda armado por completo, listo para descansar.</span></figcaption></figure>
+<figure class="mx-card mx-c2"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1795237614/IMG_4977.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1795237614/IMG_4977.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Paso 2: respaldar reclinable y acabado final del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 02</span><figcaption class="mx-cap"><strong class="serif">Respaldar reclinable y acabado final</strong><span>El respaldar se reclina con suavidad y el mueble queda armado por completo, listo para descansar.</span></figcaption></figure>
 </div>
 <aside class="mx-panel" aria-label="Los 3 modos de uso">
 <p class="mx-kick">TRES MODOS EN UN SOLO MUEBLE</p>
@@ -1136,7 +1127,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <p class="lead" style="max-width:480px;margin-top:26px">Amplitud pensada para tu sala: configuración en L o lineal, con módulos que se ajustan a cada pared y un asiento que invita a quedarse.</p>
 <ul class="relief-row"><li class="relief">Madera Tornillo</li><li class="relief">Espuma Zebra</li><li class="relief">Antifluidos</li><li class="relief">En L o lineal</li></ul>
 <div style="margin-top:34px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20una%20Sala%20Seccional%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Sala Seccional · 3 a 6 días <span aria-hidden="true">→</span></a></div></div>
-<div class="sa-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1792984829/IMG_1390.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984829/IMG_1390.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984829/IMG_1390.jpg" muted loop playsinline webkit-playsinline preload="auto" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sala seccional a medida"></video></div></div>
+<div class="sa-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1792984829/IMG_1390.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1792984829/IMG_1390.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Sala seccional a medida"></video></div></div>
 <div class="sa-spec" role="list" aria-label="Ficha técnica"><div role="listitem"><small>✦ Estructura</small><strong class="serif">Madera Tornillo maciza</strong></div><div role="listitem"><small>✦ Relleno</small><strong class="serif">Espuma Zebra alta densidad</strong></div><div role="listitem"><small>✦ Tapiz</small><strong class="serif">A elección, antifluidos</strong></div><div role="listitem"><small>✦ Entrega</small><strong class="serif">3 a 6 días hábiles</strong></div></div>
 </div>
 </section>
@@ -1145,7 +1136,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <div class="band" style="background:#EFECE6">
 <section class="wrap sec">
 <div class="sb">
-<div class="sb-vid"><span class="sb-frame sb-f1" aria-hidden="true"></span><span class="sb-frame sb-f2" aria-hidden="true"></span><div class="vf rounded-3xl" style="aspect-ratio:3/4"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1792984832/IMG_3917.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984832/IMG_3917.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984832/IMG_3917.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá de tendencia a medida"></video></div><span class="sb-badge">✦ Hecho a tu medida</span></div>
+<div class="sb-vid"><span class="sb-frame sb-f1" aria-hidden="true"></span><span class="sb-frame sb-f2" aria-hidden="true"></span><div class="vf rounded-3xl" style="aspect-ratio:3/4"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1792984832/IMG_3917.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1792984832/IMG_3917.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Sofá de tendencia a medida"></video></div><span class="sb-badge">✦ Hecho a tu medida</span></div>
 <div><p class="ed-kick">SOFÁ DE TENDENCIA · A MEDIDA</p><h2 class="serif ed-t">Elegancia contemporánea <span class="gold" style="font-style:italic">pensada al milímetro</span></h2>
 <p class="lead" style="max-width:520px;margin-top:26px">Líneas limpias, proporciones exactas y un tapiz suave al tacto. Tú nos das la medida de tu rincón y nosotros fabricamos el sofá que encaja.</p>
 <div class="sb-strip"><div><small>Medidas</small><strong class="serif">Ancho, fondo y altura a tu espacio</strong></div><div><small>Tapiz</small><strong class="serif">Tono y textura a tu elección</strong></div><div><small>Acabado</small><strong class="serif">Costuras firmes, remates prolijos</strong></div><div><small>Reserva</small><strong class="serif">Aparta con solo el 10 %</strong></div></div>
@@ -1161,7 +1152,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <p class="lead" style="max-width:500px;margin-top:26px">Espuma que conserva su firmeza sobre una estructura maciza que no cede ni cruje: comodidad para el uso diario, durante años.</p>
 <ul class="sc-stats"><li><b class="serif">1 año</b><span>Garantía estructural</span></li><li><b class="serif">3–6</b><span>Días hábiles de entrega</span></li><li><b class="serif">100 %</b><span>A la medida de tu sala</span></li></ul>
 <div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20sof%C3%A1%20de%20confort%20y%20estructura%20duradera." target="_blank" rel="noopener noreferrer">Cotizar mi sofá <span aria-hidden="true">→</span></a></div></div>
-<div class="sc-vid"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984825/IMG_1651.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá con confort envolvente"></video></div><span class="glass" style="left:auto;right:16px;bottom:auto;top:20px">Confort que perdura</span></div>
+<div class="sc-vid"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1792984825/IMG_1651.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Sofá con confort envolvente"></video></div><span class="glass" style="left:auto;right:16px;bottom:auto;top:20px">Confort que perdura</span></div>
 </div>
 </section>
 </div>
@@ -1171,7 +1162,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <div class="sd-head"><p class="ed-kick">SALA CONTEMPORÁNEA · NUEVA EN COLECCIÓN</p><h2 class="serif ed-t">Cuero Prana tono almendra, <span class="gold" style="font-style:italic">elegancia que se siente</span></h2></div>
 <div class="sd-stage">
 <ul class="sd-l"><li class="sd-c"><small>Tapiz</small><strong class="serif">Cuero Prana en tono almendra</strong></li><li class="sd-c"><small>Estructura</small><strong class="serif">Madera Tornillo maciza</strong></li><li class="sd-c"><small>Relleno</small><strong class="serif">Espuma Zebra de alta densidad</strong></li></ul>
-<div class="sd-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,ac_none,w_720,q_auto:good/v1792984823/IMG_2603.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984823/IMG_2603.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984823/IMG_2603.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá contemporáneo en cuero Prana tono almendra"></video></div><span class="glass">Cuero Prana · Almendra</span></div>
+<div class="sd-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/v1792984823/IMG_2603.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto/v1792984823/IMG_2603.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Sofá contemporáneo en cuero Prana tono almendra"></video></div><span class="glass">Cuero Prana · Almendra</span></div>
 <ul class="sd-r"><li class="sd-c"><small>Acabado</small><strong class="serif">Costuras y remates prolijos</strong></li><li class="sd-c"><small>Medidas</small><strong class="serif">Ancho, fondo y altura a tu espacio</strong></li><li class="sd-c"><small>Entrega</small><strong class="serif">3 a 6 días hábiles · 1 año de garantía</strong></li></ul>
 </div>
 <div class="sd-cta"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sof%C3%A1%20en%20cuero%20Prana%20tono%20almendra." target="_blank" rel="noopener noreferrer">Cotizar mi sofá en cuero Prana <span aria-hidden="true">→</span></a></div>
@@ -1297,7 +1288,7 @@ html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
 <div class="tvx-vwrap">
 <span class="tvx-frame" aria-hidden="true"></span>
 <div class="tvx-video">
-<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264,ac_none,w_720,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" data-fallback="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline preload="auto" crossorigin="anonymous" disableRemotePlayback aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
+<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264:baseline,ac_none,w_720,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline preload="metadata" disableRemotePlayback aria-label="Video del Centro de TV a medida"></video>
 </div>
 </div>
 <figure class="tvx-photo">
@@ -1492,75 +1483,27 @@ cluceInit();
 })();
 </script>
 <script>
-/* ===== Motor de video: MP4 H.264 + IntersectionObserver; en TikTok se dibuja en <canvas> con requestAnimationFrame ===== */
+/* Reproducción nativa: un solo IntersectionObserver; solo suena el decodificador de lo visible */
 (function () {
-  var TT = document.documentElement.classList.contains("is-tiktok"), vids = [].slice.call(document.querySelectorAll("video"));
-  var active = new Set(), raf = 0, DPR = Math.min(window.devicePixelRatio || 1, 3);
-  function play(v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-  function size(v) {
-    /* resolución nativa: clientSize × devicePixelRatio, sin superar videoWidth/videoHeight reales */
-    var c = v.__cv, w = Math.round(c.clientWidth * DPR), h = Math.round(c.clientHeight * DPR);
-    var capW = v.videoWidth || 1080, capH = v.videoHeight || 1920;
-    var k = Math.min(1, Math.max(capW / (w || 1), capH / (h || 1)));
-    if (k < 1) { w = Math.round(w * k); h = Math.round(h * k); }
-    if (w && h && (c.width !== w || c.height !== h)) { c.width = w; c.height = h; v.__ctx.imageSmoothingEnabled = true; v.__ctx.imageSmoothingQuality = "high"; }
+  var vids = [].slice.call(document.querySelectorAll("video"));
+  function prep(v) { v.muted = true; v.defaultMuted = true; v.playsInline = true; }
+  function play(v) { prep(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function visible(v) {
+    var r = v.getBoundingClientRect(), h = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    return h > 0 && h >= r.height * 0.25 && r.right > 0 && r.left < window.innerWidth;
   }
-  function draw(v) {
-    var c = v.__cv, vw = v.videoWidth, vh = v.videoHeight;
-    if (!vw || !vh || v.readyState < 2 || !c.width || !c.height) return false;
-    var s = Math.max(c.width / vw, c.height / vh), sw = c.width / s, sh = c.height / s;
-    v.__ctx.drawImage(v, (vw - sw) / 2, (vh - sh) / 2, sw, sh, 0, 0, c.width, c.height); /* recorte object-fit: cover */
-    return true;
-  }
-  function loop() {
-    raf = 0; if (document.hidden || !active.size) return;
-    active.forEach(function (v) { if (draw(v) && !v.__d) { v.__d = 1; v.parentNode.classList.add("ready"); } });
-    raf = requestAnimationFrame(loop);
-  }
-  function go() { if (TT && !raf) raf = requestAnimationFrame(loop); }
-  function target(v) { return TT ? v.__cv : v; }
   vids.forEach(function (v) {
-    v.muted = v.defaultMuted = v.loop = v.playsInline = true; v.controls = false; v.removeAttribute("autoplay");
-    ["muted", "loop", "playsinline", "webkit-playsinline"].forEach(function (a) { v.setAttribute(a, ""); });
-    if (TT) {
-      var c = document.createElement("canvas"), p = v.getAttribute("poster");
-      c.className = "tk-cv"; c.setAttribute("aria-hidden", "true");
-      if (p) c.style.backgroundImage = 'url("' + p + '")';
-      v.parentNode.insertBefore(c, v); v.__cv = c; v.__ctx = c.getContext("2d"); size(v);
-      if ("ResizeObserver" in window) new ResizeObserver(function () { size(v); }).observe(c);
-    }
-    if (TT) v.addEventListener("loadedmetadata", function () { size(v); });
-    v.addEventListener("playing", function () { if (!TT && v.parentNode) v.parentNode.classList.add("ready"); });
-    v.addEventListener("canplay", function () { if (active.has(v) && v.paused) play(v); if (TT) { size(v); if (draw(v) && !v.__d) { v.__d = 1; v.parentNode.classList.add("ready"); } go(); } });
-    v.addEventListener("loadeddata", function () { if (TT) { size(v); if (draw(v) && !v.__d) { v.__d = 1; v.parentNode.classList.add("ready"); } go(); } if (active.has(v) && v.paused) play(v); });
-    v.addEventListener("error", function () {
-      var l = (v.dataset.fallback || "").split(" ").filter(Boolean), i = +(v.dataset.fi || 0);
-      if (i >= l.length) return;
-      v.dataset.fi = i + 1; if (l[i].indexOf("res.cloudinary.com") < 0) v.removeAttribute("crossorigin");
-      v.src = l[i]; if (active.has(v)) play(v);
-    });
+    prep(v);
+    v.addEventListener("playing", function () { if (v.parentNode) v.parentNode.classList.add("ready"); });
   });
-  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      var v = e.target.__v;
-      if (e.isIntersecting && e.intersectionRatio >= 0.25) { active.add(v); if (v.preload !== "auto") v.preload = "auto"; play(v); go(); }
-      else { active.delete(v); v.pause(); }
-    });
-  }, { threshold: [0, 0.25] }) : null;
-  vids.forEach(function (v) { var t = target(v); t.__v = v; if (io) io.observe(t); else { active.add(v); play(v); } });
-  go();
-  function kick() { /* respaldo si WKWebView bloquea el autoplay inicial */
-    vids.forEach(function (v) {
-      var r = target(v).getBoundingClientRect(), h = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
-      if (h > 0 && h >= r.height * 0.25 && r.right > 0 && r.left < innerWidth) { active.add(v); play(v); }
-    });
-    go();
-  }
-  ["touchstart", "scroll"].forEach(function (ev) { window.addEventListener(ev, kick, { once: true, passive: true }); });
-  setTimeout(kick, 400); setTimeout(kick, 1500); window.addEventListener("load", kick); window.addEventListener("pageshow", kick);
-  document.addEventListener("visibilitychange", function () {
-    active.forEach(function (v) { if (document.hidden) v.pause(); else play(v); }); if (!document.hidden) go();
-  });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) play(v); else v.pause(); });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  } else { vids.forEach(play); }
+  function unlock() { vids.forEach(function (v) { if (visible(v)) play(v); }); }
+  ["touchstart", "scroll"].forEach(function (ev) { window.addEventListener(ev, unlock, { once: true, passive: true }); });
 })();
 </script>
 <script>
