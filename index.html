@@ -8,18 +8,14 @@
 (function () {
   if (!/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) return;
   document.documentElement.classList.add("is-tiktok");
-  var n = 0,
-      ANIM = "so_0,du_3,fps_20,f_webp,fl_animated,fl_awebp,e_loop,w_680,q_auto:good",
-      ANIM_HERO = "so_0,du_3,fps_20,f_webp,fl_animated,fl_awebp,e_loop,w_780,q_auto:good",
-      JPG = "so_0,f_jpg,w_800,q_auto:good";
+  var n = 0, ANIM = "so_0,du_4,f_webp,fl_animated,fl_awebp,e_loop,w_600,q_auto:eco", JPG = "so_0,f_jpg,w_800,q_auto:good";
   function sources(v) {
     var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source"), L = [], m, f, p;
     if (!s && so) s = so.getAttribute("src") || "";
     m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
     f = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/fetch\/)(?:[^\/]+\/)?(https?:\/\/.+)$/i);
-    var A = /IMG_1390/.test(s) ? ANIM_HERO : ANIM; /* tarjeta 01 · Sala Seccional a Medida */
-    if (m) L.push(m[1] + A + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
-    else if (f) L.push(f[1] + A + "/" + f[2], f[1] + JPG + "/" + f[2]);
+    if (m) L.push(m[1] + ANIM + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
+    else if (f) L.push(f[1] + ANIM + "/" + f[2], f[1] + JPG + "/" + f[2]);
     p = v.getAttribute("poster"); if (p) L.push(p);
     return L;
   }
@@ -778,6 +774,16 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 .vf,.tvx-video{touch-action:pan-y}
 .tvc-view .tvx-video{touch-action:pan-x pan-y}
 .vf::after,.tvx-video::after{content:"";position:absolute;inset:0;z-index:2;background:transparent;pointer-events:auto;touch-action:pan-y}
+/* ===== SHOWROOM · foto editorial ===== */
+.sh-lead{margin:0 0 34px;max-width:640px;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:#e8e2d9}
+.sh-fig{margin:0}
+.sh-frame{position:relative;aspect-ratio:16/9;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#2a2016,#14100c);border:1px solid rgba(212,168,83,.45);box-shadow:0 44px 80px -36px rgba(0,0,0,.9),0 0 0 8px rgba(212,168,83,.06)}
+.sh-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.sh-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,10,9,.38) 0%,transparent 28%,transparent 62%,rgba(11,10,9,.72) 100%)}
+.sh-badge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;padding:9px 16px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f3e2b8;background:rgba(15,14,13,.74);border:1px solid rgba(243,226,184,.55)}
+.sh-go{position:absolute;right:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;color:#f3e2b8;background:rgba(15,14,13,.78);border:1px solid rgba(243,226,184,.6);transition:background .3s,color .3s,border-color .3s}
+.sh-go:hover{color:#14100b;border-color:#f3e2b8;background:linear-gradient(135deg,#f3e2b8,#d4a853 55%,#b88935)}
+@media (max-width:768px){.sh-frame{aspect-ratio:4/3;border-radius:22px}.sh-badge{top:12px;left:12px;padding:7px 12px;font-size:10px;letter-spacing:.12em}.sh-go{right:12px;bottom:12px;min-height:42px;padding:0 16px;font-size:13px}}
 /* ===== TikTok in-app: WebP animado (sustituye al <video>); zoom suave solo si cae a imagen fija ===== */
 @keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
 html.is-tiktok img.tk-img{pointer-events:none}
@@ -1128,8 +1134,15 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <div class="band on-dark amb amb-c" style="background:#141312;padding-bottom:0">
 <section id="showroom" class="wrap sec">
 <p class="eyebrow" style="margin-bottom:20px">Showroom</p>
-<h2 class="h2" style="margin-bottom:56px;max-width:900px">Visítanos en nuestro <span class="gold">Showroom</span> en Plaza Hogar</h2>
-<div id="showImg" class="rounded-3xl" style="position:relative;aspect-ratio:21/9;min-height:220px;background:linear-gradient(135deg,#d9bf9a,#b8895a 60%,#8a5a2b);background-size:cover;background-position:center;overflow:hidden;box-shadow:0 30px 60px -28px rgba(70,45,25,.5)"><span id="showNote" style="position:absolute;left:24px;bottom:20px;color:#fff;font-size:14px;opacity:.85">Foto panorámica del showroom</span></div>
+<h2 class="h2" style="margin-bottom:22px;max-width:900px">Visítanos en nuestro <span class="gold">Showroom</span> en Plaza Hogar</h2>
+<p class="sh-lead">Ven al C.C. Plaza Hogar y mira los acabados en persona: toca las telas, prueba la comodidad de cada modelo y elige tu diseño con asesoría directa de nuestro taller.</p>
+<figure class="sh-fig">
+<div class="sh-frame">
+<img src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1200/v1795231402/IMG_4944.jpg" alt="Showroom de Mueblería Cluce en el C.C. Plaza Hogar, Bloque II, Piso 2" width="1200" height="800" loading="lazy" decoding="async">
+<span class="sh-badge">Showroom · C.C. Plaza Hogar</span>
+<a class="sh-go" href="https://maps.app.goo.gl/N8p5eek7GaHgVun78" target="_blank" rel="noopener noreferrer">📍 Cómo llegar <span aria-hidden="true">→</span></a>
+</div>
+</figure>
 <div class="show-info">
 <div><p class="eyebrow" style="margin-bottom:10px">Dirección</p><p style="margin:0;font-size:19px;line-height:1.5"><a class="maplink" href="https://maps.app.goo.gl/N8p5eek7GaHgVun78" target="_blank" rel="noopener noreferrer">Plaza Hogar, Bloque II, Piso 2, Stand COM09</a></p></div>
 <div><p class="eyebrow" style="margin-bottom:10px">Horario</p><p style="margin:0;font-size:19px;line-height:1.5">Lunes a Domingo<br>11am-7pm</p></div>
