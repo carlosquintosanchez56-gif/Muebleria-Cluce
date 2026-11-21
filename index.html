@@ -4,44 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-/* TikTok in-app browser (WKWebView): <video> -> <img> con WebP animado de Cloudinary (movimiento continuo, nunca abre el reproductor nativo de iOS) */
-(function () {
-  if (!/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) return;
-  document.documentElement.classList.add("is-tiktok");
-  var n = 0, ANIM = "so_0,du_4,f_webp,fl_animated,fl_awebp,e_loop,w_600,q_auto:eco", JPG = "so_0,f_jpg,w_800,q_auto:good";
-  function sources(v) {
-    var s = v.getAttribute("src") || "", so = v.querySelector && v.querySelector("source"), L = [], m, f, p;
-    if (!s && so) s = so.getAttribute("src") || "";
-    m = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/upload\/)(?:[^\/]+\/)?(v\d+\/[^?#]+?)\.(?:mp4|mov|webm|m4v)(?:[?#].*)?$/i);
-    f = s.match(/^(https:\/\/res\.cloudinary\.com\/[^\/]+\/video\/fetch\/)(?:[^\/]+\/)?(https?:\/\/.+)$/i);
-    if (m) L.push(m[1] + ANIM + "/" + m[2] + ".webp", m[1] + JPG + "/" + m[2] + ".jpg");
-    else if (f) L.push(f[1] + ANIM + "/" + f[2], f[1] + JPG + "/" + f[2]);
-    p = v.getAttribute("poster"); if (p) L.push(p);
-    return L;
-  }
-  function swap(v) {
-    if (!v || v.__tk || !v.parentNode) return; v.__tk = 1;
-    var par = v.parentNode, L = sources(v), alt = v.getAttribute("aria-label") || "", k = 0;
-    try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {}
-    if (!L.length) { par.removeChild(v); return; }
-    var im = document.createElement("img");
-    im.className = "tk-img vv"; im.alt = alt; im.decoding = "async"; im.loading = "lazy"; im.draggable = false;
-    im.setAttribute("style", "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;animation-delay:-" + ((n++ * 2.7) % 12).toFixed(1) + "s");
-    /* respaldo: WebP animado -> fotograma JPG -> poster (con zoom suave si cae a imagen fija) */
-    im.onerror = function () { k++; if (k < L.length) { im.classList.add("kb"); im.src = L[k]; } else im.onerror = null; };
-    im.src = L[0];
-    par.replaceChild(im, v);
-    if (par.classList) par.classList.add("ready");
-  }
-  function sweep(node) {
-    if (node.nodeType !== 1) return;
-    if (node.tagName === "VIDEO") swap(node);
-    else if (node.getElementsByTagName) [].slice.call(node.getElementsByTagName("video")).forEach(swap);
-  }
-  new MutationObserver(function (ms) { ms.forEach(function (m) { [].forEach.call(m.addedNodes, sweep); }); }).observe(document.documentElement, { childList: true, subtree: true });
-  window.__tkSwap = function () { sweep(document.documentElement); };
-  document.addEventListener("DOMContentLoaded", window.__tkSwap);
-})();
+/* TikTok in-app (WKWebView): marca <html class="is-tiktok">. En ese modo cada <video> se oculta (1px, opacity 0, nunca display:none) y se dibuja en <canvas>. */
+(function () { if (/TikTok|BytedanceWebview|musical_ly/i.test(navigator.userAgent || "")) document.documentElement.classList.add("is-tiktok"); })();
+</script>
 </script>
 <title>Mueblería Cluce | Muebles a medida</title>
 <meta name="google-site-verification" content="mXxmmPPCtJq2mRV0qp1JriuN93scWZZXlvpIcYmIN8w" />
@@ -51,7 +16,7 @@
 <meta property="og:url" content="https://www.muebleriacluce.com/">
 <meta property="og:site_name" content="Mueblería Cluce">
 <meta property="og:title" content="Mueblería Cluce | Muebles a Medida, Sofás Cama y Retapizado en Lima">
-<meta property="og:description" content="Fabricamos el mueble de tus sueños a la medida de tu espacio en 6 a 12 días hábiles. Telas antifluido y pet-friendly. Reserva con el 10 % y paga el saldo contra entrega.">
+<meta property="og:description" content="Fabricamos el mueble de tus sueños a la medida de tu espacio en 3 a 6 días hábiles. Telas antifluido y pet-friendly. Reserva con el 10 % y paga el saldo contra entrega.">
 <meta property="og:image" content="https://res.cloudinary.com/bp5kjx1f/image/upload/v1794509806/Gemini_Generated_Image_evd8btevd8btevd8.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -645,12 +610,6 @@ a.flink{color:#f1d9b8}a.flink:hover{color:#fff}
 /* videos: fondo oscuro suave, nunca cuadro negro */
 video{background-color:#161412 !important}
 
-/* ===== virtualización de video: la <img> ocupa el lugar del <video> ===== */
-.vf img.vv,.tvx-video img.vv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.vf img.vv,.tvx-video img.vv,.crs-media img.vv{filter:contrast(1.06) saturate(1.12) brightness(1.03)}
-.crs .crs-media img.crs-auto{width:100%;height:100%;object-fit:cover;object-position:center 58%;background:#0b0a09}
-video.vv-live{background:transparent !important}
-
 /* ===== RETAPIZADO · crossfade automático ===== */
 .ba2{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;cursor:pointer;background:#161412;-webkit-tap-highlight-color:transparent;outline-offset:3px}
 .ba2 .ba-img{opacity:0;transition:opacity .8s ease}
@@ -784,11 +743,253 @@ video::-webkit-media-controls-start-playback-button{display:none !important;-web
 .sh-go{position:absolute;right:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;color:#f3e2b8;background:rgba(15,14,13,.78);border:1px solid rgba(243,226,184,.6);transition:background .3s,color .3s,border-color .3s}
 .sh-go:hover{color:#14100b;border-color:#f3e2b8;background:linear-gradient(135deg,#f3e2b8,#d4a853 55%,#b88935)}
 @media (max-width:768px){.sh-frame{aspect-ratio:4/3;border-radius:22px}.sh-badge{top:12px;left:12px;padding:7px 12px;font-size:10px;letter-spacing:.12em}.sh-go{right:12px;bottom:12px;min-height:42px;padding:0 16px;font-size:13px}}
-/* ===== TikTok in-app: WebP animado (sustituye al <video>); zoom suave solo si cae a imagen fija ===== */
-@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
-html.is-tiktok img.tk-img{pointer-events:none}
-html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alternate;transform-origin:50% 50%}
-@media (prefers-reduced-motion:reduce){html.is-tiktok img.tk-img.kb{animation:none}}
+/* ===== Secciones editoriales / Exhibición ===== */
+.vit-badge{display:inline-flex;min-height:36px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid #b88935;color:#6b4423;font-size:12px;letter-spacing:.14em;font-weight:700}
+.xh{gap:clamp(40px,7vw,110px)}
+.ed-kick{margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;color:#8a5a2b}
+.ed-t{margin:0;font-weight:500;letter-spacing:-.03em;line-height:1;color:#33231a;font-size:clamp(38px,5.6vw,84px)}
+.ed-media{position:relative;width:100%;min-width:0}
+.xh .ed-media>.vf{max-width:520px;margin:0 auto}
+.xh-img{position:relative;aspect-ratio:4/5;max-width:520px;margin:0 auto;border-radius:24px;overflow:hidden;background:#161412;border:1px solid rgba(212,168,83,.5);box-shadow:0 44px 80px -36px rgba(0,0,0,.9)}
+.xh-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.06) saturate(1.12) brightness(1.03)}
+.xh-top{margin-bottom:clamp(36px,5vw,70px)}
+.ed-fi{margin:34px 0 0;padding:0;border-top:1px solid rgba(138,100,48,.35)}
+.ed-fi div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid rgba(138,100,48,.35)}
+.ed-fi dt{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8a5a2b}
+.ed-fi dd{margin:0;font-size:15.5px;line-height:1.55;color:#5a4330}
+.ed-dark .ed-t{color:#f6f0e6}.ed-dark .lead{color:#e6d6bf}.ed-dark .ed-kick,.ed-dark .ed-fi dt{color:#e0b987}
+.ed-dark .ed-fi,.ed-dark .ed-fi div{border-color:rgba(212,168,83,.3)}.ed-dark .ed-fi dd{color:#e6d6bf}
+.xh-fn{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:14px}
+.xh-fn li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:center;padding:18px 20px;border-radius:20px;border:1px solid rgba(212,168,83,.4);background:rgba(255,255,255,.04)}
+.xh-fn b{font-weight:500;font-size:22px;color:#f3e2b8}
+.xh-fn span{font-size:15.5px;line-height:1.55;color:#e6d6bf}.xh-fn strong{color:#f6efe2}
+.xh-visit{margin-top:clamp(60px,8vw,110px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;padding:clamp(26px,4vw,48px);border-radius:28px;border:1px dashed rgba(212,168,83,.6);background:rgba(212,168,83,.06)}
+.xh-visit h3{margin:0 0 10px;font-weight:500;font-size:clamp(24px,3vw,38px);line-height:1.1;color:#f6efe2}
+.xh-visit p{margin:0;color:#e6d6bf;line-height:1.6}
+.xh-vb{display:flex;flex-wrap:wrap;gap:12px}
+.ed-dark .btn-thin{color:#f3e2b8;border-color:rgba(243,226,184,.6)}
+@media (max-width:560px){.ed-fi div{grid-template-columns:1fr;gap:4px}.xh-fn li{grid-template-columns:1fr;gap:6px}}
+/* ===== Sofá cama 3 en 1: Paso 01 / Paso 02 ===== */
+.mx-duo{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,26px);padding-bottom:0;align-items:start}
+.mx-duo .mx-c1,.mx-duo .mx-c2{grid-column:auto;grid-row:auto;margin-top:0}
+.mx-duo .mx-c2{margin-top:clamp(0px,3vw,40px)}
+.mx-duo .mx-tag,.mx-duo .mx-c2 .mx-tag{left:-8px;right:auto;top:16px;bottom:auto}
+.mx-arrow{position:absolute;left:50%;top:34%;z-index:6;width:46px;height:46px;margin:-23px 0 0 -23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:20px;font-weight:700;color:#0b0a09;background:linear-gradient(135deg,#f3e2b8,#d4a853 50%,#b88935);box-shadow:0 10px 24px -8px rgba(60,38,10,.6)}
+.mx-cap{display:flex;flex-direction:column;gap:6px;padding:16px 4px 0}
+.mx-cap strong{font-weight:500;font-size:clamp(18px,1.8vw,22px);line-height:1.2;color:#33231a}
+.mx-cap span{font-size:14.5px;line-height:1.55;color:#5a4330}
+@media (max-width:560px){.mx-duo{grid-template-columns:minmax(0,1fr);gap:34px}.mx-duo .mx-c2{margin-top:0}.mx-arrow{display:none}}
+/* ===== Ficha de fabricación ===== */
+.dp-specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px);max-width:1100px;margin:0 auto}
+.dp-spec{padding:26px 22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(138,100,48,.35);box-shadow:0 26px 50px -34px rgba(51,35,26,.6)}
+.dp-spec b{display:block;margin-bottom:14px;font-weight:500;font-size:34px;line-height:1;background:linear-gradient(135deg,#c9a24e,#9a6f26);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.dp-spec h3{margin:0 0 8px;font-weight:500;font-size:21px;line-height:1.2;color:#33231a}
+.dp-spec p{margin:0;font-size:15px;line-height:1.6;color:#5a4330}
+.dp-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:44px}
+@media (max-width:980px){.dp-specs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.dp-specs{grid-template-columns:minmax(0,1fr)}}
+/* ===== TikTok in-app: <video> invisible (1px, nunca display:none) + <canvas> a 60 fps ===== */
+html.is-tiktok video{position:absolute !important;left:0 !important;top:0 !important;right:auto !important;bottom:auto !important;width:1px !important;height:1px !important;opacity:0 !important;pointer-events:none !important;transform:none !important}
+html.is-tiktok canvas.tk-cv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;z-index:1;background-size:cover;background-position:center}
+/* ===== Renovación visual · Navidad, salas, moodboard ===== */
+.btn-xl{min-height:64px;padding:0 38px;font-size:18px;box-shadow:0 18px 40px -16px rgba(23,128,63,.7) !important}
+.fx-band{position:relative;overflow:hidden}
+.fx-light{background:radial-gradient(60% 40% at 0% 0%,rgba(122,28,51,.12),transparent 70%),radial-gradient(50% 40% at 100% 10%,rgba(20,53,42,.14),transparent 70%),#F9F7F4}
+.fx-pinebg{background:radial-gradient(60% 50% at 100% 0%,rgba(122,28,51,.35),transparent 70%),linear-gradient(170deg,#1c4a3a,#0e261d 70%)}
+.fx-pine{color:#1f4d3a}
+.fx-ribbon{display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 24px;margin-bottom:22px;border-radius:999px;color:#f6e3b4;text-align:center;background:linear-gradient(135deg,#5a1226,#8a1f3a 50%,#5a1226);border:1px solid #d4a853;box-shadow:0 0 0 5px rgba(212,168,83,.18),0 24px 50px -22px rgba(90,18,38,.8)}
+.fx-ribbon b{font-size:clamp(12px,1.6vw,17px);letter-spacing:.18em;font-weight:700}
+.fx-ribbon span{color:#d4a853}
+.fx-alert{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:18px 26px;margin-bottom:clamp(40px,5vw,70px);border-radius:24px;color:#e8f1ea;background:linear-gradient(135deg,#14352a,#1c4a3a);border:1px solid rgba(212,168,83,.55)}
+.fx-alert p{margin:0;display:flex;flex-direction:column;gap:4px;max-width:520px}
+.fx-alert strong{font-size:17px;color:#f3e2b8}.fx-alert span{font-size:14px;line-height:1.5;opacity:.9}
+.fx-clock{display:flex;align-items:center;gap:10px}
+.fx-clock div{min-width:64px;padding:8px 10px;text-align:center;border-radius:14px;background:rgba(90,18,38,.85);border:1px solid rgba(212,168,83,.6)}
+.fx-clock b{display:block;font-family:'Fraunces',Georgia,serif;font-size:28px;line-height:1;color:#f3e2b8;font-weight:500}
+.fx-clock small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#e6c98f}
+.fx-clock em{font-size:13px;font-style:normal;font-weight:600;color:#f3e2b8}
+.fx-frame{position:relative;padding:12px;border-radius:36px;max-width:540px;margin:0 auto;background:linear-gradient(135deg,#f3e2b8,#b88935 35%,#f6e7bd 60%,#8f6420);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 40px 80px -30px rgba(90,18,38,.55),0 0 70px -20px rgba(212,168,83,.55)}
+.fx-frame.wine{background:linear-gradient(135deg,#f3e2b8,#8a1f3a 35%,#f6e7bd 62%,#5a1226);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 70px -20px rgba(212,168,83,.5)}
+.fx-frame .vf{border-radius:26px;box-shadow:none}
+.fx-chip{position:absolute;z-index:6;padding:10px 16px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.05em;white-space:nowrap;color:#f6e3b4;background:linear-gradient(135deg,#5a1226,#8a1f3a);border:1px solid #d4a853;box-shadow:0 14px 26px -10px rgba(40,10,20,.7)}
+.fx-chip.c1{left:-14px;top:34px;transform:rotate(-3deg)}.fx-chip.c2{right:-14px;bottom:40px;transform:rotate(2deg)}
+.fx-chip.w{background:linear-gradient(135deg,#14352a,#1c4a3a)}
+.fx-spark{position:absolute;z-index:6;right:22px;top:18px;font-size:26px;color:#f3e2b8;text-shadow:0 0 14px rgba(243,226,184,.9);animation:fxtw 3.2s ease-in-out infinite}
+@keyframes fxtw{0%,100%{opacity:.45;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+html.is-tiktok .fx-spark{animation:none}
+.light .ed-kick,.fx-light .ed-kick{color:#7a1c33}
+.fx-pinebg .xh-fn li{background:linear-gradient(135deg,rgba(90,18,38,.7),rgba(90,18,38,.35));border-color:rgba(212,168,83,.6)}
+.fx-pinebg .xh-visit{background:rgba(90,18,38,.35);border-color:rgba(212,168,83,.7)}
+/* relieve + hero de ficha */
+.relief-row{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px}
+.relief{padding:10px 18px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.06em;color:#3a2410;background:linear-gradient(180deg,#f6e7bd,#d4a853);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -3px 0 rgba(120,80,20,.35),0 8px 16px -8px rgba(0,0,0,.6)}
+/* A · vitrina con video que sobresale y ficha flotante */
+.sa-panel{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(30px,6vw,90px);align-items:center;margin-top:110px;padding:clamp(34px,5vw,72px);border-radius:40px;border:1px solid rgba(212,168,83,.5);background:radial-gradient(70% 60% at 100% 0%,rgba(212,168,83,.2),transparent 70%),linear-gradient(160deg,#2b2017,#14100c)}
+.sa-vid{position:relative;margin-top:-170px}
+.sa-copy{padding-right:50px}.fl-card{position:absolute;left:-120px;bottom:36px;z-index:5;width:270px;padding:20px 22px;border-radius:22px;background:#17110c;border:1px solid rgba(212,168,83,.6);box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
+.fl-card .ed-fi{margin:0}.fl-card .ed-fi div{grid-template-columns:1fr;gap:2px;padding:10px 0}
+/* B · asimétrica con bloque cálido */
+.sb{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(50px,8vw,120px);align-items:center}
+.sb-vid{position:relative;max-width:430px;width:100%;margin:0 auto;transform:rotate(-1.5deg)}
+.sb-vid .vf{position:relative;z-index:2}
+.sb-block{position:absolute;z-index:1;inset:30px -30px -30px 30px;border-radius:30px;background:linear-gradient(135deg,#b5603a,#6f3418)}
+.sb-vid .glass{z-index:4}
+.sb-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin-top:34px}
+.sb-strip div{padding:16px 0;border-top:1px solid rgba(138,100,48,.45)}
+.sb-strip small{display:block;margin-bottom:6px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b5603a}
+.sb-strip strong{font-weight:500;font-size:clamp(17px,1.7vw,21px);line-height:1.25;color:#33231a}
+/* C · cinema con cifras */
+.sc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(40px,7vw,100px);align-items:center}
+.sc-vid{position:relative;max-width:480px;width:100%;margin:0 auto}
+.sc-vid::before{content:"";position:absolute;inset:-18px 18px 18px -18px;border:1px solid rgba(212,168,83,.7);border-radius:30px}
+.sc-vid .vf{position:relative;z-index:1}.sc-vid .glass{z-index:4}
+.sc-stats{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(212,168,83,.4)}
+.sc-stats li{display:flex;flex-direction:column;gap:6px;padding:20px 16px 0 0}.sc-stats li+li{padding-left:18px;border-left:1px solid rgba(212,168,83,.3)}
+.sc-stats b{font-weight:500;font-size:clamp(34px,4vw,56px);line-height:1;background:linear-gradient(135deg,#f6e7bd,#d4a853 55%,#a8782a);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.sc-stats span{font-size:13.5px;line-height:1.4;color:#e6d6bf}
+/* D · ficha orbital */
+.sd-head{text-align:center;max-width:900px;margin:0 auto clamp(40px,5vw,70px)}
+.sd-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px) minmax(0,1fr);gap:clamp(60px,7vw,96px);align-items:center}
+.sd-l,.sd-r{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.sd-c{position:relative;padding:20px 22px;border-radius:20px;background:rgba(255,255,255,.62);border:1px solid rgba(138,100,48,.4);box-shadow:0 20px 40px -28px rgba(51,35,26,.7)}
+.sd-c small{display:block;margin-bottom:6px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8a5a2b}
+.sd-c strong{font-weight:500;font-size:19px;line-height:1.3;color:#33231a}
+.sd-l .sd-c::after,.sd-r .sd-c::after{content:"";position:absolute;top:50%;width:clamp(60px,7vw,96px);height:1px;background:linear-gradient(90deg,#b88935,transparent)}
+.sd-l .sd-c::after{left:100%}.sd-r .sd-c::after{right:100%;transform:scaleX(-1)}
+.sd-vid{position:relative}.sd-vid .glass{z-index:4}
+.sd-cta{display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px)}
+/* Moodboard */
+.mb-wrap{max-width:520px !important;padding:0 !important;margin:0 auto;width:100%}
+.mb{position:relative;padding:22px;border-radius:30px;color:#f1e6d2;background:radial-gradient(70% 50% at 100% 0%,rgba(212,168,83,.22),transparent 70%),linear-gradient(160deg,#2a2016,#120e0a);border:1px solid rgba(212,168,83,.55);box-shadow:0 44px 80px -36px rgba(40,25,10,.9)}
+.mb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11.5px;font-weight:700;letter-spacing:.18em;color:#e0b987}.mb-top em{font-style:normal;color:#b9a27a;letter-spacing:.08em}
+.mb-plan{display:block;width:100%;height:auto;border-radius:18px;border:1px solid rgba(212,168,83,.35);background:#17110c}
+.mb-lab{margin:16px 0 10px;font-size:14px;color:#d9cdb8}.mb-lab b{color:#f3e2b8}
+.mb-sws{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.mb-sw{font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 4px 10px;border-radius:16px;color:#d9cdb8;background:rgba(255,255,255,.04);border:1px solid rgba(212,168,83,.3);transition:transform .25s,border-color .25s}
+.mb-sw i{display:block;width:100%;aspect-ratio:1;border-radius:12px;border:1px solid rgba(255,255,255,.25);background-size:14px 14px}
+.mb-sw span{font-size:11px;line-height:1.25;text-align:center;font-weight:600}
+.mb-sw:hover{transform:translateY(-3px)}.mb-sw.on{border-color:#f3e2b8;box-shadow:0 0 0 2px rgba(243,226,184,.35);color:#f3e2b8}
+.mb-seal{position:absolute;right:-14px;top:-26px;z-index:3;width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(10deg);color:#0b0a09;background:linear-gradient(135deg,#f6e7bd,#d4a853 55%,#b88935);box-shadow:0 14px 30px -10px rgba(0,0,0,.7),0 0 0 4px rgba(255,255,255,.25) inset}
+.mb-seal b{font-family:'Fraunces',Georgia,serif;font-size:24px;line-height:1;font-weight:600}.mb-seal span{font-size:11px;font-weight:700}.mb-seal small{font-size:8.5px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;margin-top:3px;max-width:78px;line-height:1.2}
+.mb-wa{width:100%;margin-top:20px}
+@media (max-width:1100px){.sa-copy{padding-right:70px}.fl-card{left:-90px;width:240px}}
+@media (max-width:900px){
+.sa-panel,.sb,.sc{grid-template-columns:minmax(0,1fr)}.sa-panel{margin-top:80px}.sa-copy{padding-right:0}.sa-vid{margin-top:-130px;max-width:400px;margin-left:auto;margin-right:auto}
+.fl-card{position:relative;left:auto;bottom:auto;width:auto;margin:-36px 12px 0}
+.sb-strip{grid-template-columns:1fr}.sc-stats{grid-template-columns:1fr 1fr 1fr}.sc-vid::before{display:none}
+.sd-stage{grid-template-columns:minmax(0,1fr);gap:22px}.sd-vid{order:-1;max-width:400px;margin:0 auto;width:100%}.sd-l .sd-c::after,.sd-r .sd-c::after{display:none}
+.fx-chip.c1{left:-6px}.fx-chip.c2{right:-6px}.fx-ribbon{border-radius:24px}}
+@media (max-width:480px){.sc-stats{grid-template-columns:1fr}.sc-stats li+li{padding-left:0;border-left:0}.mb-seal{width:92px;height:92px;right:-6px}.mb-seal b{font-size:20px}.btn-xl{padding:0 24px;font-size:16px;width:100%}}
+
+/* ===== Sofá de tendencia: doble marco editorial (sin "02") ===== */
+.sb-vid{transform:none;max-width:440px;padding:14px}
+.sb-frame{position:absolute;pointer-events:none;border-radius:34px}
+.sb-f1{inset:0;border:1px solid rgba(184,137,53,.85);z-index:3}
+.sb-f2{inset:-10px;border:1px solid rgba(181,96,58,.55);z-index:0;border-radius:42px}
+.sb-vid .vf{border-radius:26px;box-shadow:0 0 0 1px rgba(212,168,83,.55),0 50px 90px -34px rgba(70,35,15,.75),0 18px 36px -22px rgba(70,35,15,.5)}
+.sb-badge{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:5;padding:9px 18px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:#f3e2b8;background:rgba(26,18,12,.82);border:1px solid rgba(212,168,83,.65)}
+/* ===== Expediente de Fabricación a Medida ===== */
+.xp-wrap{padding:0 !important;max-width:540px;margin:0 auto;width:100%}
+.xp{position:relative;padding:clamp(26px,3.4vw,40px);border-radius:30px;color:#f1e6d2;background:radial-gradient(80% 50% at 100% 0%,rgba(212,168,83,.22),transparent 70%),linear-gradient(165deg,#2a1d14,#150e09 70%);border:1px solid rgba(212,168,83,.6);box-shadow:0 44px 80px -36px rgba(40,25,10,.9),0 0 0 6px rgba(212,168,83,.07)}
+.xp::before{content:"";position:absolute;inset:8px;border-radius:23px;border:1px dashed rgba(212,168,83,.3);pointer-events:none}
+.xp-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 26px;font-size:11px;font-weight:700;letter-spacing:.18em;color:#e0b987}
+.xp-top em{font-style:normal;color:#b9a27a;letter-spacing:.1em}
+.xp-seal{position:absolute;right:-12px;top:-30px;z-index:3;width:124px;height:124px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(9deg);color:#1a1208;background:linear-gradient(135deg,#f6e7bd,#d4a853 55%,#b88935);box-shadow:0 16px 32px -10px rgba(0,0,0,.7),0 0 0 4px rgba(255,255,255,.25) inset}
+.xp-seal small{font-size:8.5px;font-weight:800;letter-spacing:.12em}
+.xp-seal b{font-size:30px;line-height:1.05;font-weight:600}
+.xp-seal span{font-size:11px;font-weight:700}
+.xp-h{margin:0 0 26px;max-width:15em;font-weight:500;font-size:clamp(24px,2.8vw,32px);line-height:1.15;color:#f6efe2}
+.xp-list{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px}
+.xp-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(212,168,83,.32);transition:border-color .3s,transform .3s}
+.xp-list li:hover{border-color:rgba(243,226,184,.7);transform:translateX(4px)}
+.xp-n{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:#e8cf98;border:1px solid rgba(212,168,83,.75);box-shadow:inset 0 0 14px rgba(212,168,83,.28)}
+.xp-list strong{display:block;font-weight:600;font-size:15.5px;line-height:1.35;color:#f6efe2}
+.xp-list p{margin:5px 0 0;font-size:13.5px;line-height:1.5;color:#d8cfbf}
+.xp-wa{width:100%}
+@media (max-width:900px){.xp-seal{right:-6px;top:-34px;width:108px;height:108px}.xp-seal b{font-size:26px}.xp-top{padding-right:96px}}
+@media (prefers-reduced-motion:reduce){.xp-list li{transition:none}}
+
+/* ===================================================================
+   ATMÓSFERA FESTIVA GLOBAL · champán + vino + pino (CSS estático, sin animaciones nuevas)
+   =================================================================== */
+:root{--wine:122,28,51;--pine:28,74,58;--gold:212,168,83}
+/* 1. Halos en todos los fondos oscuros (espresso con calidez navideña) */
+.band.on-dark{background:
+ radial-gradient(1.5px 1.5px at 12% 18%,rgba(243,226,184,.7) 50%,transparent 52%),
+ radial-gradient(1.5px 1.5px at 78% 12%,rgba(243,226,184,.55) 50%,transparent 52%),
+ radial-gradient(2px 2px at 88% 64%,rgba(243,226,184,.6) 50%,transparent 52%),
+ radial-gradient(1.5px 1.5px at 34% 82%,rgba(243,226,184,.5) 50%,transparent 52%),
+ radial-gradient(55% 45% at 0% 0%,rgba(var(--wine),.30),transparent 70%),
+ radial-gradient(50% 45% at 100% 100%,rgba(var(--pine),.34),transparent 70%),
+ radial-gradient(45% 35% at 50% 0%,rgba(var(--gold),.12),transparent 72%),
+ linear-gradient(180deg,#201912 0%,#16110d 100%) !important}
+/* 2. Fondos claros: velo cálido con vino y pino en las esquinas */
+.band:not(.on-dark):not(.fx-pinebg):not(.mx-band)::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:
+ radial-gradient(1.5px 1.5px at 9% 22%,rgba(184,137,53,.65) 50%,transparent 52%),
+ radial-gradient(1.5px 1.5px at 92% 30%,rgba(184,137,53,.55) 50%,transparent 52%),
+ radial-gradient(45% 40% at 0% 0%,rgba(var(--wine),.08),transparent 70%),
+ radial-gradient(45% 40% at 100% 100%,rgba(var(--pine),.09),transparent 70%),
+ radial-gradient(40% 30% at 100% 0%,rgba(var(--gold),.12),transparent 70%)}
+.band.mx-band::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(40% 35% at 0% 100%,rgba(var(--wine),.08),transparent 70%),radial-gradient(40% 35% at 100% 0%,rgba(var(--pine),.08),transparent 70%)}
+/* 3. Marquesina y divisores con degradado vino · oro · pino */
+.mq{border-top:2px solid;border-bottom:2px solid;border-image:linear-gradient(90deg,#5a1226,#d4a853 30%,#f3e2b8 50%,#d4a853 70%,#1c4a3a) 1}
+.rule>div i:first-child{background:linear-gradient(90deg,transparent,rgba(var(--wine),.7),rgba(var(--gold),.85))}
+.rule>div i:last-child{background:linear-gradient(270deg,transparent,rgba(var(--pine),.8),rgba(var(--gold),.85))}
+.rule>div span{color:#d4a853;text-shadow:0 0 12px rgba(212,168,83,.7)}
+.rule>div span u{width:5px;height:5px}
+.rule>div span u:first-child{background:#8a1f3a;box-shadow:0 0 0 1px #d4a853}
+.rule>div span u:last-child{background:#1c4a3a;box-shadow:0 0 0 1px #d4a853}
+/* 4. Cintillo festivo del hero y destellos editoriales */
+.hero-fest{display:inline-flex;align-items:center;gap:12px;max-width:100%;margin:0 0 30px;padding:10px 20px;border-radius:999px;font-size:clamp(11px,1.5vw,13px);font-weight:700;letter-spacing:.16em;line-height:1.35;color:#f6e3b4;background:linear-gradient(135deg,rgba(90,18,38,.92),rgba(138,31,58,.82) 50%,rgba(90,18,38,.92));border:1px solid #d4a853;box-shadow:0 0 0 4px rgba(212,168,83,.12),0 18px 38px -18px rgba(90,18,38,.9)}
+.hero-fest i{font-style:normal;color:#e8cf98}
+.ed-kick::before,.mx-kick::before,.at-kick::before{content:"✦ ";color:#d4a853;-webkit-text-fill-color:#d4a853}
+.at-kick::before{content:""}
+.h2::after,.ed-t::after{content:none}
+/* 5. Marcos dorados luminosos en tarjetas protagonistas */
+.sa-vid .vf,.sc-vid .vf,.sd-vid .vf,.sb-vid .vf{box-shadow:0 0 0 1px rgba(212,168,83,.75),0 0 0 7px rgba(212,168,83,.08),0 46px 80px -34px rgba(60,20,10,.75),0 0 60px -18px rgba(212,168,83,.4)}
+.sd-c,.srow,.dp-spec{box-shadow:0 22px 44px -28px rgba(90,18,38,.45),0 0 0 1px rgba(212,168,83,.22)}
+.at{border-color:rgba(212,168,83,.55);box-shadow:0 40px 80px -44px rgba(90,18,38,.45),0 0 0 6px rgba(212,168,83,.07);background:radial-gradient(60% 50% at 0% 0%,rgba(var(--wine),.07),transparent 70%),radial-gradient(50% 45% at 100% 100%,rgba(var(--pine),.08),transparent 70%),#fffaf1}
+.sa-panel{box-shadow:0 50px 90px -44px rgba(0,0,0,.9),0 0 80px -30px rgba(var(--gold),.35)}
+.rev{border-color:rgba(212,168,83,.6);background:radial-gradient(60% 80% at 0% 0%,rgba(var(--wine),.28),transparent 70%),radial-gradient(50% 70% at 100% 100%,rgba(var(--pine),.3),transparent 70%),#1c1a17;box-shadow:0 40px 80px -40px rgba(0,0,0,.9),0 0 60px -22px rgba(var(--gold),.4)}
+.xp{background:radial-gradient(80% 50% at 100% 0%,rgba(212,168,83,.22),transparent 70%),radial-gradient(60% 40% at 0% 100%,rgba(var(--wine),.3),transparent 70%),linear-gradient(165deg,#2a1d14,#150e09 70%)}
+.xh-visit,.faq-i{border-color:rgba(212,168,83,.45)}
+/* 6. Etiquetas en relieve (burdeos / pino) */
+.tvc-seal,.mx-tag,.sh-badge,.dp-cap{box-shadow:0 12px 26px -10px rgba(40,10,20,.75),0 0 0 1px rgba(243,226,184,.35) inset}
+.sb-badge{background:linear-gradient(135deg,rgba(90,18,38,.92),rgba(60,12,26,.92));border-color:#d4a853}
+.relief:nth-child(odd){background:linear-gradient(180deg,#f6e7bd,#d4a853)}
+.relief:nth-child(even){color:#f6e3b4;background:linear-gradient(180deg,#8a1f3a,#5a1226);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -3px 0 rgba(0,0,0,.35),0 8px 16px -8px rgba(0,0,0,.6)}
+.crs-cat,.tvc-cat{filter:drop-shadow(0 0 8px rgba(212,168,83,.35))}
+/* 7. Botones y CTAs con más presencia */
+.btn-wa{box-shadow:0 8px 22px rgba(37,211,102,.3),0 0 0 1px rgba(243,226,184,.45),inset 0 1px 0 rgba(255,255,255,.3) !important}
+.btn-wa:hover{box-shadow:0 14px 32px rgba(37,211,102,.45),0 0 0 2px rgba(243,226,184,.8),0 0 36px -4px rgba(212,168,83,.7),inset 0 1px 0 rgba(255,255,255,.4) !important}
+.btn-wa:active{transform:translateY(-1px) scale(.99)}
+.btn-gold,.ttk-btn,.dp-link{box-shadow:0 12px 28px -12px rgba(0,0,0,.7),0 0 26px -8px rgba(212,168,83,.5)}
+.btn-gold:hover,.ttk-btn:hover{box-shadow:0 16px 34px -12px rgba(0,0,0,.7),0 0 40px -4px rgba(243,226,184,.8)}
+.fab{box-shadow:0 8px 24px rgba(37,211,102,.4),0 0 0 3px rgba(243,226,184,.5),0 0 30px -4px rgba(212,168,83,.55) !important}
+/* 8. Cierre */
+footer{position:relative}
+footer::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,transparent,#8a1f3a,#d4a853,#1c4a3a,transparent)}
+.foot-fest{margin:-30px 0 54px;font-size:13px;font-weight:700;letter-spacing:.2em;color:#e8cf98}
+.foot-fest span{color:#d4a853}
+/* 9. Rendimiento TikTok: sin shimmer ni destellos animados */
+html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after,html.is-tiktok .mq-track{animation:none !important}
+html.is-tiktok .btn-wa::after,html.is-tiktok .simpill::after{display:none}
+@media (max-width:768px){.band.on-dark{background:
+ radial-gradient(55% 40% at 0% 0%,rgba(var(--wine),.26),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(var(--pine),.3),transparent 70%),linear-gradient(180deg,#201912 0%,#16110d 100%) !important}
+ .hero-fest{letter-spacing:.1em;padding:10px 16px;border-radius:20px}}
+
+/* ===== Ficha técnica · franja editorial bajo la tarjeta (sin tapar el video) ===== */
+.sa-spec{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(8px,2vw,24px);border-radius:22px;background:rgba(20,14,10,.72);border:1px solid rgba(212,168,83,.45);box-shadow:0 24px 50px -30px rgba(0,0,0,.9),0 0 40px -18px rgba(212,168,83,.35),inset 0 1px 0 rgba(243,226,184,.12)}
+.sa-spec>div{padding:20px 22px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sa-spec>div+div{border-left:1px solid rgba(212,168,83,.5)}
+.sa-spec small{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#e0b987}
+.sa-spec strong{font-weight:500;font-size:clamp(16px,1.6vw,20px);line-height:1.25;color:#f6efe2}
+@media (max-width:900px){
+ .sa-spec{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sa-spec>div:nth-child(3){border-left:0}
+ .sa-spec>div:nth-child(n+3){border-top:1px solid rgba(212,168,83,.5)}
+ .sa-spec>div{padding:16px 16px}
+}
 </style>
 </head>
 <body>
@@ -815,7 +1016,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <path d="M268 644L262 658H274L278 644zM338 644L344 658H356L350 644zM390 640L386 658H398L402 640zM586 640L602 658H614L610 640zM632 640L628 652H636L638 640zM668 640L672 652H680L676 640z"/>
 </g></g><text x="146" y="62" font-family="Cinzel,'Trajan Pro',Georgia,'Times New Roman',serif" font-size="34" textLength="370" lengthAdjust="spacingAndGlyphs" fill="url(#gtxt)"><tspan font-weight="600">MUEBLERÍA </tspan><tspan font-weight="400">CLUCE</tspan></text></svg></a>
 <nav style="display:flex;gap:26px;flex-wrap:wrap">
-<a href="#sistema" style="color:#d9cdb8;text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center">Colección</a>
+<a href="#destacado" style="color:#d9cdb8;text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center">Colección</a>
 <a href="#proceso" style="color:#d9cdb8;text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center">Proceso</a>
 <a href="#showroom" style="color:#d9cdb8;text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center">Showroom</a>
 <a class="navsim" href="simulador.html">Simular medidas</a>
@@ -823,13 +1024,14 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 </header>
 
 <section class="wrap" style="padding-top:150px">
+<p class="hero-fest"><i aria-hidden="true">✦</i>TEMPORADA NAVIDEÑA · ENTREGA EN 3 A 6 DÍAS HÁBILES<i aria-hidden="true">✦</i></p>
 <p class="eyebrow" style="margin-bottom:36px">Venta de muebles a medida</p>
 <h2 class="serif" style="margin:0;font-size:clamp(46px,8vw,124px);line-height:.98;font-weight:500;letter-spacing:-.03em;color:#f1ebe0;max-width:1080px">Muebles personalizados y a medida para <span class="gold" style="font-style:italic">cualquier espacio</span></h2>
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-top:64px">
 <p class="lead">Eliges el modelo y la tela; lo fabricamos con las medidas de tu casa.</p>
 <div class="hero-cta">
 <div style="display:flex;gap:14px;flex-wrap:wrap">
-<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20deseo%20cotizar%20un%20mueble%20a%20medida%20para%20mi%20sala." target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10c.5 2.5 2.5 4.5 5 5l1.2-1.3-2-1-.9.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.9-1-2L9 10z"/></svg>Cotizar por WhatsApp</a>
+<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20deseo%20cotizar%20un%20mueble%20a%20medida%20para%20mi%20sala." target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10c.5 2.5 2.5 4.5 5 5l1.2-1.3-2-1-.9.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.9-1-2L9 10z"/></svg>Cotizar por WhatsApp · Entrega en 3 a 6 días</a>
 <a class="btn btn-thin" href="#proceso">Proceso de Reserva</a>
 </div>
 <a class="simpill" href="simulador.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h6M9 3v6M21 15h-6M15 21v-6"/><path d="M12 12l5 5" opacity=".0"/></svg><span>✦ ¿Quieres saber cómo quedaría tu mueble? Pruébalo en tu espacio →</span></a>
@@ -838,24 +1040,39 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 </section>
 </div>
 
-<div class="mq" role="region" aria-label="Garantías de Mueblería Cluce"><div class="mq-track"><div class="mq-set"><span>FABRICACIÓN A MEDIDA EN LIMA</span><i>✦</i><span>ENTREGA EN 6 A 12 DÍAS HÁBILES</span><i>✦</i><span>TELAS A ELECCIÓN</span><i>✦</i><span>RESERVA CON SOLO EL 10 %</span><i>✦</i><span>GARANTÍA DE 1 AÑO</span><i>✦</i></div><div class="mq-set" aria-hidden="true"><span>FABRICACIÓN A MEDIDA EN LIMA</span><i>✦</i><span>ENTREGA EN 6 A 12 DÍAS HÁBILES</span><i>✦</i><span>TELAS A ELECCIÓN</span><i>✦</i><span>RESERVA CON SOLO EL 10 %</span><i>✦</i><span>GARANTÍA DE 1 AÑO</span><i>✦</i></div></div></div>
+<div class="mq" role="region" aria-label="Garantías de Mueblería Cluce"><div class="mq-track"><div class="mq-set"><span>FABRICACIÓN A MEDIDA EN LIMA</span><i>✦</i><span>ENTREGA EN 6 A 12 DÍAS HÁBILES</span><i>✦</i><span>EDICIÓN NAVIDAD</span><i>✦</i><span>TELAS A ELECCIÓN</span><i>✦</i><span>RESERVA CON SOLO EL 10 %</span><i>✦</i><span>GARANTÍA DE 1 AÑO</span><i>✦</i></div><div class="mq-set" aria-hidden="true"><span>FABRICACIÓN A MEDIDA EN LIMA</span><i>✦</i><span>ENTREGA EN 6 A 12 DÍAS HÁBILES</span><i>✦</i><span>EDICIÓN NAVIDAD</span><i>✦</i><span>TELAS A ELECCIÓN</span><i>✦</i><span>RESERVA CON SOLO EL 10 %</span><i>✦</i><span>GARANTÍA DE 1 AÑO</span><i>✦</i></div></div></div>
 
-<div class="band amb amb-b" style="background:#F9F7F4">
+<div class="band fx-band fx-light">
 <section id="destacado" class="wrap" style="padding-top:150px">
-<div class="rounded-3xl feat" style="background:#2e2018;color:#f6f0e6;overflow:hidden;box-shadow:0 40px 80px -36px rgba(46,32,24,.7)">
-<div class="feat-txt">
-<span style="align-self:flex-start;display:inline-flex;min-height:36px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid #e0b987;color:#f1d9b8;font-size:12px;letter-spacing:.14em;font-weight:600">⭐ MODELO DE TEMPORADA | EDICIÓN EXCLUSIVA</span>
-<p class="eyebrow" style="color:#e0b987">Modelo destacado de temporada</p>
-<h2 class="serif" style="margin:0;font-weight:500;letter-spacing:-.025em;line-height:1.02;font-size:clamp(36px,4.6vw,66px)">Sofá Cama Seccional en L — <span class="gold" style="font-style:italic">Modelo Nube Premium</span></h2>
-<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0">
-<li class="fl">Diseñado bajo el concepto de confort envolvente con acolchado de alta densidad efecto “Nube”.</li>
-<li class="fl">Estructura modular en L de amplio formato, ideal para salas principales que buscan lujo y máxima comodidad.</li>
-<li class="fl">Mecanismo de conversión fluida que transforma el seccional en una espaciosa cama en segundos.</li>
-<li class="fl">Acabados de alta costura con tapizado de textura ultrasuave de fácil mantenimiento.</li>
-</ul>
-<div><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20me%20interesa%20cotizar%20el%20Sof%C3%A1%20Cama%20Seccional%20Nube%20de%20temporada." target="_blank" rel="noopener">Cotizar Modelo Nube a Medida por WhatsApp</a></div>
+<div class="fx-ribbon" role="note"><span aria-hidden="true">✦</span><b>EDICIÓN NAVIDAD • ENTREGA INMEDIATA EN TIENDA</b><span aria-hidden="true">✦</span></div>
+<div class="fx-alert" id="fxCount"><p><strong>🎄 Disponibilidad limitada para fiestas</strong><span>Piezas únicas en exhibición: se reservan en showroom hasta agotar stock.</span></p><div class="fx-clock" aria-label="Tiempo restante para Nochebuena"><div><b data-u="d">--</b><small>días</small></div><div><b data-u="h">--</b><small>horas</small></div><div><b data-u="m">--</b><small>min</small></div><em>para Nochebuena</em></div></div>
+<p class="eyebrow" style="margin:0 0 clamp(30px,4vw,56px)"><span class="eh"><b aria-hidden="true">◆</b><span class="num">01</span><i aria-hidden="true"></i></span>Exhibición en tienda — Tendencia navideña / temporada</p>
+<div class="editorial xh">
+<div>
+<p class="ed-kick">PIEZA 1 · PROTAGONISTA DE LA TEMPORADA</p><h2 class="serif ed-t">Sofá Seccional / Cama <span class="fx-pine" style="font-style:italic">Verde Oliva</span></h2>
+<p class="lead" style="max-width:520px;margin-top:26px">Exhibido hoy en nuestra tienda, vestido para Navidad: disponible para entrega o para pedirlo a tu medida, con el tono verde oliva que le da calidez a cualquier sala.</p>
+<dl class="ed-fi"><div><dt>Tapiz</dt><dd>Verde oliva de textura suave, con tratamiento antifluidos.</dd></div><div><dt>Asiento</dt><dd>Profundo, capitonado y acolchado con espuma de alta densidad.</dd></div><div><dt>Estructura</dt><dd>Madera Tornillo maciza.</dd></div><div><dt>Disponibilidad</dt><dd>En tienda para entrega, o a pedido y a medida.</dd></div></dl>
+<div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20me%20interesa%20el%20Sof%C3%A1%20Seccional%2FCama%20Verde%20Oliva%20que%20tienen%20en%20exhibici%C3%B3n." target="_blank" rel="noopener noreferrer">Cotizar el Verde Oliva por WhatsApp <span aria-hidden="true">→</span></a></div>
 </div>
-<div class="feat-vid"><div class="vf rounded-3xl " style="position:absolute;inset:0;border-radius:0;box-shadow:none"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_1080,q_auto:good/v1792984821/IMG_4230.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984821/IMG_4230.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984821/IMG_4230.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984821/IMG_4230.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá Cama Seccional en L, Modelo Nube Premium"></video></div></div>
+<div class="ed-media"><div class="fx-frame"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1795237491/IMG_4983.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795237491/IMG_4983.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795237491/IMG_4983.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá seccional cama verde oliva en exhibición en tienda"></video></div><span class="fx-chip c1">Tapiz Verde Oliva · Antifluidos</span><span class="fx-chip c2">Madera Tornillo</span><span class="fx-spark" aria-hidden="true">✦</span></div></div>
+</div>
+</section>
+</div>
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
+<div class="band fx-band fx-pinebg ed-dark">
+<section id="destacado-2" class="wrap sec">
+<div class="editorial xh">
+<div class="ed-media"><div class="fx-frame wine"><div class="vf ready rounded-3xl" style="aspect-ratio:4/5"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto,w_1200/v1795237443/IMG_4990.jpg" alt="Sofá multifuncional blanco marfil con brazos inteligentes, en exhibición con cojines navideños" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1;filter:contrast(1.06) saturate(1.12) brightness(1.03)"></div><span class="fx-chip c1 w">Blanco Marfil</span><span class="fx-chip c2 w">Mesita + cajoncitos</span><span class="fx-spark" aria-hidden="true">✦</span></div></div>
+<div>
+<p class="ed-kick">PIEZA 2 · MULTIFUNCIONAL EN EXHIBICIÓN</p><h2 class="serif ed-t">Sofá Multifuncional <span class="gold" style="font-style:italic">Blanco Marfil</span> con Brazos Inteligentes</h2>
+<p class="lead" style="max-width:520px;margin-top:26px">Elegancia en marfil con dos secretos escondidos en los brazos. Está en nuestro showroom con cojines navideños para que lo pruebes en persona.</p>
+<ul class="xh-fn"><li><b class="serif">Brazo 01</b><span><strong>Mesita auxiliar desplegable integrada.</strong> Se despliega al instante para tu taza, tu control o tu laptop.</span></li><li><b class="serif">Brazo 02</b><span><strong>Compartimento oculto con cajoncitos internos.</strong> Se abre y revela almacenamiento para tener todo a mano.</span></li></ul>
+<div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20me%20interesa%20el%20Sof%C3%A1%20Multifuncional%20Blanco%20Marfil%20con%20brazos%20inteligentes%20que%20tienen%20en%20exhibici%C3%B3n." target="_blank" rel="noopener noreferrer">Cotizar el Blanco Marfil por WhatsApp <span aria-hidden="true">→</span></a></div>
+</div>
+</div>
+<div class="xh-visit">
+<div><p class="ed-kick" style="margin:0 0 8px">VEN A PROBARLOS</p><h3 class="serif">Siéntate, abre los brazos y mide tu espacio</h3><p>Showroom C.C. Plaza Hogar, Bloque II, Piso 2, Stand COM09 · Lunes a Domingo, 11am-7pm.</p></div>
+<div class="xh-vb"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20visitar%20el%20showroom%20en%20Plaza%20Hogar%20para%20probar%20los%20sof%C3%A1s%20en%20exhibici%C3%B3n." target="_blank" rel="noopener noreferrer">Quiero visitar el showroom <span aria-hidden="true">→</span></a><a class="btn btn-thin" href="https://maps.app.goo.gl/N8p5eek7GaHgVun78" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a></div>
 </div>
 </section>
 </div>
@@ -864,19 +1081,14 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <div class="band mx-band" data-wm="ATELIER">
 <section id="sistema" class="wrap sec">
 <div class="mx-head">
-<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">01</span><i aria-hidden="true"></i></span>Sistema</p><h2 class="h2">Mecanismo<br>Dual <span class="gold">3 en 1</span></h2></div>
-<p class="lead">Un solo mueble que se transforma: del respaldo reclinado a la cama, en dos movimientos.</p>
+<div><p class="eyebrow" style="margin-bottom:20px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">02</span><i aria-hidden="true"></i></span>Sofá cama 3 en 1</p><h2 class="h2">Máximo confort,<br><span class="gold">mínimo espacio</span></h2></div>
+<p class="lead">Un solo mueble que se transforma en dos pasos: del sofá de todos los días a una cama completa, con un mecanismo práctico y resistente. Tú defines la medida, la profundidad y la tela; nosotros lo ajustamos al rincón que tienes.</p>
 </div>
 <div class="mx">
-<div class="mx-stage">
-<figure class="mx-card mx-c1">
-<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984834/IMG_2762.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984834/IMG_2762.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984834/IMG_2762.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984834/IMG_2762.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Reclinado del respaldar del sofá"></video></div>
-<span class="mx-tag"><i aria-hidden="true">◆</i>Paso 1: Reclinado suave</span>
-</figure>
-<figure class="mx-card mx-c2">
-<div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_2760.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_2760.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_2760.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_2760.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Despliegue de la repisa y la cama"></video></div>
-<span class="mx-tag"><i aria-hidden="true">◆</i>Paso 2: Despliegue total</span>
-</figure>
+<div class="mx-stage mx-duo">
+<figure class="mx-card mx-c1"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1795239433/IMG_4975.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795239433/IMG_4975.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795239433/IMG_4975.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Paso 1: repisa y cama inferior extensible del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 01</span><figcaption class="mx-cap"><strong class="serif">Repisa y cama inferior extensible</strong><span>Mira cómo se desliza y se arma la base inferior: firme, fluida y sin complicaciones.</span></figcaption></figure>
+<span class="mx-arrow" aria-hidden="true">→</span>
+<figure class="mx-card mx-c2"><div class="vf rounded-3xl" style="aspect-ratio:9/13"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1795237614/IMG_4977.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1795237614/IMG_4977.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1795237614/IMG_4977.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Paso 2: respaldar reclinable y acabado final del sofá cama 3 en 1"></video></div><span class="mx-tag"><i aria-hidden="true">◆</i>Paso 02</span><figcaption class="mx-cap"><strong class="serif">Respaldar reclinable y acabado final</strong><span>El respaldar se reclina con suavidad y el mueble queda armado por completo, listo para descansar.</span></figcaption></figure>
 </div>
 <aside class="mx-panel" aria-label="Los 3 modos de uso">
 <p class="mx-kick">TRES MODOS EN UN SOLO MUEBLE</p>
@@ -886,7 +1098,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <li><span class="mx-n">03</span><span class="mx-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V7M3 14h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></svg></span><div><h3>Cama Completa Desplegable</h3><p>Se transforma en cama en segundos: despliegas la repisa y la base, y queda listo para dormir.</p></div></li>
 </ol>
 <ul class="mx-chips"><li><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg><span>Estructura metálica reforzada</span></li><li><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="3"/><path d="M7 8v9M12 8v9M17 8v9" opacity=".5"/></svg><span>Espuma de alta densidad</span></li></ul>
-<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sistema%20Mecanismo%20Dual%203%20en%201%20a%20medida." target="_blank" rel="noopener">Cotizar este sistema a medida</a>
+<a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sistema%20Mecanismo%20Dual%203%20en%201%20a%20medida." target="_blank" rel="noopener">Cotizar este sistema · entrega en 3 a 6 días</a>
 </aside>
 </div>
 </section>
@@ -907,24 +1119,54 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 </div>
 
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band" style="background:#EFECE6">
+<div class="band on-dark ed-dark">
 <section class="wrap sec">
-<div class="editorial">
-<div>
-<p class="eyebrow" style="margin-bottom:28px"><span class="eh"><b aria-hidden="true">◆</b><span class="num">02</span><i aria-hidden="true"></i></span>Diseño editorial &amp; espacio</p>
-<h2 class="serif" style="margin:0;font-weight:500;letter-spacing:-.035em;line-height:.95;color:#33231a;font-size:clamp(52px,8.6vw,132px);text-transform:uppercase">Máximo confort.<br><span style="color:#8a5a2b">Mínimo espacio.</span></h2>
-<p class="lead" style="margin-top:44px">Cada pieza se confecciona a tu medida: tú defines el tamaño, la profundidad y la tela, y nosotros lo ajustamos al rincón que tienes.</p>
-<div style="margin-top:40px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20medidas%20para%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Consultar disponibilidad de medidas</a></div>
-</div>
-<div style="position:relative;padding-bottom:70px">
-<div class="vf rounded-3xl " style="aspect-ratio:9/14;max-width:460px;margin-left:auto"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984832/IMG_3917.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984832/IMG_3917.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984832/IMG_3917.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984832/IMG_3917.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Mueble a medida en detalle"></video></div>
-<div class="glass" style="left:auto;right:16px;bottom:auto;top:20px">Estructura en madera seleccionada</div>
-<div style="position:absolute;left:0;bottom:0;width:42%;max-width:200px"><div class="vf rounded-3xl " style="aspect-ratio:3/4;border:4px solid #f6f0e6"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984831/IMG_3237.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984831/IMG_3237.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984831/IMG_3237.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984831/IMG_3237.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Acabado y confección del mueble"></video></div></div>
-</div>
+<div class="sa-panel">
+<div class="sa-copy"><p class="ed-kick">SALA SECCIONAL · PIEZA CENTRAL</p><h2 class="serif ed-t">Diseño que abarca tu espacio <span class="gold" style="font-style:italic">y confort</span></h2>
+<p class="lead" style="max-width:480px;margin-top:26px">Amplitud pensada para tu sala: configuración en L o lineal, con módulos que se ajustan a cada pared y un asiento que invita a quedarse.</p>
+<ul class="relief-row"><li class="relief">Madera Tornillo</li><li class="relief">Espuma Zebra</li><li class="relief">Antifluidos</li><li class="relief">En L o lineal</li></ul>
+<div style="margin-top:34px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20una%20Sala%20Seccional%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi Sala Seccional · 3 a 6 días <span aria-hidden="true">→</span></a></div></div>
+<div class="sa-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_1080,q_auto:best/v1792984829/IMG_1390.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984829/IMG_1390.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_1080,q_auto:best/v1792984829/IMG_1390.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sala seccional a medida"></video></div></div>
+<div class="sa-spec" role="list" aria-label="Ficha técnica"><div role="listitem"><small>✦ Estructura</small><strong class="serif">Madera Tornillo maciza</strong></div><div role="listitem"><small>✦ Relleno</small><strong class="serif">Espuma Zebra alta densidad</strong></div><div role="listitem"><small>✦ Tapiz</small><strong class="serif">A elección, antifluidos</strong></div><div role="listitem"><small>✦ Entrega</small><strong class="serif">3 a 6 días hábiles</strong></div></div>
 </div>
 </section>
 </div>
-
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
+<div class="band" style="background:#EFECE6">
+<section class="wrap sec">
+<div class="sb">
+<div class="sb-vid"><span class="sb-frame sb-f1" aria-hidden="true"></span><span class="sb-frame sb-f2" aria-hidden="true"></span><div class="vf rounded-3xl" style="aspect-ratio:3/4"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1792984832/IMG_3917.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984832/IMG_3917.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984832/IMG_3917.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá de tendencia a medida"></video></div><span class="sb-badge">✦ Hecho a tu medida</span></div>
+<div><p class="ed-kick">SOFÁ DE TENDENCIA · A MEDIDA</p><h2 class="serif ed-t">Elegancia contemporánea <span class="gold" style="font-style:italic">pensada al milímetro</span></h2>
+<p class="lead" style="max-width:520px;margin-top:26px">Líneas limpias, proporciones exactas y un tapiz suave al tacto. Tú nos das la medida de tu rincón y nosotros fabricamos el sofá que encaja.</p>
+<div class="sb-strip"><div><small>Medidas</small><strong class="serif">Ancho, fondo y altura a tu espacio</strong></div><div><small>Tapiz</small><strong class="serif">Tono y textura a tu elección</strong></div><div><small>Acabado</small><strong class="serif">Costuras firmes, remates prolijos</strong></div><div><small>Reserva</small><strong class="serif">Aparta con solo el 10 %</strong></div></div>
+<div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20sof%C3%A1%20de%20tendencia%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar mi sofá a medida · aprovecha la temporada <span aria-hidden="true">→</span></a></div></div>
+</div>
+</section>
+</div>
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
+<div class="band on-dark ed-dark">
+<section id="sofas-cama" class="wrap sec">
+<div class="sc">
+<div><p class="ed-kick">CONFORT Y ESTRUCTURA DURADERA</p><h2 class="serif ed-t">Confort envolvente que <span class="gold" style="font-style:italic">perdura año tras año</span></h2>
+<p class="lead" style="max-width:500px;margin-top:26px">Espuma que conserva su firmeza sobre una estructura maciza que no cede ni cruje: comodidad para el uso diario, durante años.</p>
+<ul class="sc-stats"><li><b class="serif">1 año</b><span>Garantía estructural</span></li><li><b class="serif">3–6</b><span>Días hábiles de entrega</span></li><li><b class="serif">100 %</b><span>A la medida de tu sala</span></li></ul>
+<div style="margin-top:38px"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20sof%C3%A1%20de%20confort%20y%20estructura%20duradera." target="_blank" rel="noopener noreferrer">Cotizar mi sofá <span aria-hidden="true">→</span></a></div></div>
+<div class="sc-vid"><div class="vf rounded-3xl" style="aspect-ratio:4/5"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984825/IMG_1651.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá con confort envolvente"></video></div><span class="glass" style="left:auto;right:16px;bottom:auto;top:20px">Confort que perdura</span></div>
+</div>
+</section>
+</div>
+<div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
+<div class="band wm" data-wm="CLUCE" style="background:#E2D2B8">
+<section class="wrap sec">
+<div class="sd-head"><p class="ed-kick">SALA CONTEMPORÁNEA · NUEVA EN COLECCIÓN</p><h2 class="serif ed-t">Cuero Prana tono almendra, <span class="gold" style="font-style:italic">elegancia que se siente</span></h2></div>
+<div class="sd-stage">
+<ul class="sd-l"><li class="sd-c"><small>Tapiz</small><strong class="serif">Cuero Prana en tono almendra</strong></li><li class="sd-c"><small>Estructura</small><strong class="serif">Madera Tornillo maciza</strong></li><li class="sd-c"><small>Relleno</small><strong class="serif">Espuma Zebra de alta densidad</strong></li></ul>
+<div class="sd-vid"><div class="vf rounded-3xl" style="aspect-ratio:9/14"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_720,q_auto:good/v1792984823/IMG_2603.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984823/IMG_2603.mov" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_jpg,w_720,q_auto:good/v1792984823/IMG_2603.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá contemporáneo en cuero Prana tono almendra"></video></div><span class="glass">Cuero Prana · Almendra</span></div>
+<ul class="sd-r"><li class="sd-c"><small>Acabado</small><strong class="serif">Costuras y remates prolijos</strong></li><li class="sd-c"><small>Medidas</small><strong class="serif">Ancho, fondo y altura a tu espacio</strong></li><li class="sd-c"><small>Entrega</small><strong class="serif">3 a 6 días hábiles · 1 año de garantía</strong></li></ul>
+</div>
+<div class="sd-cta"><a class="btn btn-wa btn-xl" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20el%20sof%C3%A1%20en%20cuero%20Prana%20tono%20almendra." target="_blank" rel="noopener noreferrer">Cotizar mi sofá en cuero Prana <span aria-hidden="true">→</span></a></div>
+</section>
+</div>
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
 <div class="band on-dark" style="background:#22201D">
 <section id="retapizado" class="wrap sec">
@@ -938,7 +1180,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <li><span class="rt-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><h3>Refuerzo Estructural</h3><p>Revisamos y ajustamos toda la estructura interna de madera antes de tapizar.</p></div></li>
 <li><span class="rt-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c4 3 6 6 6 9a6 6 0 0 1-12 0c0-3 2-6 6-9z"/><path d="M12 9v9M9 13l3 2 3-3"/></svg></span><div><h3>Telas a Elección</h3><p>Elige entre terciopelo, chenille, lino o cuero sintético en el tono que prefieras.</p></div></li>
 </ul>
-<div style="margin-top:32px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quiero%20cotizar%20el%20retapizado%20de%20un%20mueble%20que%20tengo." target="_blank" rel="noopener">Cotizar retapizado por WhatsApp</a></div>
+<div style="margin-top:32px"><a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quiero%20cotizar%20el%20retapizado%20de%20un%20mueble%20que%20tengo." target="_blank" rel="noopener">Cotizar retapizado · renueva tu sala en Navidad</a></div>
 </div>
 <div>
 <div class="ba-wrap">
@@ -953,38 +1195,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 </div>
 </div>
 </section>
-</div><div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
-<div class="band wm" data-wm="CLUCE" style="background:#E2D2B8">
-<section id="sofas-cama" class="wrap sec">
-<div class="dp-head">
-<p class="dp-kick"><i aria-hidden="true"></i>COLECCIÓN EN TENDENCIA · FABRICACIÓN ARTESANAL EN LIMA</p>
-<h2 class="h2" style="margin:0;max-width:880px">Diseño que abraza tu espacio, <span class="gold" style="font-style:italic">confort que perdura años</span></h2>
-<p class="dp-lead">Fabricamos cada pieza desde cero en nuestro taller de Lima: estructuras macizas de <strong>Madera Tornillo</strong>, espumas <strong>Zebra de alta densidad</strong> indeformables y tapices importados suaves al tacto, adaptados al milímetro a la distribución de tu hogar.</p>
-<ul class="dp-seals"><li><b>100 %</b><span>A la medida de tu sala</span></li><li><b>6–12 días</b><span>Entrega en días hábiles</span></li><li><b>1 año</b><span>Garantía estructural</span></li></ul>
 </div>
-<div class="dp-duo">
-<article class="dp-card">
-<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984829/IMG_1390.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984829/IMG_1390.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984829/IMG_1390.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984829/IMG_1390.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sala seccional modular a medida en departamento iluminado"></video><span class="dp-cap">01 · PIEZA DE AUTOR</span></div>
-<div class="dp-body">
-<h3 class="serif">Sala Seccional a Medida</h3>
-<p>Amplitud pensada para tu espacio: configuración en L o lineal a elección, con módulos que se ajustan a cada pared.</p>
-<div class="dp-tags"><span>Madera Tornillo</span><span>Tapiz a elección</span></div>
-<a class="dp-link" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20una%20Sala%20Seccional%20a%20medida." target="_blank" rel="noopener noreferrer">Cotizar esta Sala Seccional <span aria-hidden="true">→</span></a>
-</div>
-</article>
-<article class="dp-card dp-b">
-<div class="vf dp-vid"><video src="https://res.cloudinary.com/bp5kjx1f/video/upload/f_mp4,vc_h264,w_960,q_auto:good/v1792984825/IMG_1651.mp4" data-fallback="https://res.cloudinary.com/bp5kjx1f/video/upload/q_auto,f_auto,vc_h264/v1792984825/IMG_1651.mp4 https://res.cloudinary.com/bp5kjx1f/video/upload/v1792984825/IMG_1651.mp4" poster="https://res.cloudinary.com/bp5kjx1f/video/upload/so_0,f_auto,q_auto:good,w_900/v1792984825/IMG_1651.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" aria-label="Sofá Cama Nórdico en Microfibra Soft, tono marfil"></video><span class="dp-cap">02 · MÁXIMA VERSATILIDAD</span></div>
-<div class="dp-body">
-<h3 class="serif">Sofá Cama Nórdico</h3>
-<p>Microfibra Soft en tono marfil, con apertura rápida en segundos y una firmeza ortopédica que cuida tu descanso.</p>
-<div class="dp-tags"><span>Apertura Rápida</span><span>Espuma Zebra</span></div>
-<a class="dp-link" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20cotizar%20un%20Sof%C3%A1%20Cama%20N%C3%B3rdico%20en%20Microfibra%20Soft%20tono%20marfil." target="_blank" rel="noopener noreferrer">Cotizar este Sofá Cama <span aria-hidden="true">→</span></a>
-</div>
-</article>
-</div>
-</section>
-</div>
-
 <div class="rule" aria-hidden="true"><div><i></i><span><u></u>✦<u></u></span><i></i></div></div>
 <div class="band" style="background:#F9F7F4">
 <section class="wrap sec">
@@ -997,16 +1208,19 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <a class="btn btn-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20tengo%20la%20foto/video%20de%20un%20modelo%20que%20vi%20en%20redes%20y%20me%20gustar%C3%ADa%20cotizarlo." target="_blank" rel="noopener noreferrer">Enviar mi video/foto por WhatsApp</a>
 <p class="at-note">Respuesta y cotización rápida sin compromiso</p>
 </div>
-<div class="at-scene">
-<figure class="at-result"><img src="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:best,w_900/IMG_1277.jpg" alt="Sofá cama desplegable en tapiz crema con cojines terracota, fabricado a pedido" loading="lazy" decoding="async">
-<span class="at-dim" aria-hidden="true"><i></i><em>2.40 m × 0.95 m</em><i></i></span>
-<figcaption class="at-seal">FABRICADO A PEDIDO · LIMA</figcaption></figure>
-<div class="at-ref" aria-hidden="true">
-<div class="at-ref-top"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span>@tu_inspiración</span></div>
-<div class="at-ref-pic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-<div class="at-sw"><i style="background:#efe6d4"></i><i style="background:#8a7f72"></i><i style="background:#b5603a"></i></div>
-<p>TU CAPTURA DE INSPIRACIÓN → 100 % PERSONALIZADO</p>
-</div>
+<div class="at-scene xp-wrap">
+<article class="xp" aria-label="Expediente de fabricación a medida">
+<header class="xp-top"><span>✦ EXPEDIENTE DE FABRICACIÓN A MEDIDA</span><em>N.º CLUCE · TALLER LIMA</em></header>
+<div class="xp-seal" role="note"><small>ENTREGA RÁPIDA</small><b class="serif">3 a 6</b><span>días hábiles</span></div>
+<h3 class="serif xp-h">Tu referencia, <span class="gold" style="font-style:italic">hecha realidad</span> en nuestro taller</h3>
+<ol class="xp-list">
+<li><span class="xp-n serif">1</span><div><strong>Adaptación exacta a los centímetros de tu sala</strong><p>Ajustamos ancho, fondo y altura a tu pared y a tu rincón.</p></div></li>
+<li><span class="xp-n serif">2</span><div><strong>Asesoría personalizada de telas antifluidos y espumas Zebra</strong><p>Te guiamos en tono, textura y firmeza para que elijas con seguridad.</p></div></li>
+<li><span class="xp-n serif">3</span><div><strong>Fabricación artesanal con estructura de madera tornillo y 1 año de garantía</strong><p>Estructura maciza y acabados prolijos, respaldados por nuestro taller.</p></div></li>
+</ol>
+<a class="btn btn-wa btn-xl xp-wa" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quiero%20cotizar%20mi%20dise%C3%B1o%20a%20medida.%20Te%20env%C3%ADo%20mi%20foto%20o%20video%20de%20referencia." target="_blank" rel="noopener noreferrer">Cotizar mi diseño por WhatsApp <span aria-hidden="true">→</span></a>
+</article>
+
 </div>
 </div>
 </section>
@@ -1073,7 +1287,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <div class="tvx-vwrap">
 <span class="tvx-frame" aria-hidden="true"></span>
 <div class="tvx-video">
-<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264,w_1080,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" data-fallback="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline autoplay disableRemotePlayback preload="metadata" aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
+<video id="tvcVid" src="https://res.cloudinary.com/bp5kjx1f/video/fetch/f_mp4,vc_h264,w_720,q_auto:good/https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" data-fallback="https://github.com/carlosquintosanchez56-gif/Muebleria-Cluce/releases/download/v1.0/IMG_4820.-.copia.MOV" poster="https://res.cloudinary.com/bp5kjx1f/image/upload/f_auto,q_auto:good,w_1080/IMG_4821.jpg" muted loop playsinline webkit-playsinline preload="metadata" crossorigin="anonymous" disableRemotePlayback aria-label="Video del Centro de TV a medida" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
 </div>
 </div>
 <figure class="tvx-photo">
@@ -1166,7 +1380,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <div class="faq">
 <p class="eyebrow" style="margin-bottom:20px">Preguntas frecuentes</p>
 <h2 class="h2" style="font-size:clamp(30px,4vw,52px);margin-bottom:40px">Todo lo que necesitas saber antes de pedir tu mueble</h2>
-<details class="faq-i"><summary>¿Cuánto demora la fabricación a medida?</summary><p>Nuestros muebles se fabrican de manera personalizada en un plazo estimado de 6 a 12 días hábiles, dependiendo del modelo, las dimensiones y el tipo de tapizado elegido.</p></details>
+<details class="faq-i"><summary>¿Cuánto demora la fabricación a medida?</summary><p>Nuestros muebles se fabrican de manera personalizada en un plazo estimado de 3 a 6 días hábiles, dependiendo del modelo, las dimensiones y el tipo de tapizado elegido.</p></details>
 <details class="faq-i"><summary>¿Cómo funciona la reserva con el 10 % y el saldo contra entrega?</summary><p>Inicias tu pedido abonando únicamente el 10 % de reserva. El saldo restante lo cancelas al momento de recibir el mueble en tu domicilio, una vez que verifiques que todo esté conforme a lo solicitado.</p></details>
 <details class="faq-i"><summary>¿Realizan visitas a domicilio para tomar medidas o recoger muebles para retapizado?</summary><p>Sí, realizamos visitas técnicas en Lima para tomar las medidas exactas de tu espacio y asesorarte con el muestrario de telas. En el caso de retapizado, también coordinamos el recojo y la entrega de tu mueble directamente en tu hogar.</p></details>
 <details class="faq-i"><summary>¿Qué respaldo incluye la garantía de 1 año?</summary><p>Todos nuestros muebles cuentan con 1 año de garantía estructural y de fabricación. Ante cualquier eventualidad relacionada con el desempeño de la espuma, la estructura interna o el funcionamiento de los mecanismos reclinables y camas, nuestro taller se encarga de su revisión y atención directa.</p></details>
@@ -1176,6 +1390,7 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 <footer style="color:#f4e8d8;margin-top:90px;padding:90px 0 110px;border-top:1px solid rgba(241,235,224,.12)">
 <div class="wrap">
 <div class="serif" style="font-size:clamp(40px,6vw,84px);font-weight:500;line-height:1;margin-bottom:64px">Mueblería Cluce</div>
+<p class="foot-fest"><span aria-hidden="true">✦</span> FELICES FIESTAS · ENTREGA EN 3 A 6 DÍAS HÁBILES <span aria-hidden="true">✦</span></p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px">
 <div><p class="eyebrow" style="color:#C5A880;margin-bottom:12px">Horario</p><p style="margin:0;font-size:20px;line-height:1.5">Horario: Lunes a Domingo 11am-7pm</p></div>
 <div><p class="eyebrow" style="color:#C5A880;margin-bottom:12px">Ubicación</p><p style="margin:0;font-size:20px;line-height:1.5"><a class="maplink" href="https://maps.app.goo.gl/N8p5eek7GaHgVun78" target="_blank" rel="noopener noreferrer">Ubicación: Plaza Hogar, Bloque II, Piso 2, Stand COM09</a></p></div>
@@ -1189,39 +1404,10 @@ html.is-tiktok img.tk-img.kb{animation:kenBurns 12s ease-in-out infinite alterna
 
 <a class="fab" href="https://wa.me/51933943191?text=Hola%20Muebler%C3%ADa%20Cluce%2C%20quisiera%20recibir%20asesor%C3%ADa%20para%20un%20sof%C3%A1%20cama%20a%20medida." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 10c.5 2.5 2.5 4.5 5 5l1.2-1.3-2-1-.9.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.9-1-2L9 10z"/></svg></a>
 </div>
-<script>window.__tkSwap && window.__tkSwap();</script>
 <script>
 function cluceInit() {
   var SHOWROOM_IMG = ""; // URL de la foto panorámica del showroom (opcional)
   var WA = "51933943191";
-  /* ===== Videos: src directo · play apenas entran en rango, pause al salir (sin tocar el src) ===== */
-  var vids = [].slice.call(document.querySelectorAll("video"));
-  var inView = new Set();
-  function play(v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-  vids.forEach(function (v) {
-    v.muted = true; v.defaultMuted = true; v.loop = true;
-    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
-    v.addEventListener("playing", function () { if (v.parentNode) v.parentNode.classList.add("ready"); });
-    v.addEventListener("error", function () {
-      var list = (v.dataset.fallback || "").split(" ").filter(Boolean), i = +(v.dataset.fi || 0);
-      if (i >= list.length) return;
-      v.dataset.fi = i + 1; v.src = list[i]; if (inView.has(v)) play(v);
-    });
-  });
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting) { inView.add(v); if (v.preload !== "auto") v.preload = "auto"; play(v); }
-        else { inView.delete(v); v.pause(); }
-      });
-    }, { rootMargin: "300px 0px", threshold: 0.1 });
-    vids.forEach(function (v) { io.observe(v); });
-  } else { vids.forEach(play); }
-  document.addEventListener("visibilitychange", function () {
-    inView.forEach(function (v) { if (document.hidden) v.pause(); else play(v); });
-  });
-  document.addEventListener("touchstart", function () { inView.forEach(function (v) { if (v.paused) play(v); }); }, { passive: true });
   var ba = document.getElementById("ba");
   if (ba && !ba.dataset.bound) {
     ba.dataset.bound = "1";
@@ -1296,28 +1482,87 @@ cluceInit();
 })();
 </script>
 <script>
+/* ===== Motor de video: MP4 H.264 + IntersectionObserver; en TikTok se dibuja en <canvas> con requestAnimationFrame ===== */
 (function () {
-  var SOLO_VISIBLES = true; /* true = play solo en los videos visibles (recomendado en iPhone); false = play en TODOS */
-  function prep(v) {
-    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.controls = false; v.loop = true;
-    v.removeAttribute("controls");
-    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
-    v.setAttribute("disablePictureInPicture", ""); v.setAttribute("disableRemotePlayback", "");
-    v.setAttribute("controlsList", "nodownload nofullscreen noremoteplayback");
-    v.disablePictureInPicture = true; v.disableRemotePlayback = true;
+  var TT = document.documentElement.classList.contains("is-tiktok"), vids = [].slice.call(document.querySelectorAll("video"));
+  var active = new Set(), raf = 0, DPR = Math.min(window.devicePixelRatio || 1, 3);
+  function play(v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function size(v) {
+    /* resolución nativa: clientSize × devicePixelRatio, sin superar videoWidth/videoHeight reales */
+    var c = v.__cv, w = Math.round(c.clientWidth * DPR), h = Math.round(c.clientHeight * DPR);
+    var capW = v.videoWidth || 1080, capH = v.videoHeight || 1920;
+    var k = Math.min(1, Math.max(capW / (w || 1), capH / (h || 1)));
+    if (k < 1) { w = Math.round(w * k); h = Math.round(h * k); }
+    if (w && h && (c.width !== w || c.height !== h)) { c.width = w; c.height = h; v.__ctx.imageSmoothingEnabled = true; v.__ctx.imageSmoothingQuality = "high"; }
   }
-  function visible(v) {
-    var r = v.getBoundingClientRect();
-    return r.bottom > -300 && r.top < innerHeight + 300 && r.right > 0 && r.left < innerWidth;
+  function draw(v) {
+    var c = v.__cv, vw = v.videoWidth, vh = v.videoHeight;
+    if (!vw || !vh || v.readyState < 2 || !c.width || !c.height) return false;
+    var s = Math.max(c.width / vw, c.height / vh), sw = c.width / s, sh = c.height / s;
+    v.__ctx.drawImage(v, (vw - sw) / 2, (vh - sh) / 2, sw, sh, 0, 0, c.width, c.height); /* recorte object-fit: cover */
+    return true;
   }
-  function kick() {
-    [].forEach.call(document.querySelectorAll("video"), function (v) {
-      prep(v);
-      if (!SOLO_VISIBLES || visible(v)) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function loop() {
+    raf = 0; if (document.hidden || !active.size) return;
+    active.forEach(function (v) { if (draw(v) && !v.__d) { v.__d = 1; v.parentNode.classList.add("ready"); } });
+    raf = requestAnimationFrame(loop);
+  }
+  function go() { if (TT && !raf) raf = requestAnimationFrame(loop); }
+  function target(v) { return TT ? v.__cv : v; }
+  vids.forEach(function (v) {
+    v.muted = v.defaultMuted = v.loop = v.playsInline = true; v.controls = false; v.removeAttribute("autoplay");
+    ["muted", "loop", "playsinline", "webkit-playsinline"].forEach(function (a) { v.setAttribute(a, ""); });
+    if (TT) {
+      var c = document.createElement("canvas"), p = v.getAttribute("poster");
+      c.className = "tk-cv"; c.setAttribute("aria-hidden", "true");
+      if (p) c.style.backgroundImage = 'url("' + p + '")';
+      v.parentNode.insertBefore(c, v); v.__cv = c; v.__ctx = c.getContext("2d"); size(v);
+      if ("ResizeObserver" in window) new ResizeObserver(function () { size(v); }).observe(c);
+    }
+    if (TT) v.addEventListener("loadedmetadata", function () { size(v); });
+    v.addEventListener("playing", function () { if (!TT && v.parentNode) v.parentNode.classList.add("ready"); });
+    v.addEventListener("canplay", function () { if (active.has(v) && v.paused) play(v); });
+    v.addEventListener("error", function () {
+      var l = (v.dataset.fallback || "").split(" ").filter(Boolean), i = +(v.dataset.fi || 0);
+      if (i >= l.length) return;
+      v.dataset.fi = i + 1; if (l[i].indexOf("res.cloudinary.com") < 0) v.removeAttribute("crossorigin");
+      v.src = l[i]; if (active.has(v)) play(v);
     });
+  });
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target.__v;
+      if (e.isIntersecting && e.intersectionRatio >= 0.25) { active.add(v); if (v.preload !== "auto") v.preload = "auto"; play(v); go(); }
+      else { active.delete(v); v.pause(); }
+    });
+  }, { threshold: [0, 0.25] }) : null;
+  vids.forEach(function (v) { var t = target(v); t.__v = v; if (io) io.observe(t); else { active.add(v); play(v); } });
+  go();
+  function kick() { /* respaldo si WKWebView bloquea el autoplay inicial */
+    vids.forEach(function (v) {
+      var r = target(v).getBoundingClientRect(), h = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
+      if (h > 0 && h >= r.height * 0.25 && r.right > 0 && r.left < innerWidth) { active.add(v); play(v); }
+    });
+    go();
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", kick); else kick();
-  document.addEventListener("touchstart", kick, { once: true, passive: true });
+  ["touchstart", "scroll"].forEach(function (ev) { window.addEventListener(ev, kick, { once: true, passive: true }); });
+  document.addEventListener("visibilitychange", function () {
+    active.forEach(function (v) { if (document.hidden) v.pause(); else play(v); }); if (!document.hidden) go();
+  });
+})();
+</script>
+<script>
+(function () {
+  var el = document.getElementById("fxCount");
+  if (el) {
+    var end = new Date("2026-12-24T23:59:59-05:00").getTime(), q = function (u) { return el.querySelector('[data-u="' + u + '"]'); }, d = q("d"), h = q("h"), m = q("m");
+    var tick = function () {
+      var s = Math.max(0, Math.floor((end - Date.now()) / 1000));
+      d.textContent = Math.floor(s / 86400); h.textContent = ("0" + Math.floor(s % 86400 / 3600)).slice(-2); m.textContent = ("0" + Math.floor(s % 3600 / 60)).slice(-2);
+      if (!s) el.style.display = "none";
+    };
+    tick(); setInterval(tick, 30000);
+  }
 })();
 </script>
 </body>
